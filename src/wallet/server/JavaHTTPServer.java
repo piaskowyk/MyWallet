@@ -1,32 +1,35 @@
 package wallet.server;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import com.google.gson.Gson;
+import wallet.server.Exceptions.ActionNotExist;
+import wallet.server.Exceptions.ControllerNotExist;
+
+import java.io.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Date;
-import java.util.StringTokenizer;
-
-import com.google.gson.Gson;
+import java.util.*;
 
 public class JavaHTTPServer implements Runnable{
 
     private static final int PORT = 8080;
     private static final boolean debug = true;
     private Socket connect;
+    private static String[] controllerList = null;
+    private String pathToController = "wallet.server.Controllers.";
 
     private JavaHTTPServer(Socket socket) {
         this.connect = socket;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        //collect public controller list
+        Gson gson = new Gson();
+        FileReader reader = new FileReader("src/wallet/server/controllersList.json");
+        controllerList = gson.fromJson(reader, String[].class);
+
         try {
             ServerSocket serverConnect = new ServerSocket(PORT);
 
@@ -48,159 +51,135 @@ public class JavaHTTPServer implements Runnable{
 
     @Override
     public void run() {
-        // we manage our particular client connection
-        BufferedReader in = null;
-        PrintWriter out = null;
-        BufferedOutputStream dataOut = null;
+        BufferedReader inputBuffer = null;
         String fileRequested = null;
+        Map<String, String> headers = new HashMap<String, String>();
+        boolean flag = true;
+        String method = null;
+        String controlerName = null;
+        String action = null;
+        StringBuilder inputData = new StringBuilder();
+
+        Tmp aaa = null;
 
         try {
-            // we read characters from the client via input stream on the socket
-            in = new BufferedReader(new InputStreamReader(connect.getInputStream()));
-            // we get character output stream to client (for headers)
-            out = new PrintWriter(connect.getOutputStream());
-            // get binary output stream to client (for requested data)
-            dataOut = new BufferedOutputStream(connect.getOutputStream());
-            // get first line of the request from the client
-            String input = in.readLine();
+            inputBuffer = new BufferedReader(new InputStreamReader(connect.getInputStream()));
+            ServerResponse serverResponse = new ServerResponse(connect.getOutputStream());
 
-
-///////////////////////////////////////////////////////////////////////////////////
-            System.out.println(input);
-            BufferedReader br = in;
-
-//code to read and print headers
+            BufferedReader headerBuffer = inputBuffer;
+            String urlHeader = null;
             String headerLine = null;
-            while((headerLine = br.readLine()).length() != 0){
-                System.out.println(headerLine);
+            int i = 0;
+            while((headerLine = headerBuffer.readLine()).length() != 0){
+                if(i == 0) urlHeader = headerLine;
+                int index = headerLine.indexOf(' ');
+                String key = headerLine.substring(0, index);
+                String value = headerLine.substring(index + 1);
+                headers.put(key, value);
+                i++;
             }
 
-//code to read the post payload data
-            StringBuilder payload = new StringBuilder();
-            while(br.ready()){
-                payload.append((char) br.read());
+            if(urlHeader != null && urlHeader.chars().filter(num -> num == '/').count() != 3){
+                try {
+                    StringTokenizer parse = new StringTokenizer(urlHeader);
+                    method = parse.nextToken().toUpperCase();
+                    String path = parse.nextToken();
+                    path = path.substring(1);
+                    String[] pathElements = path.split("/");
+                    controlerName = pathElements[1];
+                    controlerName = controlerName.toLowerCase();
+                    action = pathElements[2];
+                    action = action.toLowerCase();
+                } catch (Exception e){
+                    serverResponse.badRequest();
+                    flag = false;
+                }
+            } else {
+                serverResponse.badRequest();
+                flag = false;
             }
-            System.out.println("Payload data is: "+payload.toString());
-///////////////////////////////////////////////////////////////////////////////////
 
-
-
-            // we parse the request with a string tokenizer
-            StringTokenizer parse = new StringTokenizer(input);
-            String method = parse.nextToken().toUpperCase(); // we get the HTTP method of the client
-            // we get file requested
-            fileRequested = parse.nextToken();
-            System.out.println(fileRequested);
-
-
-            if(method.equals("GET") || method.equals("POST")) {
-                // GET or HEAD method
-//                if (fileRequested.endsWith("/")) {
-//                    fileRequested += DEFAULT_FILE;
-//                }
-
-//                File file = new File(WEB_ROOT, fileRequested);
-//                int fileLength = (int) file.length();
-//                String content = getContentType(fileRequested);
-
-                String content = "";
-
-                Gson gson = new Gson();
-                ServerResponse obj = new ServerResponse(1, "mlekomleko");
-                String json = gson.toJson(obj);
-                content = json;
-
-
-                if (method.equals("GET") || method.equals("POST")) { // GET method so we return content
-                    //byte[] fileData = readFileData(file, fileLength);
-
-                    // send HTTP Headers
-                    out.println("HTTP/1.1 200 OK");
-                    out.println("Server: xdddddddddddddddddddddd");
-                    out.println("Date: " + new Date());
-                    out.println("Content-type: ok");
-                    out.println("Content-length: " + content.length());
-                    out.println(); // blank line between headers and content, very important !
-                    out.flush(); // flush character output stream buffer
-
-                    dataOut.write(content.getBytes(), 0, content.length());
-                    dataOut.flush();
+            if(flag && (method.equals("GET") || method.equals("POST"))) {
+                //reading input data
+                while(headerBuffer.ready()){
+                    inputData.append((char) headerBuffer.read());
                 }
 
-                if (debug) System.out.println("File "  + " of type "  + " returned");
+                //execute action from controller
+                Object outData = null;
+                try{
+                    boolean exist = false;
+                    for (String item : controllerList){
+                        if(item.equals(controlerName)) exist = true;
+                    }
+                    //if (!exist) throw new ControllerNotExist();
 
-            }
+                    //if(!action.contains(".+action$")) throw new ActionNotExist();
 
-        } catch (FileNotFoundException fnfe) {
-            try {
-                fileNotFound(out, dataOut, fileRequested);
-            } catch (IOException ioe) {
-                System.err.println("Error with file not found exception : " + ioe.getMessage());
+                    //capitalize controller
+                    controlerName = controlerName.substring(0, 1).toUpperCase() + controlerName.substring(1);
+
+                    //Class controllerClass = Class.forName(pathToController + controlerName);
+
+                    //Class<?> controllerClass = Class.forName(pathToController + controlerName);
+                    Class<?> controllerClass = Class.forName(pathToController + "User");
+                    //try{
+//                        Object controllerObject = controllerClass.getConstructor().newInstance();
+//                        Controller controller = (Controller) controllerObject;
+
+                        Constructor<?> controllerConstructor = controllerClass.getConstructor();
+                        Object controllerObject = controllerConstructor.newInstance(); /*new Object[] { ctorArgument }*/
+                        //Controller controller = (Controller) controllerObject;
+
+                        Method tmp = controllerClass.getMethod("indexAction");
+                    System.out.println(tmp.toString());
+                        Tmp a = (Tmp)tmp.invoke(controllerObject);
+                    aaa = a;
+                    System.out.println("bbbbbbbbbbbbbbbbbbbbbbb");
+//                    }
+//                    catch (Exception e){
+//                        throw new ControllerNotExist();
+//                    }
+
+                }
+                catch (ActionNotExist | ControllerNotExist e){
+                    serverResponse.notFound();
+                    flag = false;
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+//                catch (Exception e){
+//                    flag = false;
+//                }
+
+                //response output data
+                if(flag){
+                    serverResponse.setData(aaa);
+                    serverResponse.response();
+                }
             }
 
         } catch (IOException ioe) {
             System.err.println("Server error : " + ioe);
+
         } finally {
             try {
-                in.close();
-                out.close();
-                dataOut.close();
-                connect.close(); // we close socket connection
+                if (inputBuffer != null) inputBuffer.close();
+                connect.close();
+
             } catch (Exception e) {
                 System.err.println("Error closing stream : " + e.getMessage());
             }
 
-            if (debug) {
-               // System.out.println("Connection closed.\n");
-            }
+            if (debug) System.out.println("Connection closed.\n");
         }
-
-
     }
-
-    private byte[] readFileData(File file, int fileLength) throws IOException {
-        FileInputStream fileIn = null;
-        byte[] fileData = new byte[fileLength];
-
-        try {
-            fileIn = new FileInputStream(file);
-            fileIn.read(fileData);
-        } finally {
-            if (fileIn != null)
-                fileIn.close();
-        }
-
-        return fileData;
-    }
-
-    // return supported MIME Types
-    private String getContentType(String fileRequested) {
-        if (fileRequested.endsWith(".htm")  ||  fileRequested.endsWith(".html"))
-            return "text/html";
-        else
-            return "text/plain";
-    }
-
-    private void fileNotFound(PrintWriter out, OutputStream dataOut, String fileRequested) throws IOException {
-//        File file = new File(WEB_ROOT, FILE_NOT_FOUND);
-//        int fileLength = (int) file.length();
-//        String content = "text/html";
-//        byte[] fileData = readFileData(file, fileLength);
-//
-//        out.println("HTTP/1.1 404 File Not Found");
-//        out.println("Server: Java HTTP Server from SSaurel : 1.0");
-//        out.println("Date: " + new Date());
-//        out.println("Content-type: " + content);
-//        out.println("Content-length: " + fileLength);
-//        out.println(); // blank line between headers and content, very important !
-//        out.flush(); // flush character output stream buffer
-//
-//        dataOut.write(fileData, 0, fileLength);
-//        dataOut.flush();
-//
-//        if (debug) {
-//            System.out.println("File " + fileRequested + " not found");
-//        }
-    }
-
 }

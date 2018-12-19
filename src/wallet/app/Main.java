@@ -17,7 +17,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        if(!isLog){
+        if(isLog){
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("views/login.fxml"));
                 BorderPane root = (BorderPane) loader.load();
