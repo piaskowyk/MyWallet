@@ -1,6 +1,6 @@
 package wallet.server.Exceptions;
 
-public class ActionNotExist extends RuntimeException {
+public class ActionNotExistException extends RuntimeException {
     @Override
     public String getMessage() {
         return "This action not exist.";

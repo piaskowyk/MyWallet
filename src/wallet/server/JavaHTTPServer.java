@@ -1,15 +1,16 @@
 package wallet.server;
 
 import com.google.gson.Gson;
-import wallet.server.Exceptions.ActionNotExist;
-import wallet.server.Exceptions.ControllerNotExist;
+import wallet.server.Controllers.Controller;
+import wallet.server.Exceptions.*;
+import wallet.server.Helpers.Validator;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.*;
 
 public class JavaHTTPServer implements Runnable{
@@ -59,8 +60,7 @@ public class JavaHTTPServer implements Runnable{
         String controlerName = null;
         String action = null;
         StringBuilder inputData = new StringBuilder();
-
-        Tmp aaa = null;
+        Object outpurDataObject = null;
 
         try {
             inputBuffer = new BufferedReader(new InputStreamReader(connect.getInputStream()));
@@ -86,14 +86,21 @@ public class JavaHTTPServer implements Runnable{
                     String path = parse.nextToken();
                     path = path.substring(1);
                     String[] pathElements = path.split("/");
+
                     controlerName = pathElements[1];
+                    if (!Validator.isValidUrlControllersPath(controlerName)) throw new UnpermittedCharsException();
                     controlerName = controlerName.toLowerCase();
+
                     action = pathElements[2];
+                    if (!Validator.isValidUrlControllersPath(action)) throw new UnpermittedCharsException();
                     action = action.toLowerCase();
+
                 } catch (Exception e){
+                    e.printStackTrace();
                     serverResponse.badRequest();
                     flag = false;
                 }
+
             } else {
                 serverResponse.badRequest();
                 flag = false;
@@ -112,63 +119,59 @@ public class JavaHTTPServer implements Runnable{
                     for (String item : controllerList){
                         if(item.equals(controlerName)) exist = true;
                     }
-                    //if (!exist) throw new ControllerNotExist();
 
-                    //if(!action.contains(".+action$")) throw new ActionNotExist();
+                    if (!exist) throw new ControllerNotExistException();
 
-                    //capitalize controller
+                    action += "Action";
                     controlerName = controlerName.substring(0, 1).toUpperCase() + controlerName.substring(1);
+                    controlerName += "Controller";
 
-                    //Class controllerClass = Class.forName(pathToController + controlerName);
-
-                    //Class<?> controllerClass = Class.forName(pathToController + controlerName);
-                    Class<?> controllerClass = Class.forName(pathToController + "User");
-                    //try{
-//                        Object controllerObject = controllerClass.getConstructor().newInstance();
-//                        Controller controller = (Controller) controllerObject;
-
+                    try{
+                        Class<?> controllerClass = Class.forName(pathToController + controlerName);
                         Constructor<?> controllerConstructor = controllerClass.getConstructor();
-                        Object controllerObject = controllerConstructor.newInstance(); /*new Object[] { ctorArgument }*/
-                        //Controller controller = (Controller) controllerObject;
+                        Object controllerObject = controllerConstructor.newInstance();
+                        if (!(controllerObject instanceof Controller)) throw new ForbiddenControllerException();
 
-                        Method tmp = controllerClass.getMethod("indexAction");
-                    System.out.println(tmp.toString());
-                        Tmp a = (Tmp)tmp.invoke(controllerObject);
-                    aaa = a;
-                    System.out.println("bbbbbbbbbbbbbbbbbbbbbbb");
-//                    }
-//                    catch (Exception e){
-//                        throw new ControllerNotExist();
-//                    }
+                        Method tmp = controllerClass.getMethod(action, String.class);
+                        outpurDataObject = (Object)tmp.invoke(controllerObject, inputData.toString());
+
+                    }
+                    catch (InvalidInputDataException e){
+                        e.printStackTrace();
+                        throw new InvalidInputDataException();
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                        throw new ControllerNotExistException();
+                    }
 
                 }
-                catch (ActionNotExist | ControllerNotExist e){
+                catch (InvalidInputDataException e){
+                    e.printStackTrace();
+                    serverResponse.incorrectInputData();
+                    flag = false;
+                }
+                catch (ActionNotExistException | ControllerNotExistException e){
+                    e.printStackTrace();
                     serverResponse.notFound();
                     flag = false;
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
                 }
-//                catch (Exception e){
-//                    flag = false;
-//                }
+                catch (Exception e){
+                    serverResponse.serverError();
+                    e.printStackTrace();
+                    flag = false;
+                }
 
                 //response output data
                 if(flag){
-                    serverResponse.setData(aaa);
+                    serverResponse.setData(outpurDataObject);
                     serverResponse.response();
                 }
             }
 
-        } catch (IOException ioe) {
-            System.err.println("Server error : " + ioe);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Server error : " + e);
 
         } finally {
             try {
@@ -176,6 +179,7 @@ public class JavaHTTPServer implements Runnable{
                 connect.close();
 
             } catch (Exception e) {
+                e.printStackTrace();
                 System.err.println("Error closing stream : " + e.getMessage());
             }
 

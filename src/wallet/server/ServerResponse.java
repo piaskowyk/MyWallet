@@ -2,13 +2,16 @@ package wallet.server;
 
 import com.google.gson.Gson;
 import wallet.server.Exceptions.RequestDoubleExecutedException;
-import wallet.server.Responses.ServerError;
+import wallet.server.Responses.ServerResponses.IncorrectInputData;
+import wallet.server.Responses.ServerResponses.ServerError;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Date;
 
 import wallet.server.Responses.*;
+import wallet.server.Responses.ServerResponses.BadRequest;
+import wallet.server.Responses.ServerResponses.NotFound;
 
 public class ServerResponse {
 
@@ -120,7 +123,11 @@ public class ServerResponse {
         makeResponse(404, new NotFound());
     }
 
-    private void makeResponse(int statucCode, Response response){
+    public void serverError(){ makeResponse(500, new ServerError());}
+
+    public void incorrectInputData(){ makeResponse(201, new IncorrectInputData());}
+
+    private void makeResponse(int statucCode, BaseResponse response){
         boolean flag = true;
         String json = "";
         Gson gson = new Gson();
