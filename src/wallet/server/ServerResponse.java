@@ -2,16 +2,13 @@ package wallet.server;
 
 import com.google.gson.Gson;
 import wallet.server.Exceptions.RequestDoubleExecutedException;
-import wallet.server.Responses.ServerResponses.IncorrectInputData;
-import wallet.server.Responses.ServerResponses.ServerError;
+import wallet.server.Responses.ServerResponses.*;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Date;
 
 import wallet.server.Responses.*;
-import wallet.server.Responses.ServerResponses.BadRequest;
-import wallet.server.Responses.ServerResponses.NotFound;
 
 public class ServerResponse {
 
@@ -78,7 +75,7 @@ public class ServerResponse {
         this.dataMaker = dataMaker;
     }
 
-    public boolean response(){
+    public void response(){
         boolean flag = true;
         String json = "";
         Gson gson = new Gson();
@@ -111,23 +108,29 @@ public class ServerResponse {
         dataMaker.flush();
 
         if (dataMaker != null) dataMaker.close();
-
-        return flag;
     }
 
-    public void badRequest(){
-        makeResponse(400, new BadRequest());
+    public void badRequest() {
+        makeResponse(new BadRequest());
     }
 
-    public void notFound(){
-        makeResponse(404, new NotFound());
+    public void notFound() {
+        makeResponse(new NotFound());
     }
 
-    public void serverError(){ makeResponse(500, new ServerError());}
+    public void serverError() {
+        makeResponse(new ServerError());
+    }
 
-    public void incorrectInputData(){ makeResponse(201, new IncorrectInputData());}
+    public void incorrectInputData() {
+        makeResponse(new IncorrectInputData());
+    }
 
-    private void makeResponse(int statucCode, BaseResponse response){
+    public void notSupportedMethod() {
+        makeResponse(new NotSupportedMethod());
+    }
+
+    private void makeResponse(BaseResponse response){
         boolean flag = true;
         String json = "";
         Gson gson = new Gson();
@@ -136,7 +139,7 @@ public class ServerResponse {
         if(executed) throw new RequestDoubleExecutedException();
         executed = true;
 
-        dataMaker.println("HTTP/1.1 " + statucCode + " OK");
+        dataMaker.println("HTTP/1.1 " + response.getCode() + " OK");
         dataMaker.println("Content-type: " + contentType);
         dataMaker.println("Server: piaskowyk");
         dataMaker.println("Date: " + new Date());

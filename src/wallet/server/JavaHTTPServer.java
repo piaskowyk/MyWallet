@@ -17,9 +17,9 @@ public class JavaHTTPServer implements Runnable{
 
     private static final int PORT = 8080;
     private static final boolean debug = true;
+    private final String pathToController = "wallet.server.Controllers.";
     private Socket connect;
     private static String[] controllerList = null;
-    private String pathToController = "wallet.server.Controllers.";
 
     private JavaHTTPServer(Socket socket) {
         this.connect = socket;
@@ -66,6 +66,7 @@ public class JavaHTTPServer implements Runnable{
             inputBuffer = new BufferedReader(new InputStreamReader(connect.getInputStream()));
             ServerResponse serverResponse = new ServerResponse(connect.getOutputStream());
 
+            //reading data from request headers
             BufferedReader headerBuffer = inputBuffer;
             String urlHeader = null;
             String headerLine = null;
@@ -79,6 +80,7 @@ public class JavaHTTPServer implements Runnable{
                 i++;
             }
 
+            //check request url validation
             if(urlHeader != null && urlHeader.chars().filter(num -> num == '/').count() != 3){
                 try {
                     StringTokenizer parse = new StringTokenizer(urlHeader);
@@ -106,6 +108,7 @@ public class JavaHTTPServer implements Runnable{
                 flag = false;
             }
 
+            //handling request
             if(flag && (method.equals("GET") || method.equals("POST"))) {
                 //reading input data
                 while(headerBuffer.ready()){
@@ -137,16 +140,17 @@ public class JavaHTTPServer implements Runnable{
 
                     }
                     catch (InvalidInputDataException e){
-                        e.printStackTrace();
                         throw new InvalidInputDataException();
                     }
                     catch (Exception e){
+                        if (debug) System.out.println("Controller or action not exist.");
                         e.printStackTrace();
                         throw new ControllerNotExistException();
                     }
 
                 }
                 catch (InvalidInputDataException e){
+                    if (debug) System.out.println("Invalid input data.");
                     e.printStackTrace();
                     serverResponse.incorrectInputData();
                     flag = false;
@@ -157,6 +161,7 @@ public class JavaHTTPServer implements Runnable{
                     flag = false;
                 }
                 catch (Exception e){
+                    if (debug) System.out.println("Undefined server error.");
                     serverResponse.serverError();
                     e.printStackTrace();
                     flag = false;
@@ -168,10 +173,12 @@ public class JavaHTTPServer implements Runnable{
                     serverResponse.response();
                 }
             }
+            else {
+                serverResponse.notSupportedMethod();
+            }
 
-        } catch (IOException e) {
+        } catch (IOException e) { //catch server errors
             e.printStackTrace();
-            System.err.println("Server error : " + e);
 
         } finally {
             try {

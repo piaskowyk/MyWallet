@@ -64,11 +64,11 @@ public class UserController implements Controller {
                 operation = false;
             }
 
-            result.setResult(operation);
+            result.setStatus(operation);
         }
         catch (Exception e){
             e.printStackTrace();
-            result.setResult(false);
+            result.setStatus(false);
         }
         finally {
             db.closeConnection();
@@ -117,17 +117,17 @@ public class UserController implements Controller {
                 arguments.add(dbResult.getString("id"));
 
                 db.queryUpdate("update users set token = ?, expired_date = ? where id = ?", arguments);
-                result.setResult(true);
+                result.setStatus(true);
                 result.setToken(token.toString());
             }
             else {
-                result.setResult(false);
+                result.setStatus(false);
             }
 
         }
         catch (Exception e){
             e.printStackTrace();
-            result.setResult(false);
+            result.setStatus(false);
         }
         finally {
             db.closeConnection();

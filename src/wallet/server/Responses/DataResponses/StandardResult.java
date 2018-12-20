@@ -4,17 +4,17 @@ import wallet.server.Responses.BaseResponse;
 
 public class StandardResult extends BaseResponse {
 
-    private boolean result;
+    private boolean status;
 
     public StandardResult(){
         super(200, "succes");
     }
 
-    public boolean isResult() {
-        return result;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setResult(boolean result) {
-        this.result = result;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
