@@ -1,4 +1,4 @@
-package wallet.app;
+package wallet.app.views.ViewController;
 
 import com.sun.javafx.fxml.builder.URLBuilder;
 import javafx.fxml.FXML;

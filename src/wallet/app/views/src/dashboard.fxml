@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="894.0" style="-fx-background-color: #F7FFF7;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wallet.app.MainViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="894.0" style="-fx-background-color: #F7FFF7;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wallet.app.views.ViewController.MainViewController">
    <left>
       <Pane prefHeight="561.0" prefWidth="265.0" style="-fx-background-color: #4ECDC4;" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
