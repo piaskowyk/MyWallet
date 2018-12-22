@@ -6,7 +6,7 @@ import wallet.server.Forms.Login;
 import wallet.server.Forms.Register;
 import wallet.server.Helpers.DataBase;
 import wallet.server.Responses.DataResponses.StandardResult;
-import wallet.server.Responses.DataResponses.TokenResponse;
+import wallet.server.Responses.DataResponses.LoginResponse;
 import wallet.server.Tmp;
 
 import java.sql.ResultSet;
@@ -77,8 +77,8 @@ public class UserController implements Controller {
         return result;
     }
 
-    public TokenResponse loginAction(String json){
-        TokenResponse result = new TokenResponse();
+    public LoginResponse loginAction(String json){
+        LoginResponse result = new LoginResponse();
         Login login;
         DataBase db = new DataBase();
 
