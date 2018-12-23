@@ -21,7 +21,7 @@ public class WalletController extends Controller {
         this.headers = headers;
     }
 
-    public StandardResult addpaymentAction(String json){
+    public StandardResult add_paymentAction(String json){
         StandardResult result = new StandardResult();
         Payment paymentForms;
         DataBase db = new DataBase();

@@ -58,7 +58,7 @@ public class Postman <T>{
     public enum Api{
         LOGIN("/api/user/login"),
         REGISTER("/api/user/register"),
-        ADDPAYMENTS("/api/wallet/addpayment");
+        ADD_PAYMENTS("/api/wallet/add_payment");
 
         String url;
 

@@ -3,7 +3,7 @@ package wallet.server.Helpers;
 public class Validator {
 
     public static boolean isValidUrlControllersPath(String item){
-        return item.length() < 225 && item.matches("[a-zA-Z]+");
+        return item.length() < 225 && item.matches("[a-zA-Z_]+");
     }
 
     public static boolean isValidAplhaString(String item){

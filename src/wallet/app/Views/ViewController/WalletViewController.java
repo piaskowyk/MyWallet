@@ -13,7 +13,6 @@ import wallet.app.Helpers.Postman;
 import wallet.app.Views.ViewsManager;
 import javafx.scene.control.Button;
 import wallet.server.Forms.Payment;
-import wallet.server.Responses.DataResponses.LoginResponse;
 import wallet.server.Responses.DataResponses.StandardResult;
 
 public class WalletViewController {
@@ -80,10 +79,12 @@ public class WalletViewController {
             paymentForm.setType(Payment.Type.INCOMING);
 
             Postman<StandardResult> postman = new Postman<StandardResult>();
-            StandardResult loginResponse = postman.send(paymentForm, StandardResult.class, Postman.Api.ADDPAYMENTS);
+            StandardResult loginResponse = postman.send(paymentForm, StandardResult.class, Postman.Api.ADD_PAYMENTS);
 
             if(loginResponse.getStatus()){
                 statusLabel.setText("OK, add new payment.");
+                inPaymentAmount.setText("");
+                inPaymentTitle.setText("");
             }
             else {
                 statusLabel.setText("Incorrect data.");
@@ -94,7 +95,31 @@ public class WalletViewController {
     EventHandler outPaymentBtnOnClick = new EventHandler() {
         @Override
         public void handle(Event event) {
+            if (!AuthorizationManager.isAuthorized()){
+                AuthorizationManager.authorize();
 
+                if (!AuthorizationManager.isAuthorized()){
+                    statusLabel.setText("You don't have permission to this operation.");
+                    return;
+                }
+            }
+
+            Payment paymentForm = new Payment();
+            paymentForm.setAmount(outPaymentAmount.getText());
+            paymentForm.setTitle(outPaymentTitle.getText());
+            paymentForm.setType(Payment.Type.OUTCOMING);
+
+            Postman<StandardResult> postman = new Postman<StandardResult>();
+            StandardResult loginResponse = postman.send(paymentForm, StandardResult.class, Postman.Api.ADD_PAYMENTS);
+
+            if(loginResponse.getStatus()){
+                statusLabel.setText("OK, add new payment.");
+                outPaymentAmount.setText("");
+                outPaymentTitle.setText("");
+            }
+            else {
+                statusLabel.setText("Incorrect data.");
+            }
         }
     };
 
