@@ -13,7 +13,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         AuthorizationManager.authorize();
         ViewsManager.init(primaryStage, getClass());
-        System.out.println(AuthorizationManager.isAuthorized());
+
         if(AuthorizationManager.isAuthorized()){
             ViewsManager.loadView(ViewsManager.Views.DASHBOARD);
         } else {

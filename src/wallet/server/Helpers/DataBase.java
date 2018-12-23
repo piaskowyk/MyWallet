@@ -66,7 +66,7 @@ public class DataBase {
             }
             i++;
         }
-
+        System.out.println(statement.toString());
         return statement.executeUpdate();
     }
 

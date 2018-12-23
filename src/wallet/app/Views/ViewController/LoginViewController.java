@@ -9,19 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import wallet.app.Helpers.AuthorizationManager;
-import wallet.app.Helpers.Postman;
 import wallet.app.Views.ViewsManager;
 import wallet.server.Forms.Login;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
-import wallet.server.Responses.DataResponses.LoginResponse;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 
 public class LoginViewController {

@@ -135,6 +135,10 @@ public class JavaHTTPServer implements Runnable{
                         Object controllerObject = controllerConstructor.newInstance();
                         if (!(controllerObject instanceof Controller)) throw new ForbiddenControllerException();
 
+                        //set up request headers in controller
+                        Method setUp = controllerClass.getMethod("setHeaders", HashMap.class);
+                        setUp.invoke(controllerObject, headers);
+
                         Method tmp = controllerClass.getMethod(action, String.class);
                         outpurDataObject = (Object)tmp.invoke(controllerObject, inputData.toString());
 
@@ -174,7 +178,7 @@ public class JavaHTTPServer implements Runnable{
                 }
             }
             else {
-                serverResponse.notSupportedMethod();
+                if(flag) serverResponse.notSupportedMethod();
             }
 
         } catch (IOException e) { //catch server errors

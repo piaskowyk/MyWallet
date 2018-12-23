@@ -74,10 +74,8 @@ public class AuthorizationManager {
                 System.out.println(pass.getEmail());
                 System.out.println(pass.getEmail());
                 String passString = gson.toJson(pass);
-                System.out.println(passString);
                 writer.write(passString);
                 writer.close();
-                System.out.println(email + " " + password);
 
             } catch (IOException e) {
                 System.out.println("Pass file not exist.");
@@ -86,6 +84,20 @@ public class AuthorizationManager {
         } else {
             isAuthorized = false;
         }
+    }
+
+    public static void logOut(){
+        try {
+            FileWriter writer = new FileWriter("src/wallet/app/UserData/pass.json");
+            writer.write("");
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        isAuthorized = false;
+        email = null;
+        password = null;
     }
 
 }

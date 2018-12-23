@@ -1,6 +1,7 @@
 package wallet.app.Helpers;
 
 import com.google.gson.Gson;
+import javafx.scene.control.Alert;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -30,12 +31,21 @@ public class Postman <T>{
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+
+        System.out.println(gson.toJson(message));
+
         post.setEntity(peyloadData);
         post.setHeader("Content-type", "application/json");
+        post.setHeader("Auth-Token", AuthorizationManager.getToken());
         try {
             HttpResponse response = httpClient.execute(post);
             responseStr = EntityUtils.toString(response.getEntity());
         } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("MyWallet");
+            alert.setHeaderText("Error");
+            alert.setContentText("No internet connection.");
+            alert.showAndWait();
             e.printStackTrace();
         }
         System.out.println(serverUrl + request.url);
@@ -47,7 +57,8 @@ public class Postman <T>{
 
     public enum Api{
         LOGIN("/api/user/login"),
-        REGISTER("/api/user/register");
+        REGISTER("/api/user/register"),
+        ADDPAYMENTS("/api/wallet/addpayment");
 
         String url;
 

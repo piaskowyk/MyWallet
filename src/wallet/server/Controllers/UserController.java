@@ -1,38 +1,22 @@
 package wallet.server.Controllers;
 
 import com.google.gson.Gson;
-import wallet.server.Exceptions.InvalidInputDataException;
 import wallet.server.Forms.Login;
 import wallet.server.Forms.Register;
 import wallet.server.Helpers.DataBase;
 import wallet.server.Responses.DataResponses.StandardResult;
 import wallet.server.Responses.DataResponses.LoginResponse;
-import wallet.server.Tmp;
 
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
+import java.util.*;
 
-public class UserController implements Controller {
+public class UserController extends Controller {
 
-    public Tmp indexAction(String json) {
+    private HashMap<String, String> headers;
 
-        DataBase db = new DataBase();
-        try {
-            ArrayList<Object> arguments = new ArrayList<>();
-            arguments.add("5");
-            ResultSet result = db.querySelect("select * from tmp where id = ?", arguments);
-            while(result.next())
-                System.out.println(result.getInt(1)+"  "+result.getString(2));
-            db.closeConnection();
-        } catch (Exception e){
-            e.printStackTrace();
-            throw new InvalidInputDataException();
-        }
-        return new Tmp(4, json);
+    public void setHeaders(HashMap<String, String> headers){
+        this.headers = headers;
     }
 
     public StandardResult registerAction(String json){

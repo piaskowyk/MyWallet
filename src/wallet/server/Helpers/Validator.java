@@ -14,6 +14,10 @@ public class Validator {
         return item.length() > 5 && item.length() < 40;
     }
 
+    public static boolean isValidFloatNum(String item){
+        return item.length() < 9 && item.matches("[0-9]+.[0-9]+");
+    }
+
     public static boolean isValidEmail(String item){
         return item.matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$") && item.length() < 225;
     }
