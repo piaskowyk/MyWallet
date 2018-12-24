@@ -23,7 +23,7 @@ public class WalletViewController {
     private ImageView wallet;
 
     @FXML
-    private Pane dashboardBtn, logoutBtn;
+    private Pane dashboardBtn, logoutBtn, historyBtn;
 
     @FXML
     private TextField inPaymentAmount, inPaymentTitle, outPaymentAmount, outPaymentTitle;
@@ -38,6 +38,7 @@ public class WalletViewController {
         //menu
         dashboardBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, dashboardBtnOnClick);
         logoutBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, logoutBtnOnClick);
+        historyBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, historyBtnOnClick);
 
         //panel action
         inPaymentBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, inPaymentBtnOnClick);
@@ -57,6 +58,13 @@ public class WalletViewController {
         public void handle(Event event) {
             AuthorizationManager.logOut();
             ViewsManager.loadView(ViewsManager.Views.LOGIN);
+        }
+    };
+
+    EventHandler historyBtnOnClick = new EventHandler() {
+        @Override
+        public void handle(Event event) {
+            ViewsManager.loadView(ViewsManager.Views.HISTORY);
         }
     };
 

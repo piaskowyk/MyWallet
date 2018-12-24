@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="1114.0" style="-fx-background-color: #F7FFF7;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wallet.app.Views.ViewController.DashboardViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="1114.0" style="-fx-background-color: #F7FFF7;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wallet.app.Views.ViewController.HistoryViewController">
    <left>
       <Pane prefHeight="561.0" prefWidth="265.0" style="-fx-background-color: #1A535C;" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
@@ -23,7 +23,7 @@
             </Label>
             <VBox layoutX="-1.0" layoutY="102.0" prefHeight="445.0" prefWidth="267.0">
                <children>
-                  <Pane prefHeight="65.0" prefWidth="267.0" styleClass="btnMenu">
+                  <Pane fx:id="dashboardBtn" prefHeight="65.0" prefWidth="267.0" styleClass="btnMenu">
                      <children>
                         <Label layoutX="71.0" layoutY="22.0" text="Dashboard" textFill="#f7fff7">
                            <font>
@@ -88,7 +88,7 @@
          <top>
             <Pane prefHeight="78.0" prefWidth="629.0" style="-fx-background-color: #1A535C;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="moduleNameLabel" layoutX="14.0" layoutY="25.0" text="Dashboard" textFill="#f7fff7">
+                  <Label fx:id="moduleNameLabel" layoutX="14.0" layoutY="25.0" text="History" textFill="#f7fff7">
                      <font>
                         <Font name="Ubuntu" size="24.0" />
                      </font>
@@ -96,6 +96,9 @@
                </children>
             </Pane>
          </top>
+         <center>
+            <VBox fx:id="historyContainer" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+         </center>
          <bottom>
             <Pane prefHeight="33.0" prefWidth="849.0" BorderPane.alignment="CENTER">
                <children>

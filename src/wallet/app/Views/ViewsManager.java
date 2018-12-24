@@ -24,6 +24,7 @@ public class ViewsManager {
         registerScene(Views.REGISTER);
         registerScene(Views.DASHBOARD);
         registerScene(Views.WALLET);
+        registerScene(Views.HISTORY);
     }
 
     public static void loadView(Views view) {
@@ -50,7 +51,8 @@ public class ViewsManager {
         LOGIN("login", "login", "Login to MyWallet"),
         REGISTER("register", "register", "Create new MyWallet account"),
         DASHBOARD("dashboard", "dashboard", "MyWallet"),
-        WALLET("wallet", "wallet", "MyWallet");
+        WALLET("wallet", "wallet", "MyWallet"),
+        HISTORY("history", "history", "MyWallet");
 
         String path;
         String cssPath;

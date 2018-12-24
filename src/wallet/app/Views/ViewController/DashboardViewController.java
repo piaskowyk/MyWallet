@@ -17,11 +17,12 @@ public class DashboardViewController {
     private ImageView wallet;
 
     @FXML
-    private Pane walletBtn, logoutBtn;
+    private Pane walletBtn, logoutBtn, historyBtn;
 
     public void initialize(){
         walletBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, walletBtnOnClick);
         logoutBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, logoutBtnOnClick);
+        historyBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, historyBtnOnClick);
     }
 
     EventHandler walletBtnOnClick = new EventHandler() {
@@ -36,6 +37,13 @@ public class DashboardViewController {
         public void handle(Event event) {
             AuthorizationManager.logOut();
             ViewsManager.loadView(ViewsManager.Views.LOGIN);
+        }
+    };
+
+    EventHandler historyBtnOnClick = new EventHandler() {
+        @Override
+        public void handle(Event event) {
+            ViewsManager.loadView(ViewsManager.Views.HISTORY);
         }
     };
 

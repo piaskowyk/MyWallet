@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="1113.0" style="-fx-background-color: #F7FFF7;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wallet.app.Views.ViewController.DashboardViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="1114.0" style="-fx-background-color: #F7FFF7;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wallet.app.Views.ViewController.DashboardViewController">
    <left>
       <Pane prefHeight="561.0" prefWidth="265.0" style="-fx-background-color: #1A535C;" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
@@ -51,6 +51,20 @@
                         </ImageView>
                      </children>
                   </Pane>
+                  <Pane fx:id="historyBtn" prefHeight="65.0" prefWidth="267.0" styleClass="btnMenu">
+                     <children>
+                        <Label layoutX="71.0" layoutY="22.0" prefHeight="21.0" prefWidth="83.0" text="History" textFill="#f7fff7">
+                           <font>
+                              <Font name="Ubuntu" size="18.0" />
+                           </font>
+                        </Label>
+                        <ImageView layoutX="17.0" layoutY="18.0">
+                           <image>
+                              <Image url="@img/history.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
                   <Pane fx:id="logoutBtn" prefHeight="65.0" prefWidth="267.0" styleClass="btnMenu">
                      <children>
                         <Label layoutX="71.0" layoutY="22.0" text="Logout" textFill="#f7fff7">
@@ -70,11 +84,11 @@
          </children></Pane>
    </left>
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f7fff7;" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
             <Pane prefHeight="78.0" prefWidth="629.0" style="-fx-background-color: #1A535C;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="moduleNameLabel" layoutX="24.0" layoutY="24.0" text="Dashboard" textFill="#f7fff7">
+                  <Label fx:id="moduleNameLabel" layoutX="14.0" layoutY="25.0" text="Dashboard" textFill="#f7fff7">
                      <font>
                         <Font name="Ubuntu" size="24.0" />
                      </font>
@@ -82,9 +96,13 @@
                </children>
             </Pane>
          </top>
-         <center>
-            <VBox prefHeight="624.0" prefWidth="848.0" BorderPane.alignment="CENTER" />
-         </center>
+         <bottom>
+            <Pane prefHeight="33.0" prefWidth="849.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="statusLabel" layoutX="14.0" layoutY="8.0" />
+               </children>
+            </Pane>
+         </bottom>
       </BorderPane>
    </center>
 </BorderPane>
