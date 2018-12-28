@@ -37,7 +37,6 @@ public class HistoryViewController implements IViewController {
 
     @Override
     public void onLoad() {
-        System.out.println("history load");
         LoadPaymentHistoryThread loadPaymentHistoryThread = new LoadPaymentHistoryThread(this);
         Thread getData = new Thread(loadPaymentHistoryThread);
         Platform.runLater(getData);

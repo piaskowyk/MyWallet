@@ -13,8 +13,8 @@ public class ViewsManager {
 
     private static Stage _primaryStage;
     private static Class _mainClass;
-    private static HashMap<String, Scene> allScene = new HashMap<String, Scene>();
-    private static HashMap<String, IViewController> allController = new HashMap<String, IViewController>();
+    private static HashMap<String, Scene> allScene = new HashMap<>();
+    private static HashMap<String, IViewController> allController = new HashMap<>();
 
     private ViewsManager(){}
 
@@ -22,6 +22,16 @@ public class ViewsManager {
         _primaryStage = primaryStage;
         _mainClass = mainClass;
 
+        registerAllView();
+    }
+
+    public static void clearViewData(){
+        allController.clear();
+
+        registerAllView();
+    }
+
+    public static void registerAllView(){
         registerScene(Views.LOGIN);
         registerScene(Views.REGISTER);
         registerScene(Views.DASHBOARD);

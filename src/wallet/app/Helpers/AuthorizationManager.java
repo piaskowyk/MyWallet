@@ -2,6 +2,7 @@ package wallet.app.Helpers;
 
 import com.google.gson.Gson;
 import wallet.app.Exceptions.UnauthorizationRequestException;
+import wallet.app.Views.ViewsManager;
 import wallet.server.Forms.LoginForm;
 import wallet.server.Responses.DataResponses.LoginResponse;
 
@@ -93,6 +94,7 @@ public class AuthorizationManager {
     }
 
     public static void logOut(){
+        ViewsManager.clearViewData();
         try {
             FileWriter writer = new FileWriter("src/wallet/app/UserData/pass.json");
             writer.write("");

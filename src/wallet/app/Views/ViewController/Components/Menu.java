@@ -16,7 +16,7 @@ public class Menu {
         menuItemHandlerList.put("#dashboardBtn", event -> ViewsManager.loadView(ViewsManager.Views.DASHBOARD));
         menuItemHandlerList.put("#walletBtn", event -> ViewsManager.loadView(ViewsManager.Views.WALLET));
         menuItemHandlerList.put("#historyBtn", event -> ViewsManager.loadView(ViewsManager.Views.HISTORY));
-        menuItemHandlerList.put("#logouttBtn", event -> {
+        menuItemHandlerList.put("#logoutBtn", event -> {
             AuthorizationManager.logOut();
             ViewsManager.loadView(ViewsManager.Views.LOGIN);
         });
