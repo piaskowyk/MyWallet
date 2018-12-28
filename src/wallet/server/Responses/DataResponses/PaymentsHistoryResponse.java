@@ -1,5 +1,6 @@
 package wallet.server.Responses.DataResponses;
 
+import wallet.server.Entity.PaymentItem;
 import wallet.server.Forms.PaymentForm;
 import wallet.server.Responses.BaseResponse;
 
@@ -9,7 +10,7 @@ import java.util.List;
 public class PaymentsHistoryResponse extends BaseResponse {
 
     private boolean status;
-    private List<PaymentForm> paymentsHistory = new ArrayList<PaymentForm>();
+    private List<PaymentItem> paymentsHistory = new ArrayList<>();
 
     public PaymentsHistoryResponse(){
         super(200, "succes");
@@ -23,11 +24,11 @@ public class PaymentsHistoryResponse extends BaseResponse {
         this.status = status;
     }
 
-    public List<PaymentForm> getPaymentsHistory() {
+    public List<PaymentItem> getPaymentsHistory() {
         return paymentsHistory;
     }
 
-    public void setPaymentsHistory(List<PaymentForm> paymentsHistory) {
+    public void setPaymentsHistory(List<PaymentItem> paymentsHistory) {
         this.paymentsHistory = paymentsHistory;
     }
 }

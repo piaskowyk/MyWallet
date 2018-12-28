@@ -15,6 +15,7 @@ import javafx.util.Pair;
 import wallet.app.Exceptions.UnauthorizationRequestException;
 import wallet.app.Helpers.Postman;
 import wallet.app.Views.ViewController.HistoryViewController;
+import wallet.server.Entity.PaymentItem;
 import wallet.server.Forms.PaymentForm;
 import wallet.server.Forms.RemovePaymentsItemForm;
 import wallet.server.Responses.DataResponses.PaymentsHistoryResponse;
@@ -34,7 +35,7 @@ public class LoadPaymentHistoryThread implements Runnable {
     public void run() {
         controller.getStatusLabel().setText("Waiting...");
 
-        Postman<PaymentsHistoryResponse> postman = new Postman<PaymentsHistoryResponse>();
+        Postman<PaymentsHistoryResponse> postman = new Postman<>();
         PaymentsHistoryResponse paymentsHistoryResponse = null;
         try {
             paymentsHistoryResponse = postman.get(PaymentsHistoryResponse.class, Postman.Api.GET_HISTORY);
@@ -52,7 +53,7 @@ public class LoadPaymentHistoryThread implements Runnable {
         controller.getHistoryContainer().getChildren().clear();
 
         Integer index = 0;
-        for(PaymentForm paymentItem : paymentsHistoryResponse.getPaymentsHistory()) {
+        for(PaymentItem paymentItem : paymentsHistoryResponse.getPaymentsHistory()) {
 
             //main container list
             BorderPane borderPaneRoot = new BorderPane();
@@ -64,7 +65,7 @@ public class LoadPaymentHistoryThread implements Runnable {
             paneLeft.setPrefWidth(100);
             ImageView icon = new ImageView();
             String iconName;
-            if(paymentItem.getType() == PaymentForm.Type.INCOMING){
+            if(paymentItem.getType() == PaymentItem.Type.INCOMING){
                 iconName = "plus";
             } else {
                 iconName = "minus";
@@ -74,20 +75,25 @@ public class LoadPaymentHistoryThread implements Runnable {
             icon.setImage(iconImg);
             icon.setLayoutX(14);
             icon.setLayoutY(30);
+            Label dataLabel = new Label();
+            dataLabel.setLayoutX(54);
+            dataLabel.setLayoutY(28);
+            dataLabel.setText(paymentItem.getDate());
             Label title = new Label();
             title.setText(paymentItem.getTitle());
             title.setFont(Font.font ("Ubuntu", 14));
             title.setLayoutX(54);
-            title.setLayoutY(38);
+            title.setLayoutY(47);
             paneLeft.getChildren().add(icon);
             paneLeft.getChildren().add(title);
+            paneLeft.getChildren().add(dataLabel);
             borderPaneRoot.setLeft(paneLeft);
 
             //middle part of list
             BorderPane borderPaneCenter = new BorderPane();
             Label priceLabel = new Label();
             String amountText;
-            if(paymentItem.getType() == PaymentForm.Type.INCOMING){
+            if(paymentItem.getType() == PaymentItem.Type.INCOMING){
                 amountText = "+ " + paymentItem.getAmount().toString() + " zł";
             } else {
                 amountText = "- " + paymentItem.getAmount().toString() + " zł";
@@ -127,7 +133,7 @@ public class LoadPaymentHistoryThread implements Runnable {
                 if (result.get() == ButtonType.OK){
                    controller.getStatusLabel().setText("Wait... Delete item is in progress.");
 
-                    Postman<StandardResult> postmanRemove = new Postman<StandardResult>();
+                    Postman<StandardResult> postmanRemove = new Postman<>();
                     StandardResult resultRemove = null;
                     RemovePaymentsItemForm removePaymentsItemForm = new RemovePaymentsItemForm();
                     removePaymentsItemForm.setId(Integer.parseInt(((Button)event.getSource()).getId()));
@@ -190,7 +196,7 @@ public class LoadPaymentHistoryThread implements Runnable {
                 result.ifPresent(item -> {
                     controller.getStatusLabel().setText("Wait... Delete item is in progress.");
 
-                    Postman<StandardResult> postmanEdit = new Postman<StandardResult>();
+                    Postman<StandardResult> postmanEdit = new Postman<>();
                     StandardResult resultEdit = null;
                     PaymentForm paymentEditForm = new PaymentForm();
                     paymentEditForm.setId(Integer.parseInt(((Button)event.getSource()).getId()));

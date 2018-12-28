@@ -1,6 +1,7 @@
 package wallet.server.Controllers;
 
 import com.google.gson.Gson;
+import wallet.server.Entity.PaymentItem;
 import wallet.server.Entity.User;
 import wallet.server.Forms.PaymentForm;
 import wallet.server.Forms.PaymentsHistoryForm;
@@ -30,7 +31,7 @@ public class WalletController extends Controller {
 
         try {
             Gson gson = new Gson();
-            ArrayList<Object> arguments = new ArrayList<Object>();;
+            ArrayList<Object> arguments = new ArrayList<>();
             ResultSet dbResult;
             paymentForms = gson.fromJson(json, PaymentForm.class);
             boolean operation = true;
@@ -72,7 +73,7 @@ public class WalletController extends Controller {
 
         try {
             Gson gson = new Gson();
-            ArrayList<Object> arguments = new ArrayList<Object>();;
+            ArrayList<Object> arguments = new ArrayList<>();
             paymentsHistoryForm = gson.fromJson(json, PaymentsHistoryForm.class);
             boolean operation = true;
 
@@ -84,12 +85,18 @@ public class WalletController extends Controller {
                 ResultSet dbResult = db.querySelect("select * from payments where user_id = ?", arguments);
 
                 while (dbResult.next()){
-                    PaymentForm paymentForm = new PaymentForm();
-                    paymentForm.setId(dbResult.getInt("id"));
-                    paymentForm.setAmount(dbResult.getFloat("amount"));
-                    paymentForm.setTitle(dbResult.getString("title"));
-                    paymentForm.setType(dbResult.getString("type"));
-                    result.getPaymentsHistory().add(paymentForm);
+                    PaymentItem paymentItem = new PaymentItem();
+                    paymentItem.setId(dbResult.getInt("id"));
+                    paymentItem.setAmount(dbResult.getFloat("amount"));
+                    paymentItem.setTitle(dbResult.getString("title"));
+                    paymentItem.setType(dbResult.getString("type"));
+
+                    String dataStr = dbResult.getString("date");
+                    if(dataStr.contains(".")){
+                        dataStr = dataStr.substring(0, dataStr.indexOf("."));
+                    }
+                    paymentItem.setDate(dataStr);
+                    result.getPaymentsHistory().add(paymentItem);
                 }
 
             } else {
@@ -116,7 +123,7 @@ public class WalletController extends Controller {
 
         try {
             Gson gson = new Gson();
-            ArrayList<Object> arguments = new ArrayList<Object>();;
+            ArrayList<Object> arguments = new ArrayList<>();
             removePaymentsItemForm = gson.fromJson(json, RemovePaymentsItemForm.class);
             boolean operation = true;
 
@@ -150,7 +157,7 @@ public class WalletController extends Controller {
 
         try {
             Gson gson = new Gson();
-            ArrayList<Object> arguments = new ArrayList<Object>();;
+            ArrayList<Object> arguments = new ArrayList<>();
             paymentForm = gson.fromJson(json, PaymentForm.class);
             boolean operation = true;
 
