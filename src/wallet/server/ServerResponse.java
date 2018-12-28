@@ -6,7 +6,10 @@ import wallet.server.Responses.ServerResponses.*;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import wallet.server.Responses.*;
 
@@ -77,14 +80,14 @@ public class ServerResponse {
 
     public void response(){
         boolean flag = true;
-        String json = "";
+        String json = null;
         Gson gson = new Gson();
 
         if(executed) throw new RequestDoubleExecutedException();
         executed = true;
 
         try{
-            json = gson.toJson(data);
+            json = new String(gson.toJson(data).getBytes(), StandardCharsets.UTF_8);
         }
         catch (Exception e){
             flag = false;
@@ -101,13 +104,22 @@ public class ServerResponse {
 
         dataMaker.println("Server: piaskowyk");
         dataMaker.println("Date: " + new Date());
-        dataMaker.println("Content-length: " + json.length());
+
+        //polish characters have 2 position per char
+        Pattern pattern = Pattern.compile("[ęóąśłżźćńĘÓĄŚŁŻŹĆŃ]");
+        Matcher matcher = pattern.matcher(json);
+        int count = 0;
+        while (matcher.find()) count++;
+
+        dataMaker.println("Content-length: " + (json.length() + count));
         dataMaker.println();
         dataMaker.flush();
         dataMaker.println(json);
         dataMaker.flush();
 
         if (dataMaker != null) dataMaker.close();
+
+        System.out.println(json);
     }
 
     public void badRequest() {

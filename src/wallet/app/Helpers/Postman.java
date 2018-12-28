@@ -10,8 +10,8 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import wallet.app.Exceptions.UnauthorizationRequestException;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class Postman <T>{
 
@@ -42,8 +42,8 @@ public class Postman <T>{
         StringEntity peyloadData = null;
         HttpPost post = new HttpPost(serverUrl + request.url);
         try {
-            peyloadData = new StringEntity(gson.toJson(message));
-        } catch (UnsupportedEncodingException e) {
+            peyloadData = new StringEntity(gson.toJson(message), StandardCharsets.UTF_8);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -84,7 +84,7 @@ public class Postman <T>{
         post.setHeader("Auth-Token", AuthorizationManager.getToken());
         try {
             HttpResponse response = httpClient.execute(post);
-            responseStr = EntityUtils.toString(response.getEntity());
+            responseStr = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("MyWallet");

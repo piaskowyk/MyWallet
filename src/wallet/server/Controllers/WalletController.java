@@ -35,7 +35,7 @@ public class WalletController extends Controller {
             ResultSet dbResult;
             paymentForms = gson.fromJson(json, PaymentForm.class);
             boolean operation = true;
-            if(!Validator.isValidFloatNum(paymentForms.getAmount().toString())){//TODO: sprawdzić to bo to dziwne jest
+            if(paymentForms.getAmount() < 0){
                 operation = false;
             }
             else {

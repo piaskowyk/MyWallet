@@ -10,7 +10,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.SQLException;
 import java.util.*;
 
 public class JavaHTTPServer implements Runnable{
@@ -54,9 +53,9 @@ public class JavaHTTPServer implements Runnable{
     public void run() {
         BufferedReader inputBuffer = null;
         String fileRequested = null;
-        Map<String, String> headers = new HashMap<String, String>();
+        HashMap<String, String> headers = new HashMap<>();
         boolean flag = true;
-        String method = null;
+        String requestMethod = null;
         String controlerName = null;
         String action = null;
         StringBuilder inputData = new StringBuilder();
@@ -69,7 +68,7 @@ public class JavaHTTPServer implements Runnable{
             //reading data from request headers
             BufferedReader headerBuffer = inputBuffer;
             String urlHeader = null;
-            String headerLine = null;
+            String headerLine;
             int i = 0;
             while((headerLine = headerBuffer.readLine()).length() != 0){
                 if(i == 0) urlHeader = headerLine;
@@ -84,7 +83,7 @@ public class JavaHTTPServer implements Runnable{
             if(urlHeader != null && urlHeader.chars().filter(num -> num == '/').count() != 3){
                 try {
                     StringTokenizer parse = new StringTokenizer(urlHeader);
-                    method = parse.nextToken().toUpperCase();
+                    requestMethod = parse.nextToken().toUpperCase();
                     String path = parse.nextToken();
                     path = path.substring(1);
                     String[] pathElements = path.split("/");
@@ -109,7 +108,7 @@ public class JavaHTTPServer implements Runnable{
             }
 
             //handling request
-            if(flag && (method.equals("GET") || method.equals("POST"))) {
+            if(flag && (requestMethod.equals("GET") || requestMethod.equals("POST"))) {
                 //reading input data
                 while(headerBuffer.ready()){
                     inputData.append((char) headerBuffer.read());
@@ -139,8 +138,8 @@ public class JavaHTTPServer implements Runnable{
                         Method setUp = controllerClass.getMethod("setHeaders", HashMap.class);
                         setUp.invoke(controllerObject, headers);
 
-                        Method tmp = controllerClass.getMethod(action, String.class);
-                        outpurDataObject = (Object)tmp.invoke(controllerObject, inputData.toString());
+                        Method method = controllerClass.getMethod(action, String.class);
+                        outpurDataObject = method.invoke(controllerObject, inputData.toString());
 
                     }
                     catch (InvalidInputDataException e){

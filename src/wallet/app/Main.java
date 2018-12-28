@@ -19,11 +19,11 @@ public class Main extends Application {
         } else {
             ViewsManager.loadView(ViewsManager.Views.LOGIN);
         }
-        //TODO: Dodac datę do płątności
         //TODO: obsługa polskich znaków
         //TODO: po wylogowaniu od nowa trzaba załadować widoki bo zostaną stare dane bo zapisane są w ramie
         //TODO: poprawić obsługę wyjątków i komunikatow dawanych urzytkownikowi
-        //TODO walidacja danych, dodać obsługę po stronie frontu i sprawdzić po stronie backu
+        //TODO: walidacja danych, dodać obsługę po stronie frontu i sprawdzić po stronie backu
+        //TODO: duzo razy pokazuje się no internect connection jeśli server jest wyłaczony
     }
 
 

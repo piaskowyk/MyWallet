@@ -2,8 +2,6 @@ package wallet.server.Helpers;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 
 public class DataBase {
 
@@ -17,7 +15,7 @@ public class DataBase {
             String dbHost = "localhost";
 
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":3306/" + dbName, dbUser, dbPassword);
+            connection = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":3306/" + dbName + "?useUnicode=true&characterEncoding=utf-8", dbUser, dbPassword);
         }
         catch(Exception e)
         { System.out.println(e);}
