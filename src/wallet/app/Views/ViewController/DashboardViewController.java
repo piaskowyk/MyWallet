@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import wallet.app.Helpers.AuthorizationManager;
 import wallet.app.Views.IViewController;
 import wallet.app.Views.ViewController.Components.Menu;
 import wallet.app.Views.ViewController.ThreadsActions.LoadDashboardDataThread;
@@ -23,9 +24,12 @@ public class DashboardViewController implements IViewController {
     public void initialize(){
         Menu.registerMenu(menuBar);
 
-        LoadDashboardDataThread loadDashboardDataThread = new LoadDashboardDataThread(this);
-        Thread getData = new Thread(loadDashboardDataThread);
-        Platform.runLater(getData);
+        if(AuthorizationManager.isAuthorized()){
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+            LoadDashboardDataThread loadDashboardDataThread = new LoadDashboardDataThread(this);
+            Thread getData = new Thread(loadDashboardDataThread);
+            Platform.runLater(getData);
+        }
     }
 
     @Override

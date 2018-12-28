@@ -30,9 +30,11 @@ public class HistoryViewController implements IViewController {
     public void initialize(){
         Menu.registerMenu(menuBar);
 
-        LoadPaymentHistoryThread loadPaymentHistoryThread = new LoadPaymentHistoryThread(this);
-        Thread getData = new Thread(loadPaymentHistoryThread);
-        Platform.runLater(getData);
+        if(AuthorizationManager.isAuthorized()){
+            LoadPaymentHistoryThread loadPaymentHistoryThread = new LoadPaymentHistoryThread(this);
+            Thread getData = new Thread(loadPaymentHistoryThread);
+            Platform.runLater(getData);
+        }
     }
 
     @Override

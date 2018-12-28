@@ -22,16 +22,16 @@ public class ViewsManager {
         _primaryStage = primaryStage;
         _mainClass = mainClass;
 
-        registerAllView();
+        registerAllViews();
     }
 
     public static void clearViewData(){
         allController.clear();
 
-        registerAllView();
+        registerAllViews();
     }
 
-    public static void registerAllView(){
+    private static void registerAllViews(){
         registerScene(Views.LOGIN);
         registerScene(Views.REGISTER);
         registerScene(Views.DASHBOARD);

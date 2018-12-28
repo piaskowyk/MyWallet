@@ -94,7 +94,6 @@ public class AuthorizationManager {
     }
 
     public static void logOut(){
-        ViewsManager.clearViewData();
         try {
             FileWriter writer = new FileWriter("src/wallet/app/UserData/pass.json");
             writer.write("");
@@ -103,9 +102,11 @@ public class AuthorizationManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        isAuthorized = false;
         email = null;
         password = null;
+        token = null;
+        isAuthorized = false;
+        ViewsManager.clearViewData();
     }
 
 }
