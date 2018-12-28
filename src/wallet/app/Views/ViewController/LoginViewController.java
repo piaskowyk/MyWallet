@@ -1,6 +1,5 @@
 package wallet.app.Views.ViewController;
 
-import com.google.gson.Gson;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,11 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import wallet.app.Helpers.AuthorizationManager;
+import wallet.app.Views.IViewController;
 import wallet.app.Views.ViewsManager;
-import wallet.server.Forms.Login;
+import wallet.server.Forms.LoginForm;
 
 
-public class LoginViewController {
+public class LoginViewController implements IViewController {
+
     @FXML
     private Button loginBtn;
 
@@ -40,12 +41,12 @@ public class LoginViewController {
         @Override
         public void handle(Event event) {
             statusText.setText("Waiting...");
-            Login loginForm = new Login();
+            LoginForm loginForm = new LoginForm();
 
             AuthorizationManager.authorize(emailInput.getText(), passwordInput.getText());
 
             if(!AuthorizationManager.isAuthorized()){
-                statusText.setText("Login failed. Try again.");
+                statusText.setText("LoginForm failed. Try again.");
             } else {
                 ViewsManager.loadView(ViewsManager.Views.DASHBOARD);
             }

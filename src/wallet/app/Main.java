@@ -19,6 +19,7 @@ public class Main extends Application {
         } else {
             ViewsManager.loadView(ViewsManager.Views.LOGIN);
         }
+        //TODO: po wylogowaniu od nowa trzaba załadować widoki bo zostaną stare dane bo zapisane są w ramie
     }
 
 

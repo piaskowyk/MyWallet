@@ -1,8 +1,8 @@
 package wallet.server.Controllers;
 
 import com.google.gson.Gson;
-import wallet.server.Forms.Login;
-import wallet.server.Forms.Register;
+import wallet.server.Forms.LoginForm;
+import wallet.server.Forms.RegisterForm;
 import wallet.server.Helpers.DataBase;
 import wallet.server.Responses.DataResponses.StandardResult;
 import wallet.server.Responses.DataResponses.LoginResponse;
@@ -21,14 +21,14 @@ public class UserController extends Controller {
 
     public StandardResult registerAction(String json){
         StandardResult result = new StandardResult();
-        Register registerForms;
+        RegisterForm registerForms;
         DataBase db = new DataBase();
 
         try {
             Gson gson = new Gson();
             ArrayList<Object> arguments;
             ResultSet dbResult;
-            registerForms = gson.fromJson(json, Register.class);
+            registerForms = gson.fromJson(json, RegisterForm.class);
             boolean operation = true;
 
             arguments = new ArrayList<Object>();
@@ -63,14 +63,14 @@ public class UserController extends Controller {
 
     public LoginResponse loginAction(String json){
         LoginResponse result = new LoginResponse();
-        Login login;
+        LoginForm login;
         DataBase db = new DataBase();
 
         try {
             Gson gson = new Gson();
             ArrayList<Object> arguments;
             ResultSet dbResult;
-            login = gson.fromJson(json, Login.class);
+            login = gson.fromJson(json, LoginForm.class);
 
             arguments = new ArrayList<Object>();
             arguments.add(login.getEmail());

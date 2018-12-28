@@ -8,14 +8,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import wallet.app.Exceptions.UnauthorizationRequestException;
 import wallet.app.Helpers.AuthorizationManager;
 import wallet.app.Helpers.Postman;
+import wallet.app.Views.IViewController;
 import wallet.app.Views.ViewsManager;
 import javafx.scene.control.Button;
-import wallet.server.Forms.Payment;
+import wallet.server.Forms.PaymentForm;
 import wallet.server.Responses.DataResponses.StandardResult;
 
-public class WalletViewController {
+public class WalletViewController implements IViewController {
 
     private String imageBasePath = "Views/img/";
 
@@ -72,22 +74,19 @@ public class WalletViewController {
         @Override
         public void handle(Event event) {
             statusLabel.setText("Waiting...");
-            if (!AuthorizationManager.isAuthorized()){
-                AuthorizationManager.authorize();
 
-                if (!AuthorizationManager.isAuthorized()){
-                    statusLabel.setText("You don't have permission to this operation.");
-                    return;
-                }
-            }
-
-            Payment paymentForm = new Payment();
-            paymentForm.setAmount(inPaymentAmount.getText());
+            PaymentForm paymentForm = new PaymentForm();
+            paymentForm.setAmount(Float.parseFloat(inPaymentAmount.getText()));
             paymentForm.setTitle(inPaymentTitle.getText());
-            paymentForm.setType(Payment.Type.INCOMING);
+            paymentForm.setType(PaymentForm.Type.INCOMING);
 
             Postman<StandardResult> postman = new Postman<StandardResult>();
-            StandardResult loginResponse = postman.send(paymentForm, StandardResult.class, Postman.Api.ADD_PAYMENTS);
+            StandardResult loginResponse = null;
+            try {
+                loginResponse = postman.send(paymentForm, StandardResult.class, Postman.Api.ADD_PAYMENTS);
+            } catch (UnauthorizationRequestException e) {
+                statusLabel.setText("You don't have permission to this operation.");
+            }
 
             if(loginResponse.getStatus()){
                 statusLabel.setText("OK, add new payment.");
@@ -103,22 +102,20 @@ public class WalletViewController {
     EventHandler outPaymentBtnOnClick = new EventHandler() {
         @Override
         public void handle(Event event) {
-            if (!AuthorizationManager.isAuthorized()){
-                AuthorizationManager.authorize();
+            statusLabel.setText("Waiting...");
 
-                if (!AuthorizationManager.isAuthorized()){
-                    statusLabel.setText("You don't have permission to this operation.");
-                    return;
-                }
-            }
-
-            Payment paymentForm = new Payment();
-            paymentForm.setAmount(outPaymentAmount.getText());
+            PaymentForm paymentForm = new PaymentForm();
+            paymentForm.setAmount(Float.parseFloat(outPaymentAmount.getText()));
             paymentForm.setTitle(outPaymentTitle.getText());
-            paymentForm.setType(Payment.Type.OUTCOMING);
+            paymentForm.setType(PaymentForm.Type.OUTCOMING);
 
             Postman<StandardResult> postman = new Postman<StandardResult>();
-            StandardResult loginResponse = postman.send(paymentForm, StandardResult.class, Postman.Api.ADD_PAYMENTS);
+            StandardResult loginResponse = null;
+            try {
+                loginResponse = postman.send(paymentForm, StandardResult.class, Postman.Api.ADD_PAYMENTS);
+            } catch (UnauthorizationRequestException e) {
+                statusLabel.setText("You don't have permission to this operation.");
+            }
 
             if(loginResponse.getStatus()){
                 statusLabel.setText("OK, add new payment.");

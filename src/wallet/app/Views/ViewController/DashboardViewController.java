@@ -7,9 +7,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import wallet.app.Helpers.AuthorizationManager;
+import wallet.app.Views.IViewController;
 import wallet.app.Views.ViewsManager;
 
-public class DashboardViewController {
+public class DashboardViewController implements IViewController {
 
     private String imageBasePath = "Views/img/";
 

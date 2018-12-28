@@ -1,7 +1,8 @@
 package wallet.app.Helpers;
 
 import com.google.gson.Gson;
-import wallet.server.Forms.Login;
+import wallet.app.Exceptions.UnauthorizationRequestException;
+import wallet.server.Forms.LoginForm;
 import wallet.server.Responses.DataResponses.LoginResponse;
 
 import java.io.FileReader;
@@ -31,11 +32,11 @@ public class AuthorizationManager {
             email = pass.getEmail();
             password = pass.getPassword();
 
-            Login loginForm = new Login();
+            LoginForm loginForm = new LoginForm();
             loginForm.setEmail(email);
             loginForm.setPassword(password);
 
-            Postman<LoginResponse> postman = new Postman<LoginResponse>();
+            Postman<LoginResponse> postman = new Postman<LoginResponse>(false);
             LoginResponse loginResponse = postman.send(loginForm, LoginResponse.class, Postman.Api.LOGIN);
 
             if(loginResponse.getStatus()){
@@ -52,12 +53,17 @@ public class AuthorizationManager {
     }
 
     public static void authorize(String emailInput, String passwordInput){
-        Login loginForm = new Login();
+        LoginForm loginForm = new LoginForm();
         loginForm.setEmail(emailInput);
         loginForm.setPassword(passwordInput);
 
-        Postman<LoginResponse> postman = new Postman<LoginResponse>();
-        LoginResponse loginResponse = postman.send(loginForm, LoginResponse.class, Postman.Api.LOGIN);
+        Postman<LoginResponse> postman = new Postman<LoginResponse>(false);
+        LoginResponse loginResponse = null;
+        try {
+            loginResponse = postman.send(loginForm, LoginResponse.class, Postman.Api.LOGIN);
+        } catch (UnauthorizationRequestException e) {
+            e.printStackTrace();
+        }
 
         if(loginResponse.getStatus()){
             email = emailInput;

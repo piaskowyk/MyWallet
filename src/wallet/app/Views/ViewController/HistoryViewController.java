@@ -1,22 +1,22 @@
 package wallet.app.Views.ViewController;
 
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import wallet.app.Helpers.AuthorizationManager;
-import wallet.app.Helpers.Postman;
+import wallet.app.Views.IViewController;
+import wallet.app.Views.ViewController.TheardsActions.LoadPaymentHistoryTeared;
 import wallet.app.Views.ViewsManager;
-import wallet.server.Forms.Payment;
-import wallet.server.Responses.DataResponses.StandardResult;
 
-public class HistoryViewController {
+public class HistoryViewController implements IViewController {
+
+    private String imageBasePath = "../src/img/";
+    private String imageBasePathForTeared = "../../src/img/";
 
     @FXML
     private Pane dashboardBtn, logoutBtn, walletBtn;
@@ -24,6 +24,8 @@ public class HistoryViewController {
     @FXML
     private VBox historyContainer;
 
+    @FXML
+    private Label statusLabel;
 
     public void initialize(){
         //menu
@@ -31,37 +33,82 @@ public class HistoryViewController {
         logoutBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, logoutBtnOnClick);
         walletBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, walletBtnOnClick);
 
-        Pane pane = new Pane();
-        pane.setMinHeight(100);
-        pane.setStyle("-fx-background-color: #123123;");
-        historyContainer.getChildren().add(pane);
-
-        //wywołaj metodę pobierz na nowym wątku,
-        //wątek po pobraniu danych wywołuje statyczną metodę w kontrolerze która wygeneruje historię na podstawie pobranych danych i wyświetli ją w postaci listy
-        //genialne XDDD
+        LoadPaymentHistoryTeared loadPaymentHistoryTeared = new LoadPaymentHistoryTeared(this);
+        Thread getData = new Thread(loadPaymentHistoryTeared);
+        Platform.runLater(getData);
 
     }
 
-    EventHandler dashboardBtnOnClick = new EventHandler() {
-        @Override
-        public void handle(Event event) {
-            ViewsManager.loadView(ViewsManager.Views.DASHBOARD);
-        }
+    EventHandler dashboardBtnOnClick = event -> ViewsManager.loadView(ViewsManager.Views.DASHBOARD);
+
+    EventHandler logoutBtnOnClick = event -> {
+        AuthorizationManager.logOut();
+        ViewsManager.loadView(ViewsManager.Views.LOGIN);
     };
 
-    EventHandler logoutBtnOnClick = new EventHandler() {
-        @Override
-        public void handle(Event event) {
-            AuthorizationManager.logOut();
-            ViewsManager.loadView(ViewsManager.Views.LOGIN);
-        }
-    };
+    EventHandler walletBtnOnClick = event -> ViewsManager.loadView(ViewsManager.Views.WALLET);
 
-    EventHandler walletBtnOnClick = new EventHandler() {
-        @Override
-        public void handle(Event event) {
-            ViewsManager.loadView(ViewsManager.Views.WALLET);
-        }
-    };
+    @Override
+    public void onLoad() {
+        System.out.println("history load");
+        LoadPaymentHistoryTeared loadPaymentHistoryTeared = new LoadPaymentHistoryTeared(this);
+        Thread getData = new Thread(loadPaymentHistoryTeared);
+        Platform.runLater(getData);
+    }
 
+    public String getImageBasePath() {
+        return imageBasePath;
+    }
+
+    public void setImageBasePath(String imageBasePath) {
+        this.imageBasePath = imageBasePath;
+    }
+
+    public Pane getDashboardBtn() {
+        return dashboardBtn;
+    }
+
+    public void setDashboardBtn(Pane dashboardBtn) {
+        this.dashboardBtn = dashboardBtn;
+    }
+
+    public Pane getLogoutBtn() {
+        return logoutBtn;
+    }
+
+    public void setLogoutBtn(Pane logoutBtn) {
+        this.logoutBtn = logoutBtn;
+    }
+
+    public Pane getWalletBtn() {
+        return walletBtn;
+    }
+
+    public void setWalletBtn(Pane walletBtn) {
+        this.walletBtn = walletBtn;
+    }
+
+    public VBox getHistoryContainer() {
+        return historyContainer;
+    }
+
+    public void setHistoryContainer(VBox historyContainer) {
+        this.historyContainer = historyContainer;
+    }
+
+    public Label getStatusLabel() {
+        return statusLabel;
+    }
+
+    public void setStatusLabel(Label statusLabel) {
+        this.statusLabel = statusLabel;
+    }
+
+    public String getImageBasePathForTeared() {
+        return imageBasePathForTeared;
+    }
+
+    public void setImageBasePathForTeared(String imageBasePathForTeared) {
+        this.imageBasePathForTeared = imageBasePathForTeared;
+    }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -84,7 +85,7 @@
          </children></Pane>
    </left>
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane BorderPane.alignment="CENTER">
          <top>
             <Pane prefHeight="78.0" prefWidth="629.0" style="-fx-background-color: #1A535C;" BorderPane.alignment="CENTER">
                <children>
@@ -96,16 +97,24 @@
                </children>
             </Pane>
          </top>
-         <center>
-            <VBox fx:id="historyContainer" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-         </center>
          <bottom>
             <Pane prefHeight="33.0" prefWidth="849.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="statusLabel" layoutX="14.0" layoutY="8.0" />
+                  <Label fx:id="statusLabel" layoutX="14.0" layoutY="9.0">
+                     <font>
+                        <Font name="Ubuntu Condensed" size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </bottom>
+         <center>
+            <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <content>
+                  <VBox fx:id="historyContainer" />
+               </content>
+            </ScrollPane>
+         </center>
       </BorderPane>
    </center>
 </BorderPane>
