@@ -1,7 +1,6 @@
 package wallet.app.Views.ViewController;
 
 import javafx.application.Platform;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,7 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import wallet.app.Helpers.AuthorizationManager;
 import wallet.app.Views.IViewController;
-import wallet.app.Views.ViewController.TheardsActions.LoadPaymentHistoryTeared;
+import wallet.app.Views.ViewController.ThreadsActions.LoadPaymentHistoryThread;
 import wallet.app.Views.ViewsManager;
 
 public class HistoryViewController implements IViewController {
@@ -33,10 +32,9 @@ public class HistoryViewController implements IViewController {
         logoutBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, logoutBtnOnClick);
         walletBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, walletBtnOnClick);
 
-        LoadPaymentHistoryTeared loadPaymentHistoryTeared = new LoadPaymentHistoryTeared(this);
-        Thread getData = new Thread(loadPaymentHistoryTeared);
+        LoadPaymentHistoryThread loadPaymentHistoryThread = new LoadPaymentHistoryThread(this);
+        Thread getData = new Thread(loadPaymentHistoryThread);
         Platform.runLater(getData);
-
     }
 
     EventHandler dashboardBtnOnClick = event -> ViewsManager.loadView(ViewsManager.Views.DASHBOARD);
@@ -51,8 +49,8 @@ public class HistoryViewController implements IViewController {
     @Override
     public void onLoad() {
         System.out.println("history load");
-        LoadPaymentHistoryTeared loadPaymentHistoryTeared = new LoadPaymentHistoryTeared(this);
-        Thread getData = new Thread(loadPaymentHistoryTeared);
+        LoadPaymentHistoryThread loadPaymentHistoryThread = new LoadPaymentHistoryThread(this);
+        Thread getData = new Thread(loadPaymentHistoryThread);
         Platform.runLater(getData);
     }
 

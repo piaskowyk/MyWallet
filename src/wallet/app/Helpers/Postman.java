@@ -77,8 +77,7 @@ public class Postman <T>{
                 throw new UnauthorizationRequestException();
             }
         }
-        System.out.println(AuthorizationManager.isAuthorized());
-        System.out.println(AuthorizationManager.getToken());
+
         String responseStr = null;
         HttpPost post = new HttpPost(serverUrl + request.url);
         post.setHeader("Content-type", "application/json");
@@ -107,7 +106,8 @@ public class Postman <T>{
         ADD_PAYMENTS("/api/wallet/add_payment"),
         GET_HISTORY("/api/wallet/get_history"),
         REMOVE_PAYMENTS_ITEM("/api/wallet/remove_payments_item"),
-        EDIT_PAYMENTS_ITEM("/api/wallet/edit_payments_item");
+        EDIT_PAYMENTS_ITEM("/api/wallet/edit_payments_item"),
+        DASHBOARD_DATA("/api/dashboard/dashboard_data");
 
         String url;
 

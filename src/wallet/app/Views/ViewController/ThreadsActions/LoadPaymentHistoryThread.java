@@ -1,9 +1,8 @@
-package wallet.app.Views.ViewController.TheardsActions;
+package wallet.app.Views.ViewController.ThreadsActions;
 
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,11 +22,11 @@ import wallet.server.Responses.DataResponses.StandardResult;
 
 import java.util.Optional;
 
-public class LoadPaymentHistoryTeared implements Runnable{
+public class LoadPaymentHistoryThread implements Runnable {
 
     HistoryViewController controller;
 
-    public LoadPaymentHistoryTeared(HistoryViewController controller){
+    public LoadPaymentHistoryThread(HistoryViewController controller){
         this.controller = controller;
     }
 
@@ -57,7 +56,7 @@ public class LoadPaymentHistoryTeared implements Runnable{
 
             //main container list
             BorderPane borderPaneRoot = new BorderPane();
-            if(index % 2 == 0) borderPaneRoot.setStyle("-fx-background-color: #F3F3F3;");
+            if(index % 2 == 0) borderPaneRoot.setStyle("-fx-background-color: #d6d6d6;");
             borderPaneRoot.setMinHeight(90);
 
             //left part of item list
@@ -140,8 +139,8 @@ public class LoadPaymentHistoryTeared implements Runnable{
 
                     if(resultRemove.getStatus()){
                         controller.getStatusLabel().setText("OK.");
-                        LoadPaymentHistoryTeared loadPaymentHistoryTeared = new LoadPaymentHistoryTeared(controller);
-                        Thread getData = new Thread(loadPaymentHistoryTeared);
+                        LoadPaymentHistoryThread loadPaymentHistoryThread = new LoadPaymentHistoryThread(controller);
+                        Thread getData = new Thread(loadPaymentHistoryThread);
                         Platform.runLater(getData);
                     }
                     else {
@@ -205,8 +204,8 @@ public class LoadPaymentHistoryTeared implements Runnable{
 
                     if(resultEdit.getStatus()){
                         controller.getStatusLabel().setText("OK.");
-                        LoadPaymentHistoryTeared loadPaymentHistoryTeared = new LoadPaymentHistoryTeared(controller);
-                        Thread getData = new Thread(loadPaymentHistoryTeared);
+                        LoadPaymentHistoryThread loadPaymentHistoryThread = new LoadPaymentHistoryThread(controller);
+                        Thread getData = new Thread(loadPaymentHistoryThread);
                         Platform.runLater(getData);
                     }
                     else {
