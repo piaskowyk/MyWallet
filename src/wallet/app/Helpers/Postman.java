@@ -104,9 +104,9 @@ public class Postman <T>{
         LOGIN("/api/user/login"),
         REGISTER("/api/user/register"),
         ADD_PAYMENTS("/api/wallet/add_payment"),
-        GET_HISTORY("/api/wallet/get_history"),
-        REMOVE_PAYMENTS_ITEM("/api/wallet/remove_payments_item"),
-        EDIT_PAYMENTS_ITEM("/api/wallet/edit_payments_item"),
+        GET_HISTORY("/api/payments/get_history"),
+        REMOVE_PAYMENTS_ITEM("/api/payments/remove_payments_item"),
+        EDIT_PAYMENTS_ITEM("/api/payments/edit_payments_item"),
         DASHBOARD_DATA("/api/dashboard/dashboard_data");
 
         String url;

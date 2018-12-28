@@ -18,7 +18,7 @@ public class JavaHTTPServer implements Runnable{
     private static final boolean debug = true;
     private final String pathToController = "wallet.server.Controllers.";
     private Socket connect;
-    private static String[] controllerList = null;
+    private static ArrayList<String> controllerList = new ArrayList<>();
 
     private JavaHTTPServer(Socket socket) {
         this.connect = socket;
@@ -27,8 +27,12 @@ public class JavaHTTPServer implements Runnable{
     public static void main(String[] args) throws FileNotFoundException {
         //collect public controller list
         Gson gson = new Gson();
-        FileReader reader = new FileReader("src/wallet/server/controllersList.json");
-        controllerList = gson.fromJson(reader, String[].class);
+
+        //register public controllers
+        controllerList.add("user");
+        controllerList.add("wallet");
+        controllerList.add("payments");
+        controllerList.add("dashboard");
 
         try {
             ServerSocket serverConnect = new ServerSocket(PORT);
@@ -117,12 +121,7 @@ public class JavaHTTPServer implements Runnable{
                 //execute action from controller
                 Object outData = null;
                 try{
-                    boolean exist = false;
-                    for (String item : controllerList){
-                        if(item.equals(controlerName)) exist = true;
-                    }
-
-                    if (!exist) throw new ControllerNotExistException();
+                    if (!controllerList.contains(controlerName)) throw new ControllerNotExistException();
 
                     action += "Action";
                     controlerName = controlerName.substring(0, 1).toUpperCase() + controlerName.substring(1);
