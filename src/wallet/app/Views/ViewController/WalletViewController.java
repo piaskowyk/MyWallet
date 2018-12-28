@@ -8,24 +8,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import wallet.app.Exceptions.UnauthorizationRequestException;
 import wallet.app.Helpers.AuthorizationManager;
 import wallet.app.Helpers.Postman;
 import wallet.app.Views.IViewController;
+import wallet.app.Views.ViewController.Components.Menu;
 import wallet.app.Views.ViewsManager;
 import javafx.scene.control.Button;
 import wallet.server.Forms.PaymentForm;
 import wallet.server.Responses.DataResponses.StandardResult;
 
 public class WalletViewController implements IViewController {
-
-    private String imageBasePath = "Views/img/";
-
-    @FXML
-    private ImageView wallet;
-
-    @FXML
-    private Pane dashboardBtn, logoutBtn, historyBtn;
 
     @FXML
     private TextField inPaymentAmount, inPaymentTitle, outPaymentAmount, outPaymentTitle;
@@ -36,39 +30,17 @@ public class WalletViewController implements IViewController {
     @FXML
     private Label statusLabel;
 
+    @FXML
+    private VBox menuBar;
+
     public void initialize(){
-        //menu
-        dashboardBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, dashboardBtnOnClick);
-        logoutBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, logoutBtnOnClick);
-        historyBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, historyBtnOnClick);
+        Menu.registerMenu(menuBar);
 
         //panel action
         inPaymentBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, inPaymentBtnOnClick);
         outPaymentBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, outPaymentBtnOnClick);
 
     }
-
-    EventHandler dashboardBtnOnClick = new EventHandler() {
-        @Override
-        public void handle(Event event) {
-            ViewsManager.loadView(ViewsManager.Views.DASHBOARD);
-        }
-    };
-
-    EventHandler logoutBtnOnClick = new EventHandler() {
-        @Override
-        public void handle(Event event) {
-            AuthorizationManager.logOut();
-            ViewsManager.loadView(ViewsManager.Views.LOGIN);
-        }
-    };
-
-    EventHandler historyBtnOnClick = new EventHandler() {
-        @Override
-        public void handle(Event event) {
-            ViewsManager.loadView(ViewsManager.Views.HISTORY);
-        }
-    };
 
     EventHandler inPaymentBtnOnClick = new EventHandler() {
         @Override
@@ -128,4 +100,35 @@ public class WalletViewController implements IViewController {
         }
     };
 
+    public TextField getInPaymentAmount() {
+        return inPaymentAmount;
+    }
+
+    public TextField getInPaymentTitle() {
+        return inPaymentTitle;
+    }
+
+    public TextField getOutPaymentAmount() {
+        return outPaymentAmount;
+    }
+
+    public TextField getOutPaymentTitle() {
+        return outPaymentTitle;
+    }
+
+    public Button getInPaymentBtn() {
+        return inPaymentBtn;
+    }
+
+    public Button getOutPaymentBtn() {
+        return outPaymentBtn;
+    }
+
+    public Label getStatusLabel() {
+        return statusLabel;
+    }
+
+    public VBox getMenuBar() {
+        return menuBar;
+    }
 }

@@ -19,7 +19,6 @@ public class Main extends Application {
         } else {
             ViewsManager.loadView(ViewsManager.Views.LOGIN);
         }
-        //TODO: obsługa polskich znaków
         //TODO: po wylogowaniu od nowa trzaba załadować widoki bo zostaną stare dane bo zapisane są w ramie
         //TODO: poprawić obsługę wyjątków i komunikatow dawanych urzytkownikowi
         //TODO: walidacja danych, dodać obsługę po stronie frontu i sprawdzić po stronie backu

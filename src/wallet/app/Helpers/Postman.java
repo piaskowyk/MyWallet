@@ -47,7 +47,7 @@ public class Postman <T>{
             e.printStackTrace();
         }
 
-        System.out.println(gson.toJson(message));
+        System.out.println("Out: " + gson.toJson(message));
 
         post.setEntity(peyloadData);
         post.setHeader("Content-type", "application/json");
@@ -64,7 +64,7 @@ public class Postman <T>{
             e.printStackTrace();
         }
         System.out.println(serverUrl + request.url);
-        System.out.println(responseStr);
+        System.out.println("In: " + responseStr);
         Object responseObj = gson.fromJson(responseStr, type);
 
         return (T)responseObj;
