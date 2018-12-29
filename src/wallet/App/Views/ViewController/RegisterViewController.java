@@ -10,8 +10,8 @@ import javafx.scene.input.MouseEvent;
 import wallet.App.Helpers.Postman;
 import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewsManager;
-import wallet.CommonEntities.Forms.RegisterForm;
-import wallet.CommonEntities.Responses.DataResponses.StandardResult;
+import wallet.CommonElements.Forms.RegisterForm;
+import wallet.CommonElements.Responses.DataResponses.StandardResult;
 
 
 public class RegisterViewController implements IViewController {

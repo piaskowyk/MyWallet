@@ -14,11 +14,11 @@ import javafx.scene.text.Font;
 import javafx.util.Pair;
 import wallet.App.Helpers.Postman;
 import wallet.App.Views.ViewController.HistoryViewController;
-import wallet.CommonEntities.Entity.PaymentItem;
-import wallet.CommonEntities.Forms.PaymentForm;
-import wallet.CommonEntities.Forms.RemovePaymentsItemForm;
-import wallet.CommonEntities.Responses.DataResponses.PaymentsHistoryResponse;
-import wallet.CommonEntities.Responses.DataResponses.StandardResult;
+import wallet.CommonElements.Entity.PaymentItem;
+import wallet.CommonElements.Forms.PaymentForm;
+import wallet.CommonElements.Forms.RemovePaymentsItemForm;
+import wallet.CommonElements.Responses.DataResponses.PaymentsHistoryResponse;
+import wallet.CommonElements.Responses.DataResponses.StandardResult;
 
 import java.util.Optional;
 

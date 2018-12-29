@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.chart.*;
 import wallet.App.Helpers.Postman;
 import wallet.App.Views.ViewController.DashboardViewController;
-import wallet.CommonEntities.Responses.DataResponses.DashboardDataResponse;
+import wallet.CommonElements.Responses.DataResponses.DashboardDataResponse;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;

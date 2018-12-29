@@ -1,11 +1,11 @@
 package wallet.Server.Controllers;
 
 import com.google.gson.Gson;
-import wallet.CommonEntities.Forms.LoginForm;
-import wallet.CommonEntities.Forms.RegisterForm;
+import wallet.CommonElements.Forms.LoginForm;
+import wallet.CommonElements.Forms.RegisterForm;
 import wallet.Server.Helpers.DataBase;
-import wallet.CommonEntities.Responses.DataResponses.StandardResult;
-import wallet.CommonEntities.Responses.DataResponses.LoginResponse;
+import wallet.CommonElements.Responses.DataResponses.StandardResult;
+import wallet.CommonElements.Responses.DataResponses.LoginResponse;
 
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;

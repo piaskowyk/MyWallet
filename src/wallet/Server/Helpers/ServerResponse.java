@@ -2,7 +2,7 @@ package wallet.Server.Helpers;
 
 import com.google.gson.Gson;
 import wallet.Server.Exceptions.RequestDoubleExecutedException;
-import wallet.CommonEntities.Responses.ServerResponses.*;
+import wallet.CommonElements.Responses.ServerResponses.*;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import wallet.CommonEntities.Responses.*;
+import wallet.CommonElements.Responses.*;
 
 public class ServerResponse {
 

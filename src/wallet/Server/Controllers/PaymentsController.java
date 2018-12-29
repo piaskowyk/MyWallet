@@ -1,15 +1,15 @@
 package wallet.Server.Controllers;
 
 import com.google.gson.Gson;
-import wallet.CommonEntities.Entity.PaymentItem;
-import wallet.CommonEntities.Entity.User;
-import wallet.CommonEntities.Forms.PaymentForm;
-import wallet.CommonEntities.Forms.PaymentsHistoryForm;
-import wallet.CommonEntities.Forms.RemovePaymentsItemForm;
+import wallet.CommonElements.Entity.PaymentItem;
+import wallet.CommonElements.Entity.User;
+import wallet.CommonElements.Forms.PaymentForm;
+import wallet.CommonElements.Forms.PaymentsHistoryForm;
+import wallet.CommonElements.Forms.RemovePaymentsItemForm;
 import wallet.Server.Helpers.AuthorizationUserManager;
 import wallet.Server.Helpers.DataBase;
-import wallet.CommonEntities.Responses.DataResponses.PaymentsHistoryResponse;
-import wallet.CommonEntities.Responses.DataResponses.StandardResult;
+import wallet.CommonElements.Responses.DataResponses.PaymentsHistoryResponse;
+import wallet.CommonElements.Responses.DataResponses.StandardResult;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;

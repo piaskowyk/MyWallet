@@ -1,6 +1,6 @@
 package wallet.Server.Helpers;
 
-import wallet.CommonEntities.Entity.User;
+import wallet.CommonElements.Entity.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

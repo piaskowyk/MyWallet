@@ -2,9 +2,9 @@ package wallet.App.Helpers;
 
 import com.google.gson.Gson;
 import wallet.App.Views.ViewsManager;
-import wallet.CommonEntities.Entity.Pass;
-import wallet.CommonEntities.Forms.LoginForm;
-import wallet.CommonEntities.Responses.DataResponses.LoginResponse;
+import wallet.CommonElements.Entity.Pass;
+import wallet.CommonElements.Forms.LoginForm;
+import wallet.CommonElements.Responses.DataResponses.LoginResponse;
 
 import java.io.FileReader;
 import java.io.FileWriter;

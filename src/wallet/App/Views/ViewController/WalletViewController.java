@@ -10,8 +10,8 @@ import wallet.App.Helpers.Postman;
 import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewController.Components.Menu;
 import javafx.scene.control.Button;
-import wallet.CommonEntities.Forms.PaymentForm;
-import wallet.CommonEntities.Responses.DataResponses.StandardResult;
+import wallet.CommonElements.Forms.PaymentForm;
+import wallet.CommonElements.Responses.DataResponses.StandardResult;
 
 public class WalletViewController implements IViewController {
 
