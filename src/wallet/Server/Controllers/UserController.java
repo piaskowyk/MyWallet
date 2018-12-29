@@ -31,13 +31,13 @@ public class UserController extends Controller {
             registerForms = gson.fromJson(json, RegisterForm.class);
             boolean operation = true;
 
-            arguments = new ArrayList<Object>();
+            arguments = new ArrayList<>();
             arguments.add(registerForms.getEmail());
 
             dbResult = db.querySelect("select * from users where email = ?", arguments);
 
             if(!db.exist(dbResult)){
-                arguments = new ArrayList<Object>();
+                arguments = new ArrayList<>();
                 arguments.add(registerForms.getName());
                 arguments.add(registerForms.getSurname());
                 arguments.add(registerForms.getEmail());
@@ -72,14 +72,14 @@ public class UserController extends Controller {
             ResultSet dbResult;
             login = gson.fromJson(json, LoginForm.class);
 
-            arguments = new ArrayList<Object>();
+            arguments = new ArrayList<>();
             arguments.add(login.getEmail());
             arguments.add(login.getPassword());
 
             dbResult = db.querySelect("select * from users where email = ? and password = ?", arguments);
 
             if (dbResult.next()){
-                arguments = new ArrayList<Object>();
+                arguments = new ArrayList<>();
 
                 //generate token for user
                 Random random = new Random();

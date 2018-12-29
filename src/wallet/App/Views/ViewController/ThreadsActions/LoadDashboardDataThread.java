@@ -39,19 +39,19 @@ public class LoadDashboardDataThread implements Runnable {
         DecimalFormat df = new DecimalFormat(".00");
         controller.getAccountStateLabel().setText(df.format(dashboardDataResponse.getAccountState()) + " zł");
         controller.getIncomingStatusLabel().setText(df.format(dashboardDataResponse.getIncomingState()) + " zł");
-        controller.getOutcomingStatusLabel().setText(df.format(dashboardDataResponse.getOutcomingState()) + " zł");
+        controller.getOutcomingStatusLabel().setText(df.format(dashboardDataResponse.getOutgoingState()) + " zł");
 
         //set up circle chart
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
             new PieChart.Data("incoming",
                     dashboardDataResponse.getIncomingState() / dashboardDataResponse.getAccountState()
             ),
-            new PieChart.Data("outcoming",
-                    dashboardDataResponse.getOutcomingState() / dashboardDataResponse.getAccountState()
+            new PieChart.Data("outgoing",
+                    dashboardDataResponse.getOutgoingState() / dashboardDataResponse.getAccountState()
             ));
 
         PieChart chart = new PieChart(pieChartData);
-        chart.setTitle("Incoming / outcoming");
+        chart.setTitle("Incoming / outgoing");
         chart.setLabelsVisible(false);
 
         controller.getCircleChartContainer().setCenter(chart);

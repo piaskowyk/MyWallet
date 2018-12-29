@@ -7,7 +7,6 @@ import wallet.Server.Helpers.AuthorizationUserManager;
 import wallet.Server.Helpers.DataBase;
 import wallet.CommonEntities.Responses.DataResponses.StandardResult;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -27,7 +26,6 @@ public class WalletController extends Controller {
         try {
             Gson gson = new Gson();
             ArrayList<Object> arguments = new ArrayList<>();
-            ResultSet dbResult;
             paymentForms = gson.fromJson(json, PaymentForm.class);
             boolean operation = true;
             if(paymentForms.getAmount() < 0){

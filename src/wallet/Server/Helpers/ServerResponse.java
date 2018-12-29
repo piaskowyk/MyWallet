@@ -15,7 +15,7 @@ import wallet.CommonEntities.Responses.*;
 
 public class ServerResponse {
 
-    private int statucCode;
+    private int statusCode;
     private String contentType;
     private Object data;
     private OutputStream outputStream;
@@ -34,24 +34,24 @@ public class ServerResponse {
         this(outputStream, data, contentType, 200);
     }
 
-    ServerResponse(OutputStream outputStream, Object data, int statucCode){
-        this(outputStream, data, "json/application", statucCode);
+    ServerResponse(OutputStream outputStream, Object data, int statusCode){
+        this(outputStream, data, "json/application", statusCode);
     }
 
-    ServerResponse(OutputStream outputStream, Object data, String contentType, int statucCode){
+    ServerResponse(OutputStream outputStream, Object data, String contentType, int statusCode){
         this.outputStream = outputStream;
         this.dataMaker = new PrintWriter(outputStream);
         this.data = data;
         this.contentType = contentType;
-        this.statucCode = statucCode;
+        this.statusCode = statusCode;
     }
 
-    public int getStatucCode() {
-        return statucCode;
+    public int getStatusCode() {
+        return statusCode;
     }
 
-    public void setStatucCode(int statucCode) {
-        this.statucCode = statucCode;
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
     public String getContentType() {
@@ -94,7 +94,7 @@ public class ServerResponse {
         }
 
         if(flag){
-            dataMaker.println("HTTP/1.1 " + statucCode + " OK");
+            dataMaker.println("HTTP/1.1 " + statusCode + " OK");
             dataMaker.println("Content-type: " + contentType);
         } else {
             dataMaker.println("HTTP/1.1 500 OK");

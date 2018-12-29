@@ -9,8 +9,6 @@ import wallet.CommonEntities.Responses.DataResponses.DashboardDataResponse;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 
 public class DashboardController extends Controller {
@@ -133,10 +131,6 @@ public class DashboardController extends Controller {
                     accountState.put(dbResult.getInt("day"), lastMonthAccountState + dbResult.getFloat("accountSum"));
                 }
 
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(new Date());
-                int dayInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-
                 for(int i = 1; i <= lastDay; i++){
                     if(accountState.keySet().contains(i)){
                         lastState = lastMonthAccountState + accountState.get(i);
@@ -145,7 +139,7 @@ public class DashboardController extends Controller {
                 }
 
                 result.setIncomingState(incomingSum);
-                result.setOutcomingState(outcomingSum);
+                result.setOutgoingState(outcomingSum);
                 result.setAccountState(lastState);
 
             } else {

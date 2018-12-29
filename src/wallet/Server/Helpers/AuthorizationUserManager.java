@@ -11,7 +11,7 @@ public class AuthorizationUserManager {
     public static User isLogged(DataBase db, String token){
         User user = new User();
 
-        ArrayList<Object> arguments = new ArrayList<Object>();
+        ArrayList<Object> arguments = new ArrayList<>();
         arguments.add(token);
 
         ResultSet dbResult;

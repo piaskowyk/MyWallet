@@ -9,11 +9,11 @@ public class DashboardDataResponse extends BaseResponse {
     private boolean status;
     private Float accountState;
     private Float incomingState;
-    private Float outcomingState;
-    private HashMap<Integer, Float> accountStateDuringMonth = new HashMap<Integer, Float>();
+    private Float outgoingState;
+    private HashMap<Integer, Float> accountStateDuringMonth = new HashMap<>();
 
     public DashboardDataResponse(){
-        super(200, "succes");
+        super(200, "success");
     }
 
     public boolean getStatus() {
@@ -40,12 +40,12 @@ public class DashboardDataResponse extends BaseResponse {
         this.incomingState = incomingState;
     }
 
-    public Float getOutcomingState() {
-        return outcomingState;
+    public Float getOutgoingState() {
+        return outgoingState;
     }
 
-    public void setOutcomingState(Float outcomingState) {
-        this.outcomingState = outcomingState;
+    public void setOutgoingState(Float outgoingState) {
+        this.outgoingState = outgoingState;
     }
 
     public HashMap<Integer, Float> getAccountStateDuringMonth() {

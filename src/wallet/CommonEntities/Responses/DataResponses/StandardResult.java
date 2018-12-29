@@ -7,7 +7,7 @@ public class StandardResult extends BaseResponse {
     private boolean status;
 
     public StandardResult(){
-        super(200, "succes");
+        super(200, "success");
     }
 
     public boolean getStatus() {

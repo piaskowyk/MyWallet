@@ -1,6 +1,5 @@
 package wallet.App.Views.ViewController;
 
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -37,9 +36,9 @@ public class WalletViewController implements IViewController {
 
     }
 
-    private EventHandler inPaymentBtnOnClick = new EventHandler() {
+    private EventHandler<MouseEvent> inPaymentBtnOnClick = new EventHandler<>() {
         @Override
-        public void handle(Event event) {
+        public void handle(MouseEvent event) {
             statusLabel.setText("Waiting...");
 
             PaymentForm paymentForm = new PaymentForm();
@@ -61,9 +60,9 @@ public class WalletViewController implements IViewController {
         }
     };
 
-    private EventHandler outPaymentBtnOnClick = new EventHandler() {
+    private EventHandler<MouseEvent> outPaymentBtnOnClick = new EventHandler<>() {
         @Override
-        public void handle(Event event) {
+        public void handle(MouseEvent event) {
             statusLabel.setText("Waiting...");
 
             PaymentForm paymentForm = new PaymentForm();

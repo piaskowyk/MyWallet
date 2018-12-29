@@ -50,15 +50,14 @@ public class ViewsManager {
     private static void registerScene(Views view){
         try {
             FXMLLoader loader = new FXMLLoader(_mainClass.getResource("Views/src/" + view.path + ".fxml"));
-            BorderPane root = null;
-            root = (BorderPane) loader.load();
+            BorderPane root = loader.load();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(_mainClass.getResource("Views/src/style.css").toExternalForm());
             scene.getStylesheets().add(_mainClass.getResource("Views/src/" + view.cssPath + ".css").toExternalForm());
             allScene.put(view.path, scene);
 
             if(!(loader.getController() instanceof IViewController)) throw new NoImplementsInterfaceException();
-            allController.put(view.path, (IViewController)loader.getController());
+            allController.put(view.path, loader.getController());
         } catch (IOException e) {
             e.printStackTrace();
         }

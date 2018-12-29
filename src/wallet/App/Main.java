@@ -7,10 +7,8 @@ import wallet.App.Views.ViewsManager;
 
 public class Main extends Application {
 
-    private boolean isLog = false;
-
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         AuthorizationManager.authorize();
         ViewsManager.init(primaryStage, getClass());
 
@@ -19,8 +17,7 @@ public class Main extends Application {
         } else {
             ViewsManager.loadView(ViewsManager.Views.LOGIN);
         }
-        //TODO: poprawić obsługę wyjątków i komunikatow dawanych urzytkownikowi
-        //TODO: walidacja danych, dodać obsługę po stronie frontu i sprawdzić po stronie backu
+        //TODO: walidacja danych, dodać obsługę po stronie frontu i sprawdzić po stronie backu, i infromowanie o tym urzytkoniwka
     }
 
 

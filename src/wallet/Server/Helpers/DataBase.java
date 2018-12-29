@@ -17,8 +17,9 @@ public class DataBase {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":3306/" + dbName + "?useUnicode=true&characterEncoding=utf-8", dbUser, dbPassword);
         }
-        catch(Exception e)
-        { System.out.println(e);}
+        catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public ResultSet querySelect(String query, ArrayList<Object> parameters) throws SQLException {
@@ -44,7 +45,7 @@ public class DataBase {
         return statement.executeQuery();
     }
 
-    public int queryUpdate(String query, ArrayList<Object> parameters) throws SQLException {
+    public void queryUpdate(String query, ArrayList<Object> parameters) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(query);
         int i = 1;
         for(Object item : parameters){
@@ -65,7 +66,7 @@ public class DataBase {
             i++;
         }
         System.out.println(statement.toString());
-        return statement.executeUpdate();
+        statement.executeUpdate();
     }
 
     public boolean exist(ResultSet set){
@@ -73,8 +74,6 @@ public class DataBase {
         try {
             if(set.next()){
                 exist = true;
-            } else {
-                exist = false;
             }
         } catch (Exception e){
             e.printStackTrace();

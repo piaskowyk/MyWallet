@@ -12,7 +12,7 @@ public class PaymentsHistoryResponse extends BaseResponse {
     private List<PaymentItem> paymentsHistory = new ArrayList<>();
 
     public PaymentsHistoryResponse(){
-        super(200, "succes");
+        super(200, "success");
     }
 
     public boolean getStatus() {

@@ -1,6 +1,5 @@
 package wallet.App.Views.ViewController;
 
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,8 +9,6 @@ import javafx.scene.input.MouseEvent;
 import wallet.App.Helpers.AuthorizationManager;
 import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewsManager;
-import wallet.CommonEntities.Forms.LoginForm;
-
 
 public class LoginViewController implements IViewController {
 
@@ -30,18 +27,12 @@ public class LoginViewController implements IViewController {
         loginBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, loginBtnOnClick);
     }
 
-    EventHandler registerBtnOnClick = new EventHandler() {
-        @Override
-        public void handle(Event event) {
-            ViewsManager.loadView(ViewsManager.Views.REGISTER);
-        }
-    };
+    private EventHandler<MouseEvent> registerBtnOnClick = event -> ViewsManager.loadView(ViewsManager.Views.REGISTER);
 
-    EventHandler loginBtnOnClick = new EventHandler() {
+    private EventHandler<MouseEvent> loginBtnOnClick = new EventHandler<>() {
         @Override
-        public void handle(Event event) {
+        public void handle(MouseEvent event) {
             statusText.setText("Waiting...");
-            LoginForm loginForm = new LoginForm();
 
             AuthorizationManager.authorize(emailInput.getText(), passwordInput.getText());
 

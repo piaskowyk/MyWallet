@@ -1,6 +1,5 @@
 package wallet.App.Views.ViewController;
 
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,16 +30,11 @@ public class RegisterViewController implements IViewController {
         sendRegisterBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, sendRegisterBtnOnClick);
     }
 
-    EventHandler returnBtnOnClick = new EventHandler(){
-        @Override
-        public void handle(Event event) {
-            ViewsManager.loadView(ViewsManager.Views.LOGIN);
-        }
-    };
+    private EventHandler<MouseEvent> returnBtnOnClick = event -> ViewsManager.loadView(ViewsManager.Views.LOGIN);
 
-    EventHandler sendRegisterBtnOnClick = new EventHandler(){
+    private EventHandler<MouseEvent> sendRegisterBtnOnClick = new EventHandler<>(){
         @Override
-        public void handle(Event event) {
+        public void handle(MouseEvent event) {
             statusText.setText("Waiting...");
 
             RegisterForm registerForm = new RegisterForm();

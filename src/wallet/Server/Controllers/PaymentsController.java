@@ -35,7 +35,7 @@ public class PaymentsController extends Controller {
             boolean operation = true;
 
             User user = AuthorizationUserManager.isLogged(db, headers.get("Auth-Token:"));
-
+            System.out.println(headers.get("Auth-Token:"));
             if(user != null){
                 arguments.add(user.getId());
 

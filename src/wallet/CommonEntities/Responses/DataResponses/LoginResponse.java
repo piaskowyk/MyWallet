@@ -8,7 +8,7 @@ public class LoginResponse extends BaseResponse {
     private String token = "";
 
     public LoginResponse(){
-        super(200, "succes");
+        super(200, "success");
     }
 
     public boolean getStatus() {
