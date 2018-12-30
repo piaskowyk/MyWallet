@@ -37,12 +37,12 @@ public class RegisterViewController implements IViewController {
         @Override
         public void handle(MouseEvent event) {
 
-            if(!Validator.alphaString(nameInput.getText(), 100)) {
+            if(!Validator.isValidAlphaStringPersonInfo(nameInput.getText(), 100)) {
                 statusText.setText("Invalid name.");
                 return;
             }
 
-            if(!Validator.alphaString(surnameInput.getText(), 100)) {
+            if(!Validator.isValidAlphaStringPersonInfo(surnameInput.getText(), 100)) {
                 statusText.setText("Invalid surname.");
                 return;
             }

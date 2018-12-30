@@ -15,18 +15,18 @@ public class Validator {
     }
 
     public static boolean isValidFloatNum(String item){
-        return item.length() < 9 && item.matches("[0-9]+.[0-9]+");
+        return item.length() < 9 && item.matches("[0-9]+.[0-9]+|[0-9]+");
     }
 
     public static boolean isValidEmail(String item){
         return item.matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$") && item.length() < 225;
     }
 
-    public static boolean alphaString(String item, int maxLen){
+    public static boolean isValidAlphaStringPersonInfo(String item, int maxLen){
         return item.length() <= maxLen && item.matches("[A-ZÓĄŚÐŁŻŹĆŃ][a-zóąśłżźćń]+");
     }
 
-    public static boolean alphaString(String item){
+    public static boolean isValidAlphaStringPersonInfo(String item){
         return item.matches("[A-ZÓĄŚÐŁŻŹĆŃ][a-zóąśłżźćń]+");
     }
 

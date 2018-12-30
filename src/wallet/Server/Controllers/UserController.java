@@ -37,8 +37,8 @@ public class UserController extends Controller {
             if(
                     !Validator.isvalidPassword(registerForms.getPassword())
                     || !Validator.isValidEmail(registerForms.getEmail())
-                    || !Validator.alphaString(registerForms.getName(), 100)
-                    || !Validator.alphaString(registerForms.getSurname(), 100)
+                    || !Validator.isValidAlphaStringPersonInfo(registerForms.getName(), 100)
+                    || !Validator.isValidAlphaStringPersonInfo(registerForms.getSurname(), 100)
             ) {
                 throw new InvalidInputDataException();
             }

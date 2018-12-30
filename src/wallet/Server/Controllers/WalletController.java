@@ -3,6 +3,8 @@ package wallet.Server.Controllers;
 import com.google.gson.Gson;
 import wallet.CommonElements.Entity.User;
 import wallet.CommonElements.Forms.PaymentForm;
+import wallet.CommonElements.Helpers.Validator;
+import wallet.Server.Exceptions.InvalidInputDataException;
 import wallet.Server.Helpers.AuthorizationUserManager;
 import wallet.Server.Helpers.DataBase;
 import wallet.CommonElements.Responses.DataResponses.StandardResult;
@@ -35,6 +37,15 @@ public class WalletController extends Controller {
                 User user = AuthorizationUserManager.isLogged(db, headers.get("Auth-Token:"));
 
                 if(user != null){
+
+                    //validation data
+                    if(
+                            paymentForms.getTitle().length() > 5000
+                            || !Validator.isValidAplhaString(paymentForms.getType().toString())
+                    ) {
+                        throw new InvalidInputDataException();
+                    }
+
                     arguments.add(user.getId());
                     arguments.add(paymentForms.getAmount());
                     arguments.add(paymentForms.getTitle());

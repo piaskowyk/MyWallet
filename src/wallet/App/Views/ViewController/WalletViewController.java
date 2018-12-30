@@ -11,6 +11,7 @@ import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewController.Components.Menu;
 import javafx.scene.control.Button;
 import wallet.CommonElements.Forms.PaymentForm;
+import wallet.CommonElements.Helpers.Validator;
 import wallet.CommonElements.Responses.DataResponses.StandardResult;
 
 public class WalletViewController implements IViewController {
@@ -39,6 +40,17 @@ public class WalletViewController implements IViewController {
     private EventHandler<MouseEvent> inPaymentBtnOnClick = new EventHandler<>() {
         @Override
         public void handle(MouseEvent event) {
+
+            if(inPaymentTitle.getText().length() > 5000){
+                statusLabel.setText("Too long title.");
+                return;
+            }
+
+            if(!Validator.isValidFloatNum(inPaymentAmount.getText())){
+                statusLabel.setText("Invalid amount.");
+                return;
+            }
+
             statusLabel.setText("Waiting...");
 
             PaymentForm paymentForm = new PaymentForm();
@@ -63,6 +75,17 @@ public class WalletViewController implements IViewController {
     private EventHandler<MouseEvent> outPaymentBtnOnClick = new EventHandler<>() {
         @Override
         public void handle(MouseEvent event) {
+
+            if(outPaymentTitle.getText().length() > 5000){
+                statusLabel.setText("Too long title.");
+                return;
+            }
+
+            if(!Validator.isValidFloatNum(outPaymentAmount.getText())){
+                statusLabel.setText("Invalid amount.");
+                return;
+            }
+
             statusLabel.setText("Waiting...");
 
             PaymentForm paymentForm = new PaymentForm();

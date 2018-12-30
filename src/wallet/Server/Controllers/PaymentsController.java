@@ -6,6 +6,8 @@ import wallet.CommonElements.Entity.User;
 import wallet.CommonElements.Forms.PaymentForm;
 import wallet.CommonElements.Forms.PaymentsHistoryForm;
 import wallet.CommonElements.Forms.RemovePaymentsItemForm;
+import wallet.CommonElements.Helpers.Validator;
+import wallet.Server.Exceptions.InvalidInputDataException;
 import wallet.Server.Helpers.AuthorizationUserManager;
 import wallet.Server.Helpers.DataBase;
 import wallet.CommonElements.Responses.DataResponses.PaymentsHistoryResponse;
@@ -88,8 +90,9 @@ public class PaymentsController extends Controller {
 
             if(user != null){
                 arguments.add(removePaymentsItemForm.getId());
+                arguments.add(user.getId());
 
-                db.queryUpdate("delete from payments where id = ?", arguments);
+                db.queryUpdate("delete from payments where id = ? and user_id = ?", arguments);
             } else {
                 operation = false;
             }
@@ -121,11 +124,21 @@ public class PaymentsController extends Controller {
             User user = AuthorizationUserManager.isLogged(db, headers.get("Auth-Token:"));
 
             if(user != null){
+
+                //validation data
+                if(
+                        paymentForm.getTitle().length() > 5000
+                        || paymentForm.getAmount() < 0
+                ) {
+                    throw new InvalidInputDataException();
+                }
+
                 arguments.add(paymentForm.getAmount());
                 arguments.add(paymentForm.getTitle());
                 arguments.add(paymentForm.getId());
+                arguments.add(user.getId());
 
-                db.queryUpdate("UPDATE payments SET amount = ?, title = ? WHERE id = ?", arguments);
+                db.queryUpdate("UPDATE payments SET amount = ?, title = ? WHERE id = ? and user_id = ?", arguments);
             } else {
                 operation = false;
             }
