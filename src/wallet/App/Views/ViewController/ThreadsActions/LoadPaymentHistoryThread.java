@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Pair;
 import wallet.App.Helpers.Postman;
 import wallet.App.Views.ViewController.HistoryViewController;
@@ -204,10 +205,21 @@ public class LoadPaymentHistoryThread implements Runnable {
 
             });
 
-
             controller.getHistoryContainer().getChildren().add(borderPaneRoot);
             index++;
         }
+
+        if(index == 0){
+            controller.getHistoryContainer().getChildren().clear();
+            BorderPane borderPaneRoot = new BorderPane();
+            Label info = new Label();
+            info.setText("Not found payments history.");
+            info.setFont(Font.font ("Ubuntu", 25));
+            info.setStyle("-fx-padding: 50 0 0 0;");
+            borderPaneRoot.setCenter(info);
+            controller.getHistoryContainer().getChildren().add(borderPaneRoot);
+        }
+
     }
 
 }

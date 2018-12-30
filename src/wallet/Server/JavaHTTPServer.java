@@ -3,7 +3,7 @@ package wallet.Server;
 import wallet.Server.Controllers.Controller;
 import wallet.Server.Exceptions.*;
 import wallet.Server.Helpers.ServerResponse;
-import wallet.Server.Helpers.Validator;
+import wallet.CommonElements.Helpers.Validator;
 
 import java.io.*;
 import java.lang.reflect.Constructor;

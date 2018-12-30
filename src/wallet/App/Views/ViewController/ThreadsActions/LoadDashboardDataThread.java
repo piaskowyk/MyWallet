@@ -36,7 +36,7 @@ public class LoadDashboardDataThread implements Runnable {
         }
 
         //set up labels
-        DecimalFormat df = new DecimalFormat(".00");
+        DecimalFormat df = new DecimalFormat("0.00");
         controller.getAccountStateLabel().setText(df.format(dashboardDataResponse.getAccountState()) + " zł");
         controller.getIncomingStatusLabel().setText(df.format(dashboardDataResponse.getIncomingState()) + " zł");
         controller.getOutcomingStatusLabel().setText(df.format(dashboardDataResponse.getOutgoingState()) + " zł");

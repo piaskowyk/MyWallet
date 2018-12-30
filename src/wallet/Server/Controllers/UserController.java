@@ -3,6 +3,8 @@ package wallet.Server.Controllers;
 import com.google.gson.Gson;
 import wallet.CommonElements.Forms.LoginForm;
 import wallet.CommonElements.Forms.RegisterForm;
+import wallet.CommonElements.Helpers.Validator;
+import wallet.Server.Exceptions.InvalidInputDataException;
 import wallet.Server.Helpers.DataBase;
 import wallet.CommonElements.Responses.DataResponses.StandardResult;
 import wallet.CommonElements.Responses.DataResponses.LoginResponse;
@@ -30,6 +32,16 @@ public class UserController extends Controller {
             ResultSet dbResult;
             registerForms = gson.fromJson(json, RegisterForm.class);
             boolean operation = true;
+
+            //validation data
+            if(
+                    !Validator.isvalidPassword(registerForms.getPassword())
+                    || !Validator.isValidEmail(registerForms.getEmail())
+                    || !Validator.alphaString(registerForms.getName(), 100)
+                    || !Validator.alphaString(registerForms.getSurname(), 100)
+            ) {
+                throw new InvalidInputDataException();
+            }
 
             arguments = new ArrayList<>();
             arguments.add(registerForms.getEmail());
@@ -71,6 +83,11 @@ public class UserController extends Controller {
             ArrayList<Object> arguments;
             ResultSet dbResult;
             login = gson.fromJson(json, LoginForm.class);
+
+            //validation data
+            if(!Validator.isvalidPassword(login.getPassword()) || !Validator.isValidEmail(login.getEmail())) {
+                throw new InvalidInputDataException();
+            }
 
             arguments = new ArrayList<>();
             arguments.add(login.getEmail());

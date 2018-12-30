@@ -11,6 +11,7 @@ import wallet.App.Helpers.Postman;
 import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewsManager;
 import wallet.CommonElements.Forms.RegisterForm;
+import wallet.CommonElements.Helpers.Validator;
 import wallet.CommonElements.Responses.DataResponses.StandardResult;
 
 
@@ -23,7 +24,7 @@ public class RegisterViewController implements IViewController {
     private Label returnBtn, statusText;
 
     @FXML
-    private TextField nameInput, surnameInput, emailInput, passwordInput;
+    private TextField nameInput, surnameInput, emailInput, passwordInput, retypePasswordInput;
 
     public void initialize(){
         returnBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, returnBtnOnClick);
@@ -35,6 +36,37 @@ public class RegisterViewController implements IViewController {
     private EventHandler<MouseEvent> sendRegisterBtnOnClick = new EventHandler<>(){
         @Override
         public void handle(MouseEvent event) {
+
+            if(!Validator.alphaString(nameInput.getText(), 100)) {
+                statusText.setText("Invalid name.");
+                return;
+            }
+
+            if(!Validator.alphaString(surnameInput.getText(), 100)) {
+                statusText.setText("Invalid surname.");
+                return;
+            }
+
+            if(!Validator.isValidEmail(emailInput.getText())) {
+                statusText.setText("Invalid email.");
+                return;
+            }
+
+            if(passwordInput.getText().length() < 5) {
+                statusText.setText("Password is too short, minimum 5 characters.");
+                return;
+            }
+
+            if(passwordInput.getText().length() > 40) {
+                statusText.setText("Password is too long, maximum 40 characters.");
+                return;
+            }
+
+            if(!passwordInput.getText().equals(retypePasswordInput.getText())){
+                statusText.setText("Retype password is different.");
+                return;
+            }
+
             statusText.setText("Waiting...");
 
             RegisterForm registerForm = new RegisterForm();

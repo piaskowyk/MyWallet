@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import wallet.App.Helpers.AuthorizationManager;
 import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewsManager;
+import wallet.CommonElements.Helpers.Validator;
 
 public class LoginViewController implements IViewController {
 
@@ -32,17 +33,26 @@ public class LoginViewController implements IViewController {
     private EventHandler<MouseEvent> loginBtnOnClick = new EventHandler<>() {
         @Override
         public void handle(MouseEvent event) {
+
+            if(!Validator.isValidEmail(emailInput.getText())) {
+                statusText.setText("Invalid email.");
+                return;
+            }
+
+            if(passwordInput.getText().length() > 40) {
+                statusText.setText("Password is too long.");
+                return;
+            }
+
             statusText.setText("Waiting...");
 
             AuthorizationManager.authorize(emailInput.getText(), passwordInput.getText());
 
             if(!AuthorizationManager.isAuthorized()){
-                statusText.setText("LoginForm failed. Try again.");
+                statusText.setText("Login failed. Try again.");
             } else {
                 ViewsManager.loadView(ViewsManager.Views.DASHBOARD);
             }
         }
     };
-
-
 }
