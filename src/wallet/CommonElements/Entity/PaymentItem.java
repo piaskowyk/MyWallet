@@ -9,7 +9,7 @@ public class PaymentItem {
     private String title = null;
     private PaymentItem.Type type;
     private String date = null;
-    private PaymentsCategory category;
+    private PaymentCategory category;
 
     public Integer getId() {
         return id;
@@ -47,16 +47,16 @@ public class PaymentItem {
         this.type = Type.valueOf(type);
     }
 
-    public PaymentItem.PaymentsCategory getCategory() {
+    public PaymentCategory getCategory() {
         return category;
     }
 
-    public void setCategory(PaymentItem.PaymentsCategory category) {
+    public void setCategory(PaymentCategory category) {
         this.category = category;
     }
 
     public void setCategory(String category) {
-        this.category = PaymentItem.PaymentsCategory.valueOf(category);
+        this.category = PaymentCategory.valueOf(category);
     }
 
     public String getDate() {
@@ -70,23 +70,6 @@ public class PaymentItem {
     public enum Type{
         INCOMING,
         OUTCOMING
-    }
-
-    public enum  PaymentsCategory {
-        FOOD("food"),
-        ELECTRONIC("electronic"),
-        OTHER("other"),
-        IN("in");
-
-        private String name;
-
-        PaymentsCategory(String name){
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
     }
 
 }

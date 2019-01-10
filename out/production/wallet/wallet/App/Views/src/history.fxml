@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -109,9 +111,27 @@
             </Pane>
          </bottom>
          <center>
-            <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <ScrollPane fitToWidth="true" prefHeight="561.0" prefWidth="849.0" BorderPane.alignment="CENTER">
                <content>
-                  <VBox fx:id="historyContainer" />
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Pane minHeight="75.0" prefHeight="75.0" prefWidth="847.0" style="-fx-border-color: #1A535C; -fx-border-width: 0 0 1 0;">
+                           <children>
+                              <Label layoutX="14.0" layoutY="14.0" text="Sort by date" />
+                              <ChoiceBox fx:id="filterDateSort" layoutX="14.0" layoutY="32.0" prefHeight="26.0" prefWidth="126.0" />
+                              <Label layoutX="290.0" layoutY="14.0" text="Date start" />
+                              <DatePicker fx:id="filterDateStart" layoutX="290.0" layoutY="32.0" prefHeight="26.0" prefWidth="123.0" />
+                              <Label layoutX="427.0" layoutY="14.0" text="Date end" />
+                              <DatePicker fx:id="filterDateEnd" layoutX="427.0" layoutY="32.0" prefHeight="26.0" prefWidth="123.0" />
+                              <Label layoutX="152.0" layoutY="14.0" text="Sort by amount" />
+                              <ChoiceBox fx:id="filterAmountSort" layoutX="152.0" layoutY="32.0" prefHeight="26.0" prefWidth="126.0" />
+                              <Label layoutX="563.0" layoutY="14.0" text="Show category" />
+                              <ChoiceBox fx:id="filterCategory" layoutX="563.0" layoutY="32.0" prefHeight="26.0" prefWidth="126.0" />
+                           </children>
+                        </Pane>
+                        <VBox fx:id="historyContainer" prefHeight="92.0" prefWidth="847.0" />
+                     </children>
+                  </VBox>
                </content>
             </ScrollPane>
          </center>

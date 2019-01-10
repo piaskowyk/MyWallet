@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import wallet.App.Untils.Postman;
 import wallet.App.Views.ViewController.HistoryViewController;
+import wallet.CommonElements.Entity.PaymentCategory;
 import wallet.CommonElements.Entity.PaymentItem;
 import wallet.CommonElements.Forms.PaymentForm;
 import wallet.CommonElements.Forms.RemovePaymentsItemForm;
@@ -81,7 +82,7 @@ public class LoadPaymentHistoryThread implements Runnable {
             paneLeft.getChildren().add(icon);
             paneLeft.getChildren().add(title);
             paneLeft.getChildren().add(dataLabel);
-            if(paymentItem.getCategory() != PaymentItem.PaymentsCategory.IN){
+            if(paymentItem.getCategory() != PaymentCategory.IN){
                 Label categoryLabel = new Label();
                 categoryLabel.setLayoutX(130);
                 categoryLabel.setLayoutY(28);
@@ -176,9 +177,9 @@ public class LoadPaymentHistoryThread implements Runnable {
                 paymentItemDate.setValue(LocalDate.parse(paymentItem.getDate()));
 
                 ChoiceBox paymentItemCategory = new ChoiceBox();
-                EnumSet.allOf(PaymentItem.PaymentsCategory.class)
+                EnumSet.allOf(PaymentCategory.class)
                         .forEach(item -> {
-                            if(item != PaymentItem.PaymentsCategory.IN){
+                            if(item != PaymentCategory.IN){
                                 paymentItemCategory.getItems().add(item);
                             }
                         });
@@ -196,7 +197,7 @@ public class LoadPaymentHistoryThread implements Runnable {
                 grid.add(catLabel, 0, 3);
                 grid.add(paymentItemCategory, 1, 3);
 
-                if(paymentItem.getCategory() == PaymentItem.PaymentsCategory.IN){
+                if(paymentItem.getCategory() == PaymentCategory.IN){
                     catLabel.setVisible(false);
                     paymentItemCategory.setVisible(false);
                 }

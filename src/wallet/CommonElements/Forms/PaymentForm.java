@@ -1,5 +1,7 @@
 package wallet.CommonElements.Forms;
 
+import wallet.CommonElements.Entity.PaymentCategory;
+
 public class PaymentForm {
 
     private Integer id;
@@ -7,7 +9,7 @@ public class PaymentForm {
     private String title = null;
     private String date = null;
     private Type type;
-    private PaymentsCategory category;
+    private PaymentCategory category;
 
     public Integer getId() {
         return id;
@@ -53,38 +55,21 @@ public class PaymentForm {
         this.type = Type.valueOf(type);
     }
 
-    public PaymentsCategory getCategory() {
+    public PaymentCategory getCategory() {
         return category;
     }
 
-    public void setCategory(PaymentsCategory category) {
+    public void setCategory(PaymentCategory category) {
         this.category = category;
     }
 
     public void setCategory(String category) {
-        this.category = PaymentsCategory.valueOf(category);
+        this.category = PaymentCategory.valueOf(category);
     }
 
     public enum Type{
         INCOMING,
         OUTCOMING
-    }
-
-    public enum  PaymentsCategory {
-        FOOD("food"),
-        ELECTRONIC("electronic"),
-        OTHER("other"),
-        IN("in");
-
-        private String name;
-
-        PaymentsCategory(String name){
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
     }
 
 }

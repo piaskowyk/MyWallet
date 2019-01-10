@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import wallet.App.Untils.Postman;
 import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewController.Components.Menu;
+import wallet.CommonElements.Entity.PaymentCategory;
 import wallet.CommonElements.Forms.PaymentForm;
 import wallet.CommonElements.Helpers.Validator;
 import wallet.CommonElements.Responses.DataResponses.StandardResult;
@@ -36,7 +37,7 @@ public class WalletViewController implements IViewController {
     private DatePicker inPaymentDate, outPaymentDate;
 
     @FXML
-    private ChoiceBox selectCategory;
+    private ChoiceBox<String> selectCategory;
 
     public void initialize(){
         Menu.registerMenu(menuBar);
@@ -51,10 +52,10 @@ public class WalletViewController implements IViewController {
         inPaymentDate.setValue(localDate);
         outPaymentDate.setValue(localDate);
 
-        EnumSet.allOf(PaymentForm.PaymentsCategory.class)
+        EnumSet.allOf(PaymentCategory.class)
                 .forEach(item -> {
-                    if(item != PaymentForm.PaymentsCategory.IN){
-                        selectCategory.getItems().add(item);
+                    if(item != PaymentCategory.IN){
+                        selectCategory.getItems().add(item.getName());
                     }
                 });
         selectCategory.getSelectionModel().selectFirst();
@@ -86,7 +87,7 @@ public class WalletViewController implements IViewController {
             paymentForm.setTitle(inPaymentTitle.getText());
             paymentForm.setType(PaymentForm.Type.INCOMING);
             paymentForm.setDate(inPaymentDate.getValue().toString());
-            paymentForm.setCategory(PaymentForm.PaymentsCategory.IN);
+            paymentForm.setCategory(PaymentCategory.IN);
 
             Postman<StandardResult> postman = new Postman<>();
             StandardResult loginResponse = postman.send(paymentForm, StandardResult.class, Postman.Api.ADD_PAYMENTS);
