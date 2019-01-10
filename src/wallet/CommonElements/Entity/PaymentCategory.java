@@ -1,10 +1,10 @@
 package wallet.CommonElements.Entity;
 
 public enum PaymentCategory {
-    FOOD("food"),
-    ELECTRONIC("electronic"),
-    OTHER("other"),
-    IN("in");
+    FOOD("FOOD"),
+    ELECTRONIC("ELECTRONIC"),
+    OTHER("OTHER"),
+    IN("IN");
 
     private String name;
 

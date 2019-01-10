@@ -16,11 +16,14 @@ import wallet.App.Views.ViewController.HistoryViewController;
 import wallet.CommonElements.Entity.PaymentCategory;
 import wallet.CommonElements.Entity.PaymentItem;
 import wallet.CommonElements.Forms.PaymentForm;
+import wallet.CommonElements.Forms.PaymentsHistoryForm;
 import wallet.CommonElements.Forms.RemovePaymentsItemForm;
 import wallet.CommonElements.Responses.DataResponses.PaymentsHistoryResponse;
 import wallet.CommonElements.Responses.DataResponses.StandardResult;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 public class LoadPaymentHistoryThread implements Runnable {
@@ -35,8 +38,44 @@ public class LoadPaymentHistoryThread implements Runnable {
     public void run() {
         controller.getStatusLabel().setText("Waiting...");
 
+        LocalDate localDate;
+        Instant instant;
+        Date date;
+        String filterValue;
+
+        PaymentsHistoryForm paymentsHistoryForm = new PaymentsHistoryForm();
+
+        filterValue = controller.getFilterDateSort().getValue();
+        paymentsHistoryForm.setFilterDateSort(!filterValue.equals("") ?
+                PaymentsHistoryForm.FilterDateSort.valueOf(controller.getFilterDateSort().getValue()) : null);
+
+        filterValue = controller.getFilterAmountSort().getValue();
+        paymentsHistoryForm.setFilterAmountSort(!filterValue.equals("") ?
+                PaymentsHistoryForm.FilterAmountSort.valueOf(controller.getFilterAmountSort().getValue()) : null);
+
+        filterValue = controller.getFilterCategory().getValue();
+        paymentsHistoryForm.setPaymentCategory(!filterValue.equals("") ?
+                PaymentCategory.valueOf(controller.getFilterCategory().getValue()) : null);
+
+        date = null;
+        localDate = controller.getFilterDateStart().getValue();
+        if(localDate != null){
+            instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+            date = Date.from(instant);
+        }
+        paymentsHistoryForm.setDateStart(date);
+
+        date = null;
+        localDate = controller.getFilterDateEnd().getValue();
+        if(localDate != null){
+            instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+            date = Date.from(instant);
+        }
+        paymentsHistoryForm.setDateEnd(date);
+
+
         Postman<PaymentsHistoryResponse> postman = new Postman<>();
-        PaymentsHistoryResponse paymentsHistoryResponse = postman.get(PaymentsHistoryResponse.class, Postman.Api.GET_HISTORY);
+        PaymentsHistoryResponse paymentsHistoryResponse = postman.send(paymentsHistoryForm, PaymentsHistoryResponse.class, Postman.Api.GET_HISTORY);
 
         if(postman.noError() && paymentsHistoryResponse.getStatus()) {
             controller.getStatusLabel().setText("OK.");

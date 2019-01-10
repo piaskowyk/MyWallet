@@ -1,6 +1,7 @@
 package wallet.Server.Controllers;
 
 import com.google.gson.Gson;
+import wallet.CommonElements.Entity.PaymentCategory;
 import wallet.CommonElements.Entity.PaymentItem;
 import wallet.CommonElements.Entity.User;
 import wallet.CommonElements.Forms.PaymentForm;
@@ -15,6 +16,7 @@ import wallet.CommonElements.Responses.DataResponses.StandardResult;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class PaymentsController extends Controller {
 
@@ -34,13 +36,65 @@ public class PaymentsController extends Controller {
             ArrayList<Object> arguments = new ArrayList<>();
             paymentsHistoryForm = gson.fromJson(json, PaymentsHistoryForm.class);
             boolean operation = true;
+            boolean operationInit;
+
+            StringBuilder query = new StringBuilder();
+
+            query.append("select * from payments where user_id = ?");
+
+            if(paymentsHistoryForm.getPaymentCategory() != null){
+                query.append(" and category = '");
+                query.append(paymentsHistoryForm.getPaymentCategory().getName());
+                query.append("' ");
+            }
+
+            if(paymentsHistoryForm.getDateStart() != null){
+                query.append(" and ");
+                query.append(" date >= ");
+                java.util.Date utilDate = paymentsHistoryForm.getDateStart();
+                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                query.append("'");
+                query.append(sqlDate);
+                query.append("'");
+            }
+
+            if(paymentsHistoryForm.getDateEnd() != null){
+                query.append(" and ");
+                query.append(" date <= ");
+                java.util.Date utilDate = paymentsHistoryForm.getDateEnd();
+                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                query.append("'");
+                query.append(sqlDate);
+                query.append("'");
+            }
+
+            operationInit = false;
+            if(paymentsHistoryForm.getFilterDateSort() != null){
+                operationInit = true;
+                query.append(" order by ");
+                query.append("date ");
+                query.append(paymentsHistoryForm.getFilterDateSort().getName());
+                query.append(", id ");
+                query.append(paymentsHistoryForm.getFilterDateSort().getName());
+            }
+
+            if(paymentsHistoryForm.getFilterAmountSort() != null){
+                if(!operationInit){
+                    query.append(" order by ");
+                } else {
+                    query.append(" ,");
+                }
+                query.append("amount ");
+                query.append(paymentsHistoryForm.getFilterAmountSort().getName());
+            }
 
             User user = AuthorizationUserManager.isLogged(db, headers.get("Auth-Token:"));
             System.out.println(headers.get("Auth-Token:"));
             if(user != null){
                 arguments.add(user.getId());
 
-                ResultSet dbResult = db.querySelect("select * from payments where user_id = ? order by date DESC", arguments);
+                System.out.println(query.toString());
+                ResultSet dbResult = db.querySelect(query.toString(), arguments);
 
                 while (dbResult.next()){
                     PaymentItem paymentItem = new PaymentItem();

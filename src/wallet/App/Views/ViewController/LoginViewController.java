@@ -9,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 import wallet.App.Untils.AuthorizationManager;
 import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewsManager;
-import wallet.CommonElements.Helpers.Validator;
+import wallet.CommonElements.Untils.Validator;
 
 public class LoginViewController implements IViewController {
 

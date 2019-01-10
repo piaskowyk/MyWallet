@@ -3,7 +3,7 @@ package wallet.Server.Controllers;
 import com.google.gson.Gson;
 import wallet.CommonElements.Entity.User;
 import wallet.CommonElements.Forms.PaymentForm;
-import wallet.CommonElements.Helpers.Validator;
+import wallet.CommonElements.Untils.Validator;
 import wallet.Server.Exceptions.InvalidInputDataException;
 import wallet.Server.Untils.AuthorizationUserManager;
 import wallet.Server.Untils.DataBase;

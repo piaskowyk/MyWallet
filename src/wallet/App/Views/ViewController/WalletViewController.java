@@ -10,7 +10,7 @@ import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewController.Components.Menu;
 import wallet.CommonElements.Entity.PaymentCategory;
 import wallet.CommonElements.Forms.PaymentForm;
-import wallet.CommonElements.Helpers.Validator;
+import wallet.CommonElements.Untils.Validator;
 import wallet.CommonElements.Responses.DataResponses.StandardResult;
 
 import java.time.Instant;

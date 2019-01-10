@@ -57,6 +57,7 @@ public class Postman <T>{
         post.setEntity(peyloadData);
         post.setHeader("Content-type", "application/json");
         post.setHeader("Auth-Token", AuthorizationManager.getToken());
+
         try {
             HttpResponse response = httpClient.execute(post);
             responseStr = EntityUtils.toString(response.getEntity());
@@ -91,6 +92,7 @@ public class Postman <T>{
         HttpPost post = new HttpPost(serverUrl + request.url);
         post.setHeader("Content-type", "application/json");
         post.setHeader("Auth-Token", AuthorizationManager.getToken());
+
         try {
             HttpResponse response = httpClient.execute(post);
             responseStr = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);

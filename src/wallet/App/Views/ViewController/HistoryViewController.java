@@ -42,18 +42,21 @@ public class HistoryViewController implements IViewController {
     public void initialize(){
         Menu.registerMenu(menuBar);
 
+        filterDateSort.getItems().add("");
         EnumSet.allOf(PaymentsHistoryForm.FilterDateSort.class)
                 .forEach(item -> {
                     filterDateSort.getItems().add(item.getName());
                 });
         filterDateSort.getSelectionModel().selectFirst();
 
+        filterAmountSort.getItems().add("");
         EnumSet.allOf(PaymentsHistoryForm.FilterAmountSort.class)
                 .forEach(item -> {
                     filterAmountSort.getItems().add(item.getName());
                 });
         filterAmountSort.getSelectionModel().selectFirst();
 
+        filterCategory.getItems().add("");
         EnumSet.allOf(PaymentCategory.class)
                 .forEach(item -> {
                     filterCategory.getItems().add(item.getName());

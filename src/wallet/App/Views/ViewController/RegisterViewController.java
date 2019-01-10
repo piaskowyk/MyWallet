@@ -11,7 +11,7 @@ import wallet.App.Untils.Postman;
 import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewsManager;
 import wallet.CommonElements.Forms.RegisterForm;
-import wallet.CommonElements.Helpers.Validator;
+import wallet.CommonElements.Untils.Validator;
 import wallet.CommonElements.Responses.DataResponses.StandardResult;
 
 
