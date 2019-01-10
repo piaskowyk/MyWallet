@@ -30,4 +30,8 @@ public class Validator {
         return item.matches("[A-ZÓĄŚÐŁŻŹĆŃ][a-zóąśłżźćń]+");
     }
 
+    public static boolean isDataPicker(String item){
+        return item.matches("[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}");
+    }
+
 }

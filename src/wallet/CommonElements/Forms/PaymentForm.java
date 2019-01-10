@@ -5,7 +5,9 @@ public class PaymentForm {
     private Integer id;
     private Float amount = null;
     private String title = null;
+    private String date = null;
     private Type type;
+    private PaymentsCategory category;
 
     public Integer getId() {
         return id;
@@ -31,6 +33,14 @@ public class PaymentForm {
         this.title = title;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public Type getType() {
         return type;
     }
@@ -40,19 +50,41 @@ public class PaymentForm {
     }
 
     public void setType(String type) {
-        switch (type){
-            case "INCOMING":{
-                this.type = Type.INCOMING;
-            }break;
-            case "OUTCOMING":{
-                this.type = Type.OUTCOMING;
-            }break;
-        }
+        this.type = Type.valueOf(type);
+    }
+
+    public PaymentsCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(PaymentsCategory category) {
+        this.category = category;
+    }
+
+    public void setCategory(String category) {
+        this.category = PaymentsCategory.valueOf(category);
     }
 
     public enum Type{
         INCOMING,
         OUTCOMING
+    }
+
+    public enum  PaymentsCategory {
+        FOOD("food"),
+        ELECTRONIC("electronic"),
+        OTHER("other"),
+        IN("in");
+
+        private String name;
+
+        PaymentsCategory(String name){
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
 
 }

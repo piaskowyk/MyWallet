@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -101,7 +103,7 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane prefHeight="150.0" prefWidth="849.0">
+                  <Pane prefHeight="155.0" prefWidth="849.0">
                      <children>
                         <Label layoutX="62.0" layoutY="28.0" text="Add incoming payments" textFill="#ff6b6b">
                            <font>
@@ -110,18 +112,20 @@
                         </Label>
                         <TextField fx:id="inPaymentAmount" layoutX="63.0" layoutY="94.0" />
                         <Label layoutX="63.0" layoutY="71.0" text="Amount" />
-                        <Label layoutX="293.0" layoutY="71.0" text="Title" />
-                        <TextField fx:id="inPaymentTitle" layoutX="293.0" layoutY="94.0" prefHeight="26.0" prefWidth="250.0" />
-                        <Button fx:id="inPaymentBtn" layoutX="552.0" layoutY="94.0" mnemonicParsing="false" text="Add" />
+                        <Label layoutX="246.0" layoutY="71.0" text="Title" />
+                        <TextField fx:id="inPaymentTitle" layoutX="246.0" layoutY="94.0" prefHeight="26.0" prefWidth="250.0" />
+                        <Button fx:id="inPaymentBtn" layoutX="718.0" layoutY="94.0" mnemonicParsing="false" text="Add" />
                         <ImageView layoutX="16.0" layoutY="23.0">
                            <image>
                               <Image url="@img/iconfinder_199_CircledPlus_183316.png" />
                            </image>
                         </ImageView>
+                        <DatePicker fx:id="inPaymentDate" layoutX="508.0" layoutY="94.0" />
+                        <Label layoutX="508.0" layoutY="71.0" text="Date" />
                      </children>
                   </Pane>
                   <Pane prefHeight="1.0" prefWidth="849.0" style="-fx-background-color: #1A535C;" />
-                  <Pane prefHeight="158.0" prefWidth="849.0">
+                  <Pane prefHeight="208.0" prefWidth="849.0">
                      <children>
                         <Label layoutX="65.0" layoutY="38.0" text="Add outcoming payments" textFill="#ff6b6b">
                            <font>
@@ -130,14 +134,18 @@
                         </Label>
                         <TextField fx:id="outPaymentAmount" layoutX="65.0" layoutY="88.0" />
                         <Label layoutX="65.0" layoutY="70.0" text="Amount" />
-                        <Label layoutX="296.0" layoutY="70.0" text="Title" />
-                        <TextField fx:id="outPaymentTitle" layoutX="296.0" layoutY="88.0" prefHeight="26.0" prefWidth="249.0" />
-                        <Button fx:id="outPaymentBtn" layoutX="555.0" layoutY="88.0" mnemonicParsing="false" text="Add" />
+                        <Label layoutX="249.0" layoutY="70.0" text="Title" />
+                        <TextField fx:id="outPaymentTitle" layoutX="249.0" layoutY="88.0" prefHeight="26.0" prefWidth="249.0" />
+                        <Button fx:id="outPaymentBtn" layoutX="722.0" layoutY="88.0" mnemonicParsing="false" text="Add" />
                         <ImageView layoutX="14.0" layoutY="33.0">
                            <image>
                               <Image url="@img/iconfinder_meanicons_22_197212.png" />
                            </image>
                         </ImageView>
+                        <DatePicker fx:id="outPaymentDate" layoutX="512.0" layoutY="88.0" />
+                        <Label layoutX="513.0" layoutY="69.0" text="Date" />
+                        <ChoiceBox fx:id="selectCategory" layoutX="65.0" layoutY="148.0" prefHeight="26.0" prefWidth="171.0" />
+                        <Label layoutX="66.0" layoutY="127.0" text="Category" />
                      </children>
                   </Pane>
                   <Pane prefHeight="1.0" prefWidth="849.0" style="-fx-background-color: #1A535C;" />

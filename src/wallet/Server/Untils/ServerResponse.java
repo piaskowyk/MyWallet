@@ -1,4 +1,4 @@
-package wallet.Server.Helpers;
+package wallet.Server.Untils;
 
 import com.google.gson.Gson;
 import wallet.Server.Exceptions.RequestDoubleExecutedException;

@@ -4,7 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import wallet.App.Helpers.AuthorizationManager;
+import wallet.App.Untils.AuthorizationManager;
 import wallet.App.Views.ViewsManager;
 
 import java.util.HashMap;

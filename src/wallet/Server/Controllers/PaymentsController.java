@@ -6,10 +6,9 @@ import wallet.CommonElements.Entity.User;
 import wallet.CommonElements.Forms.PaymentForm;
 import wallet.CommonElements.Forms.PaymentsHistoryForm;
 import wallet.CommonElements.Forms.RemovePaymentsItemForm;
-import wallet.CommonElements.Helpers.Validator;
 import wallet.Server.Exceptions.InvalidInputDataException;
-import wallet.Server.Helpers.AuthorizationUserManager;
-import wallet.Server.Helpers.DataBase;
+import wallet.Server.Untils.AuthorizationUserManager;
+import wallet.Server.Untils.DataBase;
 import wallet.CommonElements.Responses.DataResponses.PaymentsHistoryResponse;
 import wallet.CommonElements.Responses.DataResponses.StandardResult;
 
@@ -41,7 +40,7 @@ public class PaymentsController extends Controller {
             if(user != null){
                 arguments.add(user.getId());
 
-                ResultSet dbResult = db.querySelect("select * from payments where user_id = ?", arguments);
+                ResultSet dbResult = db.querySelect("select * from payments where user_id = ? order by date DESC", arguments);
 
                 while (dbResult.next()){
                     PaymentItem paymentItem = new PaymentItem();
@@ -49,6 +48,7 @@ public class PaymentsController extends Controller {
                     paymentItem.setAmount(dbResult.getFloat("amount"));
                     paymentItem.setTitle(dbResult.getString("title"));
                     paymentItem.setType(dbResult.getString("type"));
+                    paymentItem.setCategory(dbResult.getString("category"));
 
                     String dataStr = dbResult.getString("date");
                     if(dataStr.contains(".")){
@@ -135,10 +135,12 @@ public class PaymentsController extends Controller {
 
                 arguments.add(paymentForm.getAmount());
                 arguments.add(paymentForm.getTitle());
+                arguments.add(paymentForm.getDate());
+                arguments.add(paymentForm.getCategory());
                 arguments.add(paymentForm.getId());
                 arguments.add(user.getId());
 
-                db.queryUpdate("UPDATE payments SET amount = ?, title = ? WHERE id = ? and user_id = ?", arguments);
+                db.queryUpdate("UPDATE payments SET amount = ?, title = ?, date = ?, category = ? WHERE id = ? and user_id = ?", arguments);
             } else {
                 operation = false;
             }

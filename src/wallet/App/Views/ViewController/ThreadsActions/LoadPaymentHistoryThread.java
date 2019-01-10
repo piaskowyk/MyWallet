@@ -11,9 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.util.Pair;
-import wallet.App.Helpers.Postman;
+import wallet.App.Untils.Postman;
 import wallet.App.Views.ViewController.HistoryViewController;
 import wallet.CommonElements.Entity.PaymentItem;
 import wallet.CommonElements.Forms.PaymentForm;
@@ -21,7 +19,8 @@ import wallet.CommonElements.Forms.RemovePaymentsItemForm;
 import wallet.CommonElements.Responses.DataResponses.PaymentsHistoryResponse;
 import wallet.CommonElements.Responses.DataResponses.StandardResult;
 
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 
 public class LoadPaymentHistoryThread implements Runnable {
 
@@ -82,6 +81,13 @@ public class LoadPaymentHistoryThread implements Runnable {
             paneLeft.getChildren().add(icon);
             paneLeft.getChildren().add(title);
             paneLeft.getChildren().add(dataLabel);
+            if(paymentItem.getCategory() != PaymentItem.PaymentsCategory.IN){
+                Label categoryLabel = new Label();
+                categoryLabel.setLayoutX(130);
+                categoryLabel.setLayoutY(28);
+                categoryLabel.setText("-" + paymentItem.getCategory().getName());
+                paneLeft.getChildren().add(categoryLabel);
+            }
             borderPaneRoot.setLeft(paneLeft);
 
             //middle part of list
@@ -147,7 +153,7 @@ public class LoadPaymentHistoryThread implements Runnable {
 
             btnEdit.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 
-                Dialog<Pair<String, String>> dialog = new Dialog<>();
+                Dialog<HashMap<String, String>> dialog = new Dialog<>();
                 dialog.setTitle("Edit payments information");
                 dialog.setHeaderText("Edit payments information");
 
@@ -166,21 +172,52 @@ public class LoadPaymentHistoryThread implements Runnable {
                 TextField paymentItemAmount = new TextField();
                 paymentItemAmount.setText(paymentItem.getAmount().toString());
 
+                DatePicker paymentItemDate = new DatePicker();
+                paymentItemDate.setValue(LocalDate.parse(paymentItem.getDate()));
+
+                ChoiceBox paymentItemCategory = new ChoiceBox();
+                EnumSet.allOf(PaymentItem.PaymentsCategory.class)
+                        .forEach(item -> {
+                            if(item != PaymentItem.PaymentsCategory.IN){
+                                paymentItemCategory.getItems().add(item);
+                            }
+                        });
+                paymentItemCategory.getSelectionModel().select(paymentItem.getCategory());
+
                 grid.add(new Label("Title:"), 0, 0);
                 grid.add(paymentItemTitle, 1, 0);
                 grid.add(new Label("Amount:"), 0, 1);
                 grid.add(paymentItemAmount, 1, 1);
 
+                grid.add(new Label("Date:"), 0, 2);
+                grid.add(paymentItemDate, 1, 2);
+
+                Label catLabel = new Label("Category:");
+                grid.add(catLabel, 0, 3);
+                grid.add(paymentItemCategory, 1, 3);
+
+                if(paymentItem.getCategory() == PaymentItem.PaymentsCategory.IN){
+                    catLabel.setVisible(false);
+                    paymentItemCategory.setVisible(false);
+                }
+
+
                 dialog.getDialogPane().setContent(grid);
 
                 dialog.setResultConverter(dialogButton -> {
                     if (dialogButton == editButton) {
-                        return new Pair<>(paymentItemTitle.getText(), paymentItemAmount.getText());
+                        HashMap<String, String> editForm = new HashMap<>();
+                        editForm.put("title", paymentItemTitle.getText());
+                        editForm.put("amount", paymentItemAmount.getText());
+                        editForm.put("date", paymentItemDate.getValue().toString());
+                        editForm.put("category", paymentItemCategory.getValue().toString());
+                        //return new Pair<>(paymentItemTitle.getText(), paymentItemAmount.getText());
+                        return editForm;
                     }
                     return null;
                 });
 
-                Optional<Pair<String, String>> result = dialog.showAndWait();
+                Optional<HashMap<String, String>> result = dialog.showAndWait();
 
                 result.ifPresent(item -> {
                     controller.getStatusLabel().setText("Wait... Delete item is in progress.");
@@ -188,8 +225,10 @@ public class LoadPaymentHistoryThread implements Runnable {
                     Postman<StandardResult> postmanEdit = new Postman<>();
                     PaymentForm paymentEditForm = new PaymentForm();
                     paymentEditForm.setId(Integer.parseInt(((Button)event.getSource()).getId()));
-                    paymentEditForm.setTitle(item.getKey());
-                    paymentEditForm.setAmount(Float.parseFloat(item.getValue()));
+                    paymentEditForm.setTitle(item.get("title"));
+                    paymentEditForm.setAmount(Float.parseFloat(item.get("amount")));
+                    paymentEditForm.setCategory(item.get("category"));
+                    paymentEditForm.setDate(item.get("date"));
                     StandardResult resultEdit = postmanEdit.send(paymentEditForm, StandardResult.class, Postman.Api.EDIT_PAYMENTS_ITEM);
 
                     if(postmanEdit.noError() && resultEdit.getStatus()){

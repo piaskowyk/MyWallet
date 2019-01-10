@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import wallet.App.Helpers.AuthorizationManager;
+import wallet.App.Untils.AuthorizationManager;
 import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewsManager;
 import wallet.CommonElements.Helpers.Validator;

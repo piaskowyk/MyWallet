@@ -5,7 +5,7 @@ import wallet.CommonElements.Forms.LoginForm;
 import wallet.CommonElements.Forms.RegisterForm;
 import wallet.CommonElements.Helpers.Validator;
 import wallet.Server.Exceptions.InvalidInputDataException;
-import wallet.Server.Helpers.DataBase;
+import wallet.Server.Untils.DataBase;
 import wallet.CommonElements.Responses.DataResponses.StandardResult;
 import wallet.CommonElements.Responses.DataResponses.LoginResponse;
 
@@ -105,6 +105,7 @@ public class UserController extends Controller {
                 for(int i = 0; i < 100; i++){
                     token.append(charSet.charAt(random.nextInt(charSet.length())));
                 }
+
 
                 //calculate expire token date
                 SimpleDateFormat dtFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

@@ -1,4 +1,4 @@
-package wallet.App.Helpers;
+package wallet.App.Untils;
 
 public enum ErrorType {
     NO_ERROR(""),

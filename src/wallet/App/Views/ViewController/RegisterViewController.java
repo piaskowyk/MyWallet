@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-import wallet.App.Helpers.Postman;
+import wallet.App.Untils.Postman;
 import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewsManager;
 import wallet.CommonElements.Forms.RegisterForm;

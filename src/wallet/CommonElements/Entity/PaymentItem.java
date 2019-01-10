@@ -1,5 +1,7 @@
 package wallet.CommonElements.Entity;
 
+import wallet.CommonElements.Forms.PaymentForm;
+
 public class PaymentItem {
 
     private Integer id;
@@ -7,6 +9,7 @@ public class PaymentItem {
     private String title = null;
     private PaymentItem.Type type;
     private String date = null;
+    private PaymentsCategory category;
 
     public Integer getId() {
         return id;
@@ -41,14 +44,19 @@ public class PaymentItem {
     }
 
     public void setType(String type) {
-        switch (type){
-            case "INCOMING":{
-                this.type = PaymentItem.Type.INCOMING;
-            }break;
-            case "OUTCOMING":{
-                this.type = PaymentItem.Type.OUTCOMING;
-            }break;
-        }
+        this.type = Type.valueOf(type);
+    }
+
+    public PaymentItem.PaymentsCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(PaymentItem.PaymentsCategory category) {
+        this.category = category;
+    }
+
+    public void setCategory(String category) {
+        this.category = PaymentItem.PaymentsCategory.valueOf(category);
     }
 
     public String getDate() {
@@ -62,6 +70,23 @@ public class PaymentItem {
     public enum Type{
         INCOMING,
         OUTCOMING
+    }
+
+    public enum  PaymentsCategory {
+        FOOD("food"),
+        ELECTRONIC("electronic"),
+        OTHER("other"),
+        IN("in");
+
+        private String name;
+
+        PaymentsCategory(String name){
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
 
 }

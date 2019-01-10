@@ -3,8 +3,8 @@ package wallet.Server.Controllers;
 import com.google.gson.Gson;
 import wallet.CommonElements.Entity.User;
 import wallet.CommonElements.Forms.DashboardForm;
-import wallet.Server.Helpers.AuthorizationUserManager;
-import wallet.Server.Helpers.DataBase;
+import wallet.Server.Untils.AuthorizationUserManager;
+import wallet.Server.Untils.DataBase;
 import wallet.CommonElements.Responses.DataResponses.DashboardDataResponse;
 
 import java.sql.ResultSet;
@@ -93,7 +93,8 @@ public class DashboardController extends Controller {
                         "                   and type = 'OUTCOMING'), 0)\n" +
                         "         ) )\n" +
                         "       accountSum\n" +
-                        "from payments\n" +
+                        "from payments p\n" +
+                        "where p.date <= DATE_FORMAT(NOW() ,'%Y-%m-01')\n" +
                         "limit 1;", arguments);
 
                 if(dbResult.next()){
@@ -123,23 +124,23 @@ public class DashboardController extends Controller {
                         "         )       accountSum,\n" +
                         "       day(date) day\n" +
                         "from payments p\n" +
+                        "where p.date >= DATE_FORMAT(NOW() ,'%Y-%m-01') and day(p.date) <= day(now())\n" +
                         "group by day(date);", arguments);
 
                 float lastState = lastMonthAccountState;
-                int lastDay = 0;
-                HashMap<Integer, Float> accountState = new HashMap<>();
-                while (dbResult.next()){
-                    if (lastDay < dbResult.getInt("day")) lastDay = dbResult.getInt("day");
-                    accountState.put(dbResult.getInt("day"), lastMonthAccountState + dbResult.getFloat("accountSum"));
-                }
-
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(new Date());
-                if(calendar.get(Calendar.DAY_OF_MONTH) > lastDay) lastDay = calendar.get(Calendar.DAY_OF_MONTH);
+                int lastDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+                HashMap<Integer, Float> accountState = new HashMap<>();
+                while (dbResult.next()){
+                    accountState.put(dbResult.getInt("day"), dbResult.getFloat("accountSum"));
+                }
 
                 for(int i = 1; i <= lastDay; i++){
                     if(accountState.keySet().contains(i)){
                         lastState = lastMonthAccountState + accountState.get(i);
+                    System.out.println(accountState.get(i));
                     }
                     result.getAccountStateDuringMonth().put(i, lastState);
                 }

@@ -4,7 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import wallet.App.Helpers.AuthorizationManager;
+import wallet.App.Untils.AuthorizationManager;
 import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewController.Components.Menu;
 import wallet.App.Views.ViewController.ThreadsActions.LoadPaymentHistoryThread;

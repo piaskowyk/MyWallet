@@ -2,17 +2,21 @@ package wallet.App.Views.ViewController;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import wallet.App.Helpers.Postman;
+import wallet.App.Untils.Postman;
 import wallet.App.Views.IViewController;
 import wallet.App.Views.ViewController.Components.Menu;
-import javafx.scene.control.Button;
 import wallet.CommonElements.Forms.PaymentForm;
 import wallet.CommonElements.Helpers.Validator;
 import wallet.CommonElements.Responses.DataResponses.StandardResult;
+
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.EnumSet;
 
 public class WalletViewController implements IViewController {
 
@@ -28,6 +32,12 @@ public class WalletViewController implements IViewController {
     @FXML
     private VBox menuBar;
 
+    @FXML
+    private DatePicker inPaymentDate, outPaymentDate;
+
+    @FXML
+    private ChoiceBox selectCategory;
+
     public void initialize(){
         Menu.registerMenu(menuBar);
 
@@ -35,6 +45,19 @@ public class WalletViewController implements IViewController {
         inPaymentBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, inPaymentBtnOnClick);
         outPaymentBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, outPaymentBtnOnClick);
 
+        Date date = new Date();
+        Instant instant = date.toInstant();
+        LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+        inPaymentDate.setValue(localDate);
+        outPaymentDate.setValue(localDate);
+
+        EnumSet.allOf(PaymentForm.PaymentsCategory.class)
+                .forEach(item -> {
+                    if(item != PaymentForm.PaymentsCategory.IN){
+                        selectCategory.getItems().add(item);
+                    }
+                });
+        selectCategory.getSelectionModel().selectFirst();
     }
 
     private EventHandler<MouseEvent> inPaymentBtnOnClick = new EventHandler<>() {
@@ -51,12 +74,19 @@ public class WalletViewController implements IViewController {
                 return;
             }
 
+            if(!Validator.isDataPicker(inPaymentDate.getValue().toString())){
+                statusLabel.setText("Invalid data.");
+                return;
+            }
+
             statusLabel.setText("Waiting...");
 
             PaymentForm paymentForm = new PaymentForm();
             paymentForm.setAmount(Float.parseFloat(inPaymentAmount.getText()));
             paymentForm.setTitle(inPaymentTitle.getText());
             paymentForm.setType(PaymentForm.Type.INCOMING);
+            paymentForm.setDate(inPaymentDate.getValue().toString());
+            paymentForm.setCategory(PaymentForm.PaymentsCategory.IN);
 
             Postman<StandardResult> postman = new Postman<>();
             StandardResult loginResponse = postman.send(paymentForm, StandardResult.class, Postman.Api.ADD_PAYMENTS);
@@ -86,12 +116,19 @@ public class WalletViewController implements IViewController {
                 return;
             }
 
+            if(!Validator.isDataPicker(outPaymentDate.getValue().toString())){
+                statusLabel.setText("Invalid data.");
+                return;
+            }
+
             statusLabel.setText("Waiting...");
 
             PaymentForm paymentForm = new PaymentForm();
             paymentForm.setAmount(Float.parseFloat(outPaymentAmount.getText()));
             paymentForm.setTitle(outPaymentTitle.getText());
             paymentForm.setType(PaymentForm.Type.OUTCOMING);
+            paymentForm.setDate(inPaymentDate.getValue().toString());
+            paymentForm.setCategory(selectCategory.getValue().toString());
 
             Postman<StandardResult> postman = new Postman<>();
             StandardResult loginResponse = postman.send(paymentForm, StandardResult.class, Postman.Api.ADD_PAYMENTS);
@@ -106,36 +143,4 @@ public class WalletViewController implements IViewController {
             }
         }
     };
-
-    public TextField getInPaymentAmount() {
-        return inPaymentAmount;
-    }
-
-    public TextField getInPaymentTitle() {
-        return inPaymentTitle;
-    }
-
-    public TextField getOutPaymentAmount() {
-        return outPaymentAmount;
-    }
-
-    public TextField getOutPaymentTitle() {
-        return outPaymentTitle;
-    }
-
-    public Button getInPaymentBtn() {
-        return inPaymentBtn;
-    }
-
-    public Button getOutPaymentBtn() {
-        return outPaymentBtn;
-    }
-
-    public Label getStatusLabel() {
-        return statusLabel;
-    }
-
-    public VBox getMenuBar() {
-        return menuBar;
-    }
 }

@@ -5,8 +5,8 @@ import wallet.CommonElements.Entity.User;
 import wallet.CommonElements.Forms.PaymentForm;
 import wallet.CommonElements.Helpers.Validator;
 import wallet.Server.Exceptions.InvalidInputDataException;
-import wallet.Server.Helpers.AuthorizationUserManager;
-import wallet.Server.Helpers.DataBase;
+import wallet.Server.Untils.AuthorizationUserManager;
+import wallet.Server.Untils.DataBase;
 import wallet.CommonElements.Responses.DataResponses.StandardResult;
 
 import java.util.ArrayList;
@@ -50,8 +50,10 @@ public class WalletController extends Controller {
                     arguments.add(paymentForms.getAmount());
                     arguments.add(paymentForms.getTitle());
                     arguments.add(paymentForms.getType());
+                    arguments.add(paymentForms.getDate());
+                    arguments.add(paymentForms.getCategory());
 
-                    db.queryUpdate("insert into payments (user_id, amount, title, type) values (?, ?, ?, ?)", arguments);
+                    db.queryUpdate("insert into payments (user_id, amount, title, type, date, category) values (?, ?, ?, ?, ?, ?)", arguments);
                 } else {
                     operation = false;
                 }
