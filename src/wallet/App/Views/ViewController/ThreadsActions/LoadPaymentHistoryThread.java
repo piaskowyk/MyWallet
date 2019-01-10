@@ -215,7 +215,7 @@ public class LoadPaymentHistoryThread implements Runnable {
                 DatePicker paymentItemDate = new DatePicker();
                 paymentItemDate.setValue(LocalDate.parse(paymentItem.getDate()));
 
-                ChoiceBox paymentItemCategory = new ChoiceBox();
+                ChoiceBox<PaymentCategory> paymentItemCategory = new ChoiceBox<>();
                 EnumSet.allOf(PaymentCategory.class)
                         .forEach(item -> {
                             if(item != PaymentCategory.IN){
@@ -251,7 +251,6 @@ public class LoadPaymentHistoryThread implements Runnable {
                         editForm.put("amount", paymentItemAmount.getText());
                         editForm.put("date", paymentItemDate.getValue().toString());
                         editForm.put("category", paymentItemCategory.getValue().toString());
-                        //return new Pair<>(paymentItemTitle.getText(), paymentItemAmount.getText());
                         return editForm;
                     }
                     return null;

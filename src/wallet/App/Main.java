@@ -17,8 +17,9 @@ public class Main extends Application {
         } else {
             ViewsManager.loadView(ViewsManager.Views.LOGIN);
         }
-        //TODO: zrąbany mainChart, po stronie backendu
         //TODO: wyświetlać wszystkie błędy na raz
+        //TODO: polskie znaki się zrąbały
+        //TODO: zwracanie błędów z backendu, albo validować po froncie
     }
 
 

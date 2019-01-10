@@ -43,10 +43,10 @@ public class Postman <T>{
         }
 
         String responseStr = null;
-        StringEntity peyloadData = null;
+        StringEntity payloadData = null;
         HttpPost post = new HttpPost(serverUrl + request.url);
         try {
-            peyloadData = new StringEntity(gson.toJson(message), StandardCharsets.UTF_8);
+            payloadData = new StringEntity(gson.toJson(message), StandardCharsets.UTF_8);
         } catch (Exception e) {
             e.printStackTrace();
             errorType = ErrorType.APPLICATION_ERROR;
@@ -54,13 +54,13 @@ public class Postman <T>{
 
         System.out.println("Out: " + gson.toJson(message));
 
-        post.setEntity(peyloadData);
+        post.setEntity(payloadData);
         post.setHeader("Content-type", "application/json");
         post.setHeader("Auth-Token", AuthorizationManager.getToken());
 
         try {
             HttpResponse response = httpClient.execute(post);
-            responseStr = EntityUtils.toString(response.getEntity());
+            responseStr = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("MyWallet");
