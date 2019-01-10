@@ -33,14 +33,18 @@ public class LoginViewController implements IViewController {
     private EventHandler<MouseEvent> loginBtnOnClick = new EventHandler<>() {
         @Override
         public void handle(MouseEvent event) {
+            StringBuilder statusList = new StringBuilder();
 
             if(!Validator.isValidEmail(emailInput.getText())) {
-                statusText.setText("Invalid email.");
-                return;
+                statusList.append("Invalid email. ");
             }
 
             if(passwordInput.getText().length() > 40) {
-                statusText.setText("Password is too long.");
+                statusList.append("Password is too long. ");
+            }
+
+            if(statusList.length() > 0){
+                statusText.setText(statusList.toString());
                 return;
             }
 

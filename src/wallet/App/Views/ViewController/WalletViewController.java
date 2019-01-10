@@ -107,18 +107,22 @@ public class WalletViewController implements IViewController {
         @Override
         public void handle(MouseEvent event) {
 
+            StringBuilder statusList = new StringBuilder();
+
             if(outPaymentTitle.getText().length() > 5000){
-                statusLabel.setText("Too long title.");
-                return;
+                statusList.append("Too long title.");
             }
 
             if(!Validator.isValidFloatNum(outPaymentAmount.getText())){
-                statusLabel.setText("Invalid amount.");
-                return;
+                statusList.append("Invalid amount.");
             }
 
             if(!Validator.isDataPicker(outPaymentDate.getValue().toString())){
-                statusLabel.setText("Invalid data.");
+                statusList.append("Invalid data.");
+            }
+
+            if(statusList.length() > 0){
+                statusLabel.setText(statusList.toString());
                 return;
             }
 

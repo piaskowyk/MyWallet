@@ -18,7 +18,6 @@ public class Main extends Application {
             ViewsManager.loadView(ViewsManager.Views.LOGIN);
         }
         //TODO: wyświetlać wszystkie błędy na raz
-        //TODO: polskie znaki się zrąbały
         //TODO: zwracanie błędów z backendu, albo validować po froncie
     }
 

@@ -37,33 +37,34 @@ public class RegisterViewController implements IViewController {
         @Override
         public void handle(MouseEvent event) {
 
+            StringBuilder statusList = new StringBuilder();
+
             if(!Validator.isValidAlphaStringPersonInfo(nameInput.getText(), 100)) {
-                statusText.setText("Invalid name.");
-                return;
+                statusList.append("Invalid name.");
             }
 
             if(!Validator.isValidAlphaStringPersonInfo(surnameInput.getText(), 100)) {
-                statusText.setText("Invalid surname.");
-                return;
+                statusList.append("Invalid surname.");
             }
 
             if(!Validator.isValidEmail(emailInput.getText())) {
-                statusText.setText("Invalid email.");
-                return;
+                statusList.append("Invalid email.");
             }
 
             if(passwordInput.getText().length() < 5) {
-                statusText.setText("Password is too short, minimum 5 characters.");
-                return;
+                statusList.append("Password is too short, minimum 5 characters.");
             }
 
             if(passwordInput.getText().length() > 40) {
-                statusText.setText("Password is too long, maximum 40 characters.");
-                return;
+                statusList.append("Password is too long, maximum 40 characters.");
             }
 
             if(!passwordInput.getText().equals(retypePasswordInput.getText())){
-                statusText.setText("Retype password is different.");
+                statusList.append("Retype password is different.");
+            }
+
+            if(statusList.length() > 0){
+                statusText.setText(statusList.toString());
                 return;
             }
 

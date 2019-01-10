@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wallet.App.Views.ViewController.LoginViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wallet.App.Views.ViewController.LoginViewController">
    <center>
       <FlowPane alignment="CENTER" prefHeight="667.0" prefWidth="527.0" style="-fx-background-color: #F7FFF7;" BorderPane.alignment="CENTER">
          <children>
@@ -42,7 +42,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Label>
-                  <Label fx:id="statusText" layoutX="14.0" layoutY="432.0" />
+                  <Label fx:id="statusText" layoutX="14.0" layoutY="432.0" wrapText="true" />
                </children>
             </Pane>
          </children>
