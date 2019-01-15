@@ -4,3 +4,6 @@
 .btnMenu:hover{
     -fx-background-color: #4FD1C8;
 }
+.onHover{
+    -fx-background-color: orange;
+}

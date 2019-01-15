@@ -17,8 +17,7 @@ public class Main extends Application {
         } else {
             ViewsManager.loadView(ViewsManager.Views.LOGIN);
         }
-        //TODO: wyświetlać wszystkie błędy na raz
-        //TODO: zwracanie błędów z backendu, albo validować po froncie
+        //TODO: wszstkie nazwy pakietów od dużej litery
     }
 
 
