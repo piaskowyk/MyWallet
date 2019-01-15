@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import wallet.App.Exceptions.NoImplementsInterfaceException;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.HashMap;
 
 public class ViewsManager {
@@ -32,11 +33,7 @@ public class ViewsManager {
     }
 
     private static void registerAllViews(){
-        registerScene(Views.LOGIN);
-        registerScene(Views.REGISTER);
-        registerScene(Views.DASHBOARD);
-        registerScene(Views.WALLET);
-        registerScene(Views.HISTORY);
+        EnumSet.allOf(Views.class).forEach(ViewsManager::registerScene);
     }
 
     public static void loadView(Views view) {
