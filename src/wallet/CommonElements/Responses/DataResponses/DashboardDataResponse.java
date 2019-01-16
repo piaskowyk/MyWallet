@@ -1,7 +1,10 @@
 package wallet.CommonElements.Responses.DataResponses;
 
+import javafx.util.Pair;
 import wallet.CommonElements.Responses.BaseResponse;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class DashboardDataResponse extends BaseResponse {
@@ -10,7 +13,8 @@ public class DashboardDataResponse extends BaseResponse {
     private Float accountState;
     private Float incomingState;
     private Float outgoingState;
-    private HashMap<Integer, Float> accountStateDuringMonth = new HashMap<>();
+    private ArrayList<Pair<Date, Float>> accountStateDuringMonth = new ArrayList<>();
+    private boolean standardMode = true;
 
     public DashboardDataResponse(){
         super(200, "success");
@@ -48,11 +52,19 @@ public class DashboardDataResponse extends BaseResponse {
         this.outgoingState = outgoingState;
     }
 
-    public HashMap<Integer, Float> getAccountStateDuringMonth() {
+    public ArrayList<Pair<Date, Float>> getAccountStateDuringMonth() {
         return accountStateDuringMonth;
     }
 
-    public void setAccountStateDuringMonth(HashMap<Integer, Float> accountStateDuringMonth) {
+    public void setAccountStateDuringMonth(ArrayList<Pair<Date, Float>>accountStateDuringMonth) {
         this.accountStateDuringMonth = accountStateDuringMonth;
+    }
+
+    public boolean isStandardMode() {
+        return standardMode;
+    }
+
+    public void setStandardMode(boolean standardMode) {
+        this.standardMode = standardMode;
     }
 }

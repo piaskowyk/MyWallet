@@ -8,7 +8,6 @@ import java.util.Date;
 public class DashboardForm {
 
     private boolean standardMode;
-    private ArrayList<PaymentCategory> showCategoriesList;
     private Date dateStart;
     private Date dateEnd;
 
@@ -18,14 +17,6 @@ public class DashboardForm {
 
     public void setStandardMode(boolean standardMode) {
         this.standardMode = standardMode;
-    }
-
-    public ArrayList<PaymentCategory> getShowCategoriesList() {
-        return showCategoriesList;
-    }
-
-    public void setShowCategoriesList(ArrayList<PaymentCategory> showCategoriesList) {
-        this.showCategoriesList = showCategoriesList;
     }
 
     public Date getDateStart() {

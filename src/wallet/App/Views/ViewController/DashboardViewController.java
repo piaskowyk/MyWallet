@@ -29,9 +29,6 @@ public class DashboardViewController implements IViewController {
     private CheckBox modeFilter;
 
     @FXML
-    private MenuButton showCategoryFilter;
-
-    @FXML
     private DatePicker dateStartFilter, dateEndFilter;
 
     @FXML
@@ -45,11 +42,6 @@ public class DashboardViewController implements IViewController {
             Thread getData = new Thread(loadDashboardDataThread);
             Platform.runLater(getData);
         }
-
-        EnumSet.allOf(PaymentCategory.class)
-                .forEach(item -> {
-                    showCategoryFilter.getItems().add(new CheckMenuItem(item.getName()));
-                });
 
         setDisableFilter(true);
 
@@ -65,7 +57,6 @@ public class DashboardViewController implements IViewController {
     }
 
     private void setDisableFilter(boolean disable){
-        showCategoryFilter.setDisable(disable);
         dateStartFilter.setDisable(disable);
         dateEndFilter.setDisable(disable);
     }
@@ -103,10 +94,6 @@ public class DashboardViewController implements IViewController {
 
     public CheckBox getModeFilter() {
         return modeFilter;
-    }
-
-    public MenuButton getShowCategoryFilter() {
-        return showCategoryFilter;
     }
 
     public DatePicker getDateStartFilter() {

@@ -4,7 +4,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -117,14 +116,12 @@
                      <top>
                         <Pane prefHeight="67.0" prefWidth="849.0" style="-fx-background-color: #ededed; -fx-border-color: #1A535C; -fx-border-width: 0 0 1 0;" BorderPane.alignment="CENTER">
                            <children>
-                              <Button fx:id="refreshBtn" layoutX="633.0" layoutY="29.0" mnemonicParsing="false" text="Refresh" />
-                              <Label layoutX="305.0" layoutY="13.0" text="Date start" />
-                              <Label layoutX="471.0" layoutY="13.0" text="Date end" />
-                              <DatePicker fx:id="dateStartFilter" layoutX="305.0" layoutY="29.0" prefHeight="26.0" prefWidth="151.0" />
-                              <DatePicker fx:id="dateEndFilter" layoutX="471.0" layoutY="29.0" prefHeight="26.0" prefWidth="145.0" />
-                              <Label layoutX="152.0" layoutY="13.0" text="Show category" />
+                              <Button fx:id="refreshBtn" layoutX="481.0" layoutY="29.0" mnemonicParsing="false" text="Refresh" />
+                              <Label layoutX="153.0" layoutY="13.0" text="Date start" />
+                              <Label layoutX="319.0" layoutY="13.0" text="Date end" />
+                              <DatePicker fx:id="dateStartFilter" layoutX="153.0" layoutY="29.0" prefHeight="26.0" prefWidth="151.0" />
+                              <DatePicker fx:id="dateEndFilter" layoutX="319.0" layoutY="29.0" prefHeight="26.0" prefWidth="145.0" />
                               <Label layoutX="14.0" layoutY="13.0" text="Mode" />
-                              <MenuButton fx:id="showCategoryFilter" layoutX="152.0" layoutY="29.0" mnemonicParsing="false" text="Select category" />
                               <CheckBox fx:id="modeFilter" layoutX="14.0" layoutY="33.0" mnemonicParsing="false" selected="true" text="Standard Mode" />
                            </children>
                         </Pane>

@@ -20,6 +20,7 @@ import wallet.CommonElements.Forms.DashboardForm;
 import wallet.CommonElements.Responses.DataResponses.DashboardDataResponse;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -47,14 +48,6 @@ public class LoadDashboardDataThread implements Runnable {
 
         DashboardForm dashboardForm = new DashboardForm();
         dashboardForm.setStandardMode(controller.getModeFilter().isSelected());
-
-        ArrayList<PaymentCategory> paymentCategoriesList = new ArrayList<>();
-        for(var item : controller.getShowCategoryFilter().getItems()){
-            if(item instanceof CheckMenuItem && ((CheckMenuItem)item).isSelected()){
-                paymentCategoriesList.add(PaymentCategory.valueOf(item.getText()));
-            }
-        }
-        dashboardForm.setShowCategoriesList(paymentCategoriesList);
 
         date = null;
         localDate = controller.getDateStartFilter().getValue();
@@ -115,36 +108,58 @@ public class LoadDashboardDataThread implements Runnable {
         calendar.setTime(new Date());
         int dayInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
-        NumberAxis xAxis = new NumberAxis(1, dayInMonth, 1);
+        NumberAxis xAxis;
+        if(dashboardDataResponse.isStandardMode()){
+            xAxis = new NumberAxis(1, calendar.getActualMaximum(Calendar.DAY_OF_MONTH), 1);
+        }
+        else {
+            xAxis = new NumberAxis();
+        }
+
         NumberAxis yAxis = new NumberAxis();
         AreaChart<Number, Number> accountStateChart = new AreaChart<>(xAxis,yAxis);
+
+        if(!dashboardDataResponse.isStandardMode()){
+            accountStateChart.getXAxis().setVisible(false);
+            accountStateChart.getXAxis().setOpacity(0);
+        }
+
         accountStateChart.setTitle("Account status history");
         accountStateChart.setLegendVisible(false);
 
         XYChart.Series<Integer, Float>  accountStateSeries = new XYChart.Series<>();
 
-        for(Map.Entry<Integer, Float> item : dashboardDataResponse.getAccountStateDuringMonth().entrySet()){
-            accountStateSeries.getData().add(new XYChart.Data<>(item.getKey(), item.getValue()));
+        int index = 0;
+        for(Pair<Date, Float> item : dashboardDataResponse.getAccountStateDuringMonth()){
+            accountStateSeries.getData().add(new XYChart.Data<>(index, item.getValue()));
+            index++;
         }
 
         accountStateChart.getData().addAll((XYChart.Series)accountStateSeries);
 
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        index = 0;
         for (XYChart.Data<Integer, Float> data : accountStateSeries.getData()) {
-            Tooltip tooltip = new Tooltip("Day: " + data.getXValue().toString() + "\n" + "Account state : " + data.getYValue() + " zł");
+            Tooltip tooltip = new Tooltip("Day: " + formatter.format(dashboardDataResponse.getAccountStateDuringMonth().get(index).getKey())
+                    + "\n" + "Account state : " + data.getYValue() + " zł");
             Tooltip.install(data.getNode(), tooltip);
 
             data.getNode().setOnMouseEntered(event -> data.getNode().getStyleClass().add("onHover"));
             data.getNode().setOnMouseExited(event -> data.getNode().getStyleClass().remove("onHover"));
+            index++;
         }
 
+        index = 0;
         for (XYChart.Data<Integer, Float> data : accountStateSeries.getData()) {
+            String dateItem = formatter.format(dashboardDataResponse.getAccountStateDuringMonth().get(index).getKey());
             data.getNode().setOnMouseEntered(e -> {
-                controller.getStatusLabel().setText("Day: " + data.getXValue().toString() + ", Account state : " + data.getYValue() + " zł");
+                controller.getStatusLabel().setText("Day: " + dateItem + ", Account state : " + data.getYValue() + " zł");
             });
             data.getNode().setOnMouseExited(event -> {
                 data.getNode().getStyleClass().remove("onHover");
                 controller.getStatusLabel().setText("");
             });
+            index++;
         }
 
         controller.getAreaChartContainer().setCenter(accountStateChart);
