@@ -2,13 +2,81 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/ViewController/DashboardViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/App/Views/ViewController/DashboardViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/ViewController/ThreadsActions/LoadDashboardDataThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/App/Views/ViewController/ThreadsActions/LoadDashboardDataThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/App/Views/src/dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Forms/DashboardForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/CommonElements/Forms/DashboardForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Responses/DataResponses/DashboardDataResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/CommonElements/Responses/DataResponses/DashboardDataResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/Server/Controllers/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Untils/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/Server/Untils/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Exceptions/NoImplementsInterfaceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/exceptions/NoImplementsInterfaceException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Untils/AuthorizationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/untils/AuthorizationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Untils/ErrorType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/untils/ErrorType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Untils/Postman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/untils/Postman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/UserData/pass.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/userData/pass.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/IViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/IViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/ViewController/Components/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/viewController/components/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/ViewController/DashboardViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/viewController/DashboardViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/ViewController/HistoryViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/viewController/HistoryViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/ViewController/LoginViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/viewController/LoginViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/ViewController/RegisterViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/viewController/RegisterViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/ViewController/ThreadsActions/LoadDashboardDataThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/viewController/threadsActions/LoadDashboardDataThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/ViewController/ThreadsActions/LoadPaymentHistoryThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/viewController/threadsActions/LoadPaymentHistoryThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/ViewController/WalletViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/viewController/WalletViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/ViewsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/ViewsManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/history.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/history.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/history.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/history.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/img/history.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/img/history.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/img/iconDashboard.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/img/iconDashboard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/img/iconfinder_199_CircledPlus_183316.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/img/iconfinder_199_CircledPlus_183316.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/img/iconfinder_MONEY_2-08_2812119 (1).png" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/img/iconfinder_MONEY_2-08_2812119 (1).png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/img/iconfinder_meanicons_22_197212.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/img/iconfinder_meanicons_22_197212.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/img/logout.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/img/logout.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/img/minus.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/img/minus.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/img/plus.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/img/plus.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/img/walleIcon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/img/walleIcon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/img/wallet.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/img/wallet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/register.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/register.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/wallet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/wallet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/App/Views/src/wallet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/app/views/src/wallet.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Entity/Pass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/entity/Pass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Entity/PaymentCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/entity/PaymentCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Entity/PaymentItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/entity/PaymentItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Forms/DashboardForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/forms/DashboardForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Forms/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/forms/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Forms/PaymentForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/forms/PaymentForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Forms/PaymentsHistoryForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/forms/PaymentsHistoryForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Forms/RegisterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/forms/RegisterForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Forms/RemovePaymentsItemForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/forms/RemovePaymentsItemForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Responses/BaseResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/responses/BaseResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Responses/DataResponses/DashboardDataResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/responses/dataResponses/DashboardDataResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Responses/DataResponses/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/responses/dataResponses/LoginResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Responses/DataResponses/PaymentsHistoryResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/responses/dataResponses/PaymentsHistoryResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Responses/DataResponses/StandardResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/responses/dataResponses/StandardResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Responses/ServerResponses/BadRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/responses/serverResponses/BadRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Responses/ServerResponses/IncorrectInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/responses/serverResponses/IncorrectInputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Responses/ServerResponses/NotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/responses/serverResponses/NotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Responses/ServerResponses/NotSupportedMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/responses/serverResponses/NotSupportedMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Responses/ServerResponses/ServerError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/responses/serverResponses/ServerError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/CommonElements/Untils/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/commonElements/untils/Validator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/controllers/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Controllers/PaymentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/controllers/PaymentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Controllers/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/controllers/WalletController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Exceptions/ActionNotExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/exceptions/ActionNotExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Exceptions/ControllerNotExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/exceptions/ControllerNotExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Exceptions/ForbiddenControllerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/exceptions/ForbiddenControllerException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Exceptions/InvalidInputDataException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/exceptions/InvalidInputDataException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Exceptions/RequestDoubleExecutedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/exceptions/RequestDoubleExecutedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Exceptions/UnpermittedCharsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/exceptions/UnpermittedCharsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/JavaHTTPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/JavaHTTPServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Untils/AuthorizationUserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/untils/AuthorizationUserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Untils/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/untils/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Untils/SelectQueryBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/untils/SelectQueryBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wallet/Server/Untils/ServerResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/wallet/server/untils/ServerResponse.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,94 +132,7 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/wallet/CommonElements/Forms/DashboardForm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#378#379#0" expanded="true" />
-                <element signature="e#413#414#0" expanded="true" />
-                <element signature="e#470#471#0" expanded="true" />
-                <element signature="e#518#519#0" expanded="true" />
-                <element signature="e#806#807#0" expanded="true" />
-                <element signature="e#838#839#0" expanded="true" />
-                <element signature="e#886#887#0" expanded="true" />
-                <element signature="e#928#929#0" expanded="true" />
-                <element signature="e#960#961#0" expanded="true" />
-                <element signature="e#990#991#0" expanded="true" />
-                <element signature="e#1034#1035#0" expanded="true" />
-                <element signature="e#1072#1073#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/wallet/Server/Controllers/DashboardController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="450" column="33" selection-start-line="450" selection-start-column="33" selection-end-line="450" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#getIncomingInThisMonth#0;class#DashboardController#0" />
-                <element signature="method#getOutcomingInThisMonth#0;class#DashboardController#0" />
-                <element signature="method#getAccountState#0;class#DashboardController#0" />
-                <element signature="method#getLastMonthAccountState#0;class#DashboardController#0" />
-                <element signature="method#getAccountStateInThisMonth#0;class#DashboardController#0" />
-                <element signature="method#getAccountStateDuringThisMonth#0;class#DashboardController#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/ViewController/ThreadsActions/LoadDashboardDataThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="123" column="55" lean-forward="true" selection-start-line="123" selection-start-column="55" selection-end-line="123" selection-end-column="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/ViewController/HistoryViewController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="55" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/ViewController/DashboardViewController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="58" column="51" selection-start-line="58" selection-start-column="51" selection-end-line="58" selection-end-column="51" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2857#2858#0" expanded="true" />
-                <element signature="e#2900#2901#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/wallet/Server/Untils/DataBase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="44" column="47" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -281,23 +262,23 @@
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
-              <item name="App" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wallet" type="b2602c69:ProjectViewProjectNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
-              <item name="App" type="462c0819:PsiDirectoryNode" />
-              <item name="Views" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wallet" type="b2602c69:ProjectViewProjectNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
-              <item name="App" type="462c0819:PsiDirectoryNode" />
-              <item name="Views" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -305,8 +286,8 @@
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
-              <item name="App" type="462c0819:PsiDirectoryNode" />
-              <item name="Views" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -315,74 +296,84 @@
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
-              <item name="App" type="462c0819:PsiDirectoryNode" />
-              <item name="Views" type="462c0819:PsiDirectoryNode" />
-              <item name="ViewController" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="viewController" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wallet" type="b2602c69:ProjectViewProjectNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
-              <item name="App" type="462c0819:PsiDirectoryNode" />
-              <item name="Views" type="462c0819:PsiDirectoryNode" />
-              <item name="ViewController" type="462c0819:PsiDirectoryNode" />
-              <item name="ThreadsActions" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="viewController" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wallet" type="b2602c69:ProjectViewProjectNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
-              <item name="CommonElements" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="viewController" type="462c0819:PsiDirectoryNode" />
+              <item name="threadsActions" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wallet" type="b2602c69:ProjectViewProjectNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
-              <item name="CommonElements" type="462c0819:PsiDirectoryNode" />
-              <item name="Forms" type="462c0819:PsiDirectoryNode" />
+              <item name="commonElements" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wallet" type="b2602c69:ProjectViewProjectNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
-              <item name="CommonElements" type="462c0819:PsiDirectoryNode" />
-              <item name="Responses" type="462c0819:PsiDirectoryNode" />
+              <item name="commonElements" type="462c0819:PsiDirectoryNode" />
+              <item name="forms" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wallet" type="b2602c69:ProjectViewProjectNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
-              <item name="CommonElements" type="462c0819:PsiDirectoryNode" />
-              <item name="Responses" type="462c0819:PsiDirectoryNode" />
-              <item name="DataResponses" type="462c0819:PsiDirectoryNode" />
+              <item name="commonElements" type="462c0819:PsiDirectoryNode" />
+              <item name="responses" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wallet" type="b2602c69:ProjectViewProjectNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
+              <item name="commonElements" type="462c0819:PsiDirectoryNode" />
+              <item name="responses" type="462c0819:PsiDirectoryNode" />
+              <item name="dataResponses" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wallet" type="b2602c69:ProjectViewProjectNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wallet" type="b2602c69:ProjectViewProjectNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="wallet" type="462c0819:PsiDirectoryNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="Untils" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wallet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wallet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="wallet" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="untils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -405,7 +396,7 @@
     <property name="Repository.Attach.JavaDocs" value="true" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547611544162" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547611810597" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/JFX-MultiScreen/ScreensFramework" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -470,7 +461,7 @@
       </method>
     </configuration>
     <configuration name="JavaHTTPServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="wallet.Server.JavaHTTPServer" />
+      <option name="MAIN_CLASS_NAME" value="wallet.server.JavaHTTPServer" />
       <module name="wallet" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -484,7 +475,7 @@
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="wallet.App.Main" />
+      <option name="MAIN_CLASS_NAME" value="wallet.app.Main" />
       <module name="wallet" />
       <option name="VM_PARAMETERS" value="--module-path=&quot;$USER_HOME$/Lib/javafx-sdk-11.0.1/lib&quot; --add-modules=javafx.controls,javafx.fxml" />
       <extension name="coverage">
@@ -572,7 +563,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="UI Designer" order="1" />
@@ -671,14 +661,14 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/wallet/CommonElements/Entity/PaymentsCategory.java" />
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/IViewController.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/IViewController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/Server/Controllers/UserController.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/server/controllers/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
           <caret line="108" selection-start-line="108" selection-end-line="108" />
@@ -688,7 +678,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/CommonElements/Forms/PaymentForm.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/commonElements/forms/PaymentForm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
@@ -703,7 +693,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/CommonElements/Entity/PaymentItem.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/commonElements/entity/PaymentItem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
@@ -714,11 +704,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/src/history.fxml">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/src/history.fxml">
       <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/Server/Controllers/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/server/controllers/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
@@ -744,14 +734,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Untils/ErrorType.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/untils/ErrorType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="16" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/CommonElements/Responses/DataResponses/PaymentsHistoryResponse.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/commonElements/responses/dataResponses/PaymentsHistoryResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
@@ -763,21 +753,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/Server/Untils/AuthorizationUserManager.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/server/untils/AuthorizationUserManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Exceptions/NoImplementsInterfaceException.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/exceptions/NoImplementsInterfaceException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/ViewController/WalletViewController.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/viewController/WalletViewController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="124" column="27" selection-start-line="124" selection-start-column="27" selection-end-line="124" selection-end-column="27" />
@@ -787,7 +777,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/ViewController/LoginViewController.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/viewController/LoginViewController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
           <caret line="45" column="40" lean-forward="true" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
@@ -797,7 +787,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/src/register.fxml">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/src/register.fxml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="557">
           <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
@@ -805,15 +795,15 @@
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/src/wallet.fxml">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/src/wallet.fxml">
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/src/login.fxml">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/src/login.fxml">
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/ViewController/RegisterViewController.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/viewController/RegisterViewController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="393">
           <caret line="66" column="34" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
@@ -823,7 +813,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
@@ -833,21 +823,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/CommonElements/Entity/PaymentCategory.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/commonElements/entity/PaymentCategory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="27" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/ViewController/Components/Menu.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/viewController/components/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="27" column="84" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="84" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/CommonElements/Forms/PaymentsHistoryForm.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/commonElements/forms/PaymentsHistoryForm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="12" selection-end-column="25" />
@@ -877,7 +867,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/src/style.css">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/src/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
@@ -909,7 +899,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/Server/Controllers/WalletController.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/server/controllers/WalletController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="692">
           <caret line="55" selection-start-line="55" selection-end-line="55" />
@@ -919,7 +909,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/Server/Untils/SelectQueryBuilder.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/server/untils/SelectQueryBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1049">
           <caret line="96" column="13" lean-forward="true" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
@@ -939,7 +929,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/Server/Controllers/PaymentsController.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/server/controllers/PaymentsController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
@@ -949,7 +939,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Untils/Postman.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/untils/Postman.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
           <caret line="76" selection-start-line="76" selection-end-line="76" />
@@ -966,7 +956,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/ViewsManager.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/ViewsManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-384">
           <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
@@ -985,25 +975,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/src/img/iconfinder_MONEY_2-08_2812119 (1).png">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/src/img/iconfinder_MONEY_2-08_2812119 (1).png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/src/img/logout.png">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/src/img/logout.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/src/img/minus.png">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/src/img/minus.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/src/img/plus.png">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/src/img/plus.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/src/img/walleIcon.png">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/src/img/walleIcon.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/src/img/wallet.png">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/src/img/wallet.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/CommonElements/Responses/DataResponses/DashboardDataResponse.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/commonElements/responses/dataResponses/DashboardDataResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="641">
           <caret line="62" column="33" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="33" />
@@ -1024,14 +1014,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/Server/Untils/DataBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="44" column="47" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/src/dashboard.fxml">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/src/dashboard.fxml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="143" column="79" selection-start-line="143" selection-start-column="79" selection-end-line="143" selection-end-column="79" />
@@ -1039,7 +1022,7 @@
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/CommonElements/Forms/DashboardForm.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/commonElements/forms/DashboardForm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
@@ -1061,7 +1044,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/Server/Controllers/DashboardController.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/server/controllers/DashboardController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
           <caret line="450" column="33" selection-start-line="450" selection-start-column="33" selection-end-line="450" selection-end-column="33" />
@@ -1077,19 +1060,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/ViewController/DashboardViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="58" column="51" selection-start-line="58" selection-start-column="51" selection-end-line="58" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2857#2858#0" expanded="true" />
-            <element signature="e#2900#2901#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/ViewController/ThreadsActions/LoadPaymentHistoryThread.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/viewController/threadsActions/LoadPaymentHistoryThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="359">
           <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
@@ -1099,20 +1070,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/ViewController/HistoryViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="55" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wallet/App/Views/ViewController/ThreadsActions/LoadDashboardDataThread.java">
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/viewController/threadsActions/LoadDashboardDataThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="123" column="55" lean-forward="true" selection-start-line="123" selection-start-column="55" selection-end-line="123" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/viewController/HistoryViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="55" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wallet/app/views/viewController/DashboardViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="58" column="51" selection-start-line="58" selection-start-column="51" selection-end-line="58" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2857#2858#0" expanded="true" />
+            <element signature="e#2900#2901#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wallet/server/untils/DataBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="44" column="47" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
         </state>
       </provider>
     </entry>
