@@ -104,8 +104,10 @@ public class LoadDashboardDataThread implements Runnable {
         int dayInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
         NumberAxis xAxis;
+        int index = 0;
         if(dashboardDataResponse.isStandardMode()){
             xAxis = new NumberAxis(1, calendar.getActualMaximum(Calendar.DAY_OF_MONTH), 1);
+            index = 1;
         }
         else {
             xAxis = new NumberAxis();
@@ -124,7 +126,6 @@ public class LoadDashboardDataThread implements Runnable {
 
         XYChart.Series<Integer, Float>  accountStateSeries = new XYChart.Series<>();
 
-        int index = 0;
         for(Pair<Date, Float> item : dashboardDataResponse.getAccountStateDuringMonth()){
             accountStateSeries.getData().add(new XYChart.Data<>(index, item.getValue()));
             index++;

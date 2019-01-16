@@ -6,6 +6,10 @@ package wallet.app;
 * */
 
 import javafx.application.Application;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.stage.Stage;
 import wallet.app.untils.AuthorizationManager;
 import wallet.app.views.ViewsManager;
@@ -22,6 +26,7 @@ public class Main extends Application {
         } else {
             ViewsManager.loadView(ViewsManager.Views.LOGIN);
         }
+
     }
 
 

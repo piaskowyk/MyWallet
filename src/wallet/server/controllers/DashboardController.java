@@ -16,7 +16,6 @@ import wallet.commonElements.responses.dataResponses.DashboardDataResponse;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -25,7 +24,7 @@ public class DashboardController extends Controller {
     private HashMap<String, String> headers;
     private DataBase db = new DataBase();
     private User user = null;
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     public void setHeaders(HashMap<String, String> headers){
         this.headers = headers;
@@ -78,7 +77,7 @@ public class DashboardController extends Controller {
         return result;
     }
 
-    private DashboardDataResponse generateFilteredMode(DashboardForm dashboardForm) throws SQLException, ParseException {
+    private DashboardDataResponse generateFilteredMode(DashboardForm dashboardForm) throws SQLException {
         DashboardDataResponse result = new DashboardDataResponse();
 
         result.setAccountStateDuringMonth(getAccountStateWithFilter(dashboardForm));
@@ -274,6 +273,7 @@ public class DashboardController extends Controller {
         ArrayList<Object> arguments = new ArrayList<>();
         arguments.add(user.getId());
         arguments.add(user.getId());
+        arguments.add(user.getId());
         ResultSet dbResult;
 
         dbResult = db.querySelect("select (\n" +
@@ -299,7 +299,7 @@ public class DashboardController extends Controller {
                 "         )       accountSum,\n" +
                 "       date day\n" +
                 "from payments p\n" +
-                "where p.date >= DATE_FORMAT(NOW() ,'%Y-%m-01') and day(p.date) <= day(now())\n" +
+                "where p.date >= DATE_FORMAT(NOW() ,'%Y-%m-01') and day(p.date) <= day(now()) and user_id = ?\n" +
                 "group by day(date);", arguments);
 
         HashMap<Date, Float> accountStateInThisMonth = new HashMap<>();
@@ -335,6 +335,7 @@ public class DashboardController extends Controller {
                         "         )       accountSum,\n" +
                         "       date day\n" +
                         "from payments p\n" +
+                        "where user_id = ?\n" +
                         "group by day(date);";
 
         if(dateStart != null && dateEnd != null){
@@ -375,6 +376,7 @@ public class DashboardController extends Controller {
                 arguments.add(user.getId());
             }
         }
+        arguments.add(user.getId());
 
         System.out.println(arguments.size());
         System.out.println(query);
@@ -406,22 +408,20 @@ public class DashboardController extends Controller {
         Date startMonth = calendar.getTime();
 
         float lastState = lastMonthAccountState;
+        calendar.setTime(startMonth);
         for(int i = 1; i <= lastDay; i++){
-            calendar.setTime(startMonth);
-            calendar.add(Calendar.DATE, i);
-
             if(accountStateInThisMonth.containsKey(calendar.getTime())){
                 lastState = lastMonthAccountState + accountStateInThisMonth.get(calendar.getTime());
             }
 
             result.add(new Pair<>(calendar.getTime(), lastState));
+            calendar.add(Calendar.DATE, 1);
         }
 
         return result;
     }
 
-    private ArrayList<Pair<Date, Float>> getAccountStateWithFilter(DashboardForm dashboardForm) throws SQLException, ParseException {
-        float startAccountState = 0;
+    private ArrayList<Pair<Date, Float>> getAccountStateWithFilter(DashboardForm dashboardForm) throws SQLException {
         ArrayList<Pair<Date, Float>> result = new ArrayList<>();
 
         HashMap<Date, Float> accountStateInTimePeriod = getAccountStateBettwenDate(

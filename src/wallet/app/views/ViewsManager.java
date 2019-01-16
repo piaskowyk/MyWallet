@@ -21,6 +21,8 @@ public class ViewsManager {
     private static Class _mainClass;
     private static HashMap<String, Scene> allScene = new HashMap<>();
     private static HashMap<String, IViewController> allController = new HashMap<>();
+    private static int sceneWidth = 1200;
+    private static int sceneHeight = 800;
 
     private ViewsManager(){}
 
@@ -29,6 +31,16 @@ public class ViewsManager {
         _mainClass = mainClass;
 
         registerAllViews();
+
+        _primaryStage.setWidth(sceneWidth);
+        _primaryStage.setHeight(sceneHeight);
+
+        _primaryStage.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
+            sceneWidth = newSceneWidth.intValue();
+        });
+        _primaryStage.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> {
+            sceneHeight = newSceneHeight.intValue();
+        });
     }
 
     public static void clearViewData(){
@@ -45,6 +57,8 @@ public class ViewsManager {
         _primaryStage.setScene(allScene.get(view.path));
         _primaryStage.setTitle(view.title);
         _primaryStage.show();
+        _primaryStage.setWidth(sceneWidth);
+        _primaryStage.setHeight(sceneHeight);
         //execute methods from Interface
         allController.get(view.path).onLoad();
     }
@@ -63,6 +77,14 @@ public class ViewsManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void setSceneWidth(int sceneWidth) {
+        ViewsManager.sceneWidth = sceneWidth;
+    }
+
+    public static void setSceneHeight(int sceneHeight) {
+        ViewsManager.sceneHeight = sceneHeight;
     }
 
     public enum Views{
