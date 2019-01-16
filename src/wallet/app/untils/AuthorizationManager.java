@@ -18,6 +18,10 @@ import java.io.IOException;
 
 public class AuthorizationManager {
 
+    /*
+     * Klasa jest odpowiedzialna obsługę logowanie urzytkoniwka
+     * */
+
     private static String token;
     private static boolean isAuthorized = false;
     private static String email = null;

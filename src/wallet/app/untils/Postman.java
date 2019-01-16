@@ -21,6 +21,11 @@ import java.nio.charset.StandardCharsets;
 
 public class Postman <T>{
 
+    /*
+     * Klasa odpowiedzialna jest za komunikacje z serwerema plikacji, oraz za serializację danych
+     * miedzi jsonem a objektami zawierającymi informacje do komunkikacji
+     * */
+
     private final String serverUrl = "http://127.0.0.1:8080";
     private Gson gson = new Gson();
     private HttpClient httpClient;
@@ -40,7 +45,11 @@ public class Postman <T>{
         return errorType == ErrorType.NO_ERROR;
     }
 
+    /*
+     * Wysyła objekt z danymi na poday adres i zwraca objekt o oczekiwanym typie
+     * */
     public T send(Object message, Class type, Api request) {
+        //sprawdza czy urzytkownik jest zalogowany
         if (checkAuthorization && !AuthorizationManager.isAuthorized()){
             AuthorizationManager.authorize();
 
@@ -49,6 +58,7 @@ public class Postman <T>{
             }
         }
 
+        //tworzy dane do wysłania
         String responseStr = null;
         StringEntity payloadData = null;
         HttpPost post = new HttpPost(serverUrl + request.url);
@@ -61,10 +71,12 @@ public class Postman <T>{
 
         System.out.println("Out: " + gson.toJson(message));
 
+        //ustawia nagłówki
         post.setEntity(payloadData);
         post.setHeader("Content-type", "application/json");
         post.setHeader("Auth-Token", AuthorizationManager.getToken());
 
+        //wysyła zapytanie do serwera
         try {
             HttpResponse response = httpClient.execute(post);
             responseStr = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
@@ -77,6 +89,7 @@ public class Postman <T>{
             errorType = ErrorType.NO_INTERNET_CONNECTION;
         }
 
+        //obsługuje dane odebrane z serwera
         Object responseObj = null;
         if(errorType == ErrorType.NO_ERROR){
             System.out.println(serverUrl + request.url);
@@ -87,6 +100,9 @@ public class Postman <T>{
         return (T)responseObj;
     }
 
+    /*
+     * Pobiera dane z serwera lecz nie wysyła danych oprócz nagłóœków
+     * */
     public T get(Class type, Api request) {
         if (checkAuthorization && !AuthorizationManager.isAuthorized()){
             AuthorizationManager.authorize();

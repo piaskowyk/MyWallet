@@ -18,9 +18,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        //autoryzuj urzytkownika
         AuthorizationManager.authorize();
+        //załaduj widoki
         ViewsManager.init(primaryStage, getClass());
 
+        //uruchom widok startowy
         if(AuthorizationManager.isAuthorized()){
             ViewsManager.loadView(ViewsManager.Views.DASHBOARD);
         } else {
@@ -28,7 +31,6 @@ public class Main extends Application {
         }
 
     }
-
 
     public static void main(String[] args) {
         launch(args);

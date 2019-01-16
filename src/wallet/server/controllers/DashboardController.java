@@ -21,6 +21,11 @@ import java.util.*;
 
 public class DashboardController extends Controller {
 
+    /*
+     * Kontroler jest odpowiedzialny za obsługę requestów związanych z wyświetlaniem danych
+     * dla ekranu głównego
+     * */
+
     private HashMap<String, String> headers;
     private DataBase db = new DataBase();
     private User user = null;
@@ -30,6 +35,9 @@ public class DashboardController extends Controller {
         this.headers = headers;
     }
 
+    /*
+     * Pobiera dane dla ekranu głównego
+     * */
     public DashboardDataResponse dashboard_dataAction(String json){
         DashboardDataResponse result = new DashboardDataResponse();
         DashboardForm dashboardForm;
@@ -44,9 +52,11 @@ public class DashboardController extends Controller {
 
             if(user != null){
                 if(dashboardForm.isStandardMode()){
+                    //tryb standardowy
                     result = generateDefaultMode();
                 }
                 else{
+                    //tryb z aktywnymi filtrami
                     result = generateFilteredMode(dashboardForm);
                 }
             } else {

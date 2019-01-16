@@ -26,6 +26,11 @@ import java.util.Date;
 
 public class LoadDashboardDataThread implements Runnable {
 
+    /*
+     * Klasa jest odpowiedzialna za pobieranie danych, i wyświetlanie ich dla widoku głównego
+     * na oddzielnym wątku aby nie blokować GUI
+     * */
+
     private DashboardViewController controller;
 
     public LoadDashboardDataThread(DashboardViewController controller){

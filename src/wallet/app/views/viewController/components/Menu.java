@@ -17,6 +17,10 @@ import java.util.HashMap;
 
 public class Menu {
 
+    /*
+    * Klasa odpowiedzalna jest za obługę onclicków na elementy menu
+    * */
+
     public static void registerMenu(VBox menuBar){
         HashMap<String, EventHandler<MouseEvent>> menuItemHandlerList = new HashMap<>();
         menuItemHandlerList.put("#dashboardBtn", event -> ViewsManager.loadView(ViewsManager.Views.DASHBOARD));

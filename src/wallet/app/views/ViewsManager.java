@@ -17,8 +17,8 @@ import java.util.HashMap;
 
 public class ViewsManager {
 
-    private static Stage _primaryStage;
-    private static Class _mainClass;
+    private static Stage primaryStage;
+    private static Class mainClass;
     private static HashMap<String, Scene> allScene = new HashMap<>();
     private static HashMap<String, IViewController> allController = new HashMap<>();
     private static int sceneWidth = 1200;
@@ -27,18 +27,18 @@ public class ViewsManager {
     private ViewsManager(){}
 
     public static void init(Stage mainPrimaryStage, Class mainClass){
-        _primaryStage = mainPrimaryStage;
-        _mainClass = mainClass;
+        primaryStage = mainPrimaryStage;
+        mainClass = mainClass;
 
         registerAllViews();
 
-        _primaryStage.setWidth(sceneWidth);
-        _primaryStage.setHeight(sceneHeight);
+        primaryStage.setWidth(sceneWidth);
+        primaryStage.setHeight(sceneHeight);
 
-        _primaryStage.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
+        primaryStage.widthProperty().addListener((observableValue, oldSceneWidth, newSceneWidth) -> {
             sceneWidth = newSceneWidth.intValue();
         });
-        _primaryStage.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> {
+        primaryStage.heightProperty().addListener((observableValue, oldSceneHeight, newSceneHeight) -> {
             sceneHeight = newSceneHeight.intValue();
         });
     }
@@ -54,22 +54,24 @@ public class ViewsManager {
     }
 
     public static void loadView(Views view) {
-        _primaryStage.setScene(allScene.get(view.path));
-        _primaryStage.setTitle(view.title);
-        _primaryStage.show();
-        _primaryStage.setWidth(sceneWidth);
-        _primaryStage.setHeight(sceneHeight);
-        //execute methods from Interface
+        primaryStage.setScene(allScene.get(view.path));
+        primaryStage.setTitle(view.title);
+        primaryStage.show();
+        primaryStage.setWidth(sceneWidth);
+        primaryStage.setHeight(sceneHeight);
+        //dodanie nowej akcji onLoad dla kontrolerów widoku, po zmianie widoku w menu
+        // dzięki temu że dziedziczą z interfejsu IViewController
         allController.get(view.path).onLoad();
     }
 
     private static void registerScene(Views view){
+        //ładowanie widoku z pliku fxml, wraz z plikami konfiguracyjnymi
         try {
-            FXMLLoader loader = new FXMLLoader(_mainClass.getResource("views/src/" + view.path + ".fxml"));
+            FXMLLoader loader = new FXMLLoader(mainClass.getResource("views/src/" + view.path + ".fxml"));
             BorderPane root = loader.load();
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(_mainClass.getResource("views/src/style.css").toExternalForm());
-            scene.getStylesheets().add(_mainClass.getResource("views/src/" + view.cssPath + ".css").toExternalForm());
+            scene.getStylesheets().add(mainClass.getResource("views/src/style.css").toExternalForm());
+            scene.getStylesheets().add(mainClass.getResource("views/src/" + view.cssPath + ".css").toExternalForm());
             allScene.put(view.path, scene);
 
             if(!(loader.getController() instanceof IViewController)) throw new NoImplementsInterfaceException();
@@ -79,15 +81,8 @@ public class ViewsManager {
         }
     }
 
-    public static void setSceneWidth(int sceneWidth) {
-        ViewsManager.sceneWidth = sceneWidth;
-    }
-
-    public static void setSceneHeight(int sceneHeight) {
-        ViewsManager.sceneHeight = sceneHeight;
-    }
-
     public enum Views{
+        //dostępne widoki, wraz z konfiguracją zdefiniowana dla każdego
         LOGIN("login", "login", "LoginForm to MyWallet"),
         REGISTER("register", "register", "Create new MyWallet account"),
         DASHBOARD("dashboard", "dashboard", "MyWallet"),

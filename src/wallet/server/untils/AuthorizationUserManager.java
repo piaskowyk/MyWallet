@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 public class AuthorizationUserManager {
 
+    /*
+     * Klasa odpowiedzalna jest za sprawdzenie czy urzytkownik o podanym tokenie autoryzacyjnym istnieje w bazie
+     * */
+
     public static User isLogged(DataBase db, String token){
         User user = new User();
 

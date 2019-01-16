@@ -21,12 +21,20 @@ import java.util.*;
 
 public class UserController extends Controller {
 
+    /*
+     * Kontroler w którym obsługiwane akcje związane z obsługą konta urzytkonika,
+     * takie jak logowanie czy rejestracja
+     * */
+
     private HashMap<String, String> headers;
 
     public void setHeaders(HashMap<String, String> headers){
         this.headers = headers;
     }
 
+    /*
+     * Rejestracja nowego urzytkonika
+     * */
     public StandardResult registerAction(String json){
         StandardResult result = new StandardResult();
         RegisterForm registerForms;
@@ -79,6 +87,9 @@ public class UserController extends Controller {
         return result;
     }
 
+    /*
+     * Logowanie urzytkonika i ustawianie tokenu do autoryzacji
+     * */
     public LoginResponse loginAction(String json){
         LoginResponse result = new LoginResponse();
         LoginForm login;

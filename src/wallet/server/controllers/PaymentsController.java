@@ -24,12 +24,19 @@ import java.util.HashMap;
 
 public class PaymentsController extends Controller {
 
+    /*
+     * Kontroler w którym obsługiwane akcje związane z edycją płatności, oraz pobieraniem histori płatności
+     * */
+
     private HashMap<String, String> headers;
 
     public void setHeaders(HashMap<String, String> headers){
         this.headers = headers;
     }
 
+    /*
+     * Pobiera historię płatności, z uwzględnieniem filtrów podanych w forulażu
+     * */
     public PaymentsHistoryResponse get_historyAction(String json){
         PaymentsHistoryResponse result = new PaymentsHistoryResponse();
         PaymentsHistoryForm paymentsHistoryForm;
@@ -42,6 +49,7 @@ public class PaymentsController extends Controller {
             boolean operation = true;
             boolean operationInit;
 
+            //budowanie zapytania do bazy danych
             StringBuilder query = new StringBuilder();
 
             query.append("select * from payments where user_id = ?");
@@ -122,6 +130,9 @@ public class PaymentsController extends Controller {
         return result;
     }
 
+    /*
+     * Usuwa informację o płatności
+     * */
     public StandardResult remove_payments_itemAction(String json){
         StandardResult result = new StandardResult();
         RemovePaymentsItemForm removePaymentsItemForm;
@@ -157,6 +168,9 @@ public class PaymentsController extends Controller {
         return result;
     }
 
+    /*
+     * Edutowanie informacji o płątności
+     * */
     public StandardResult edit_payments_itemAction(String json){
         StandardResult result = new StandardResult();
         PaymentForm paymentForm;

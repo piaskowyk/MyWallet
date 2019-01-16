@@ -34,6 +34,11 @@ import java.util.*;
 
 public class LoadPaymentHistoryThread implements Runnable {
 
+    /*
+     * Klasa jest odpowiedzialna za pobieranie danych, i wyświetlanie ich dla widoku historii płatności
+     * na oddzielnym wątku aby nie blokować GUI
+     * */
+
     private HistoryViewController controller;
 
     public LoadPaymentHistoryThread(HistoryViewController controller){

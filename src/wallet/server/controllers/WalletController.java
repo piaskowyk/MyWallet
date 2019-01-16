@@ -20,12 +20,19 @@ import java.util.HashMap;
 
 public class WalletController extends Controller {
 
+    /*
+     * Kontroler w którym obsługiwane akcje związane z dodawaniem płatności
+     * */
+
     private HashMap<String, String> headers;
 
     public void setHeaders(HashMap<String, String> headers){
         this.headers = headers;
     }
 
+    /*
+     * Dodanie płatności przez urzytkownika
+     * */
     public StandardResult add_paymentAction(String json){
         StandardResult result = new StandardResult();
         PaymentForm paymentForms;

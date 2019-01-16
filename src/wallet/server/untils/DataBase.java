@@ -5,15 +5,22 @@ import java.util.ArrayList;
 
 public class DataBase {
 
+    /*
+    * Klasa odpowiedzialna jest za połączenie się z bazą danych oraz udostępnia metody dzięki którymi można wyonywać
+    * operacje na bazie danych
+    * */
+
     private Connection connection;
 
     public DataBase(){
         try{
+            //konfiguracja połączenia do bazy danych
             String dbName = "wallet";
             String dbUser = "root";
             String dbPassword = "";
             String dbHost = "localhost";
 
+            //łączy się z bazą MySQL
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":3306/" + dbName + "?useUnicode=true&characterEncoding=utf-8", dbUser, dbPassword);
         }
@@ -66,7 +73,7 @@ public class DataBase {
             }
             i++;
         }
-        System.out.println(statement.toString());
+
         statement.executeUpdate();
     }
 

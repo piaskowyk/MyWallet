@@ -1,6 +1,9 @@
 package wallet.app.untils;
 
 public enum ErrorType {
+    /*
+     * Zawiera ustandaryzowane informacje o najczęstrzych błędach.
+     * */
     NO_ERROR(""),
     UNAUTHORIZED("Unauthorized request."),
     INVALID_DATA("Invalid data."),

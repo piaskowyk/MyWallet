@@ -24,12 +24,18 @@ public class JavaHTTPServer implements Runnable{
     }
 
     public static void main(String[] args) {
-        //register public controllers
+        /*
+        * dodaj kontrolery które dostępne są publiczne przez api, jedynie te kontrolery są możliwe do wywołąnia, zabezpiecza
+        * to po części przed remote code execution
+        * */
         controllerList.add("user");
         controllerList.add("wallet");
         controllerList.add("payments");
         controllerList.add("dashboard");
 
+        /*
+        * Uruchamiam serwer, który nasłuchuje na porcie 8080, każde połączenie jest uruchamiane na nowym wątku
+        */
         try {
             ServerSocket serverConnect = new ServerSocket(PORT);
 
@@ -49,6 +55,25 @@ public class JavaHTTPServer implements Runnable{
         }
     }
 
+    /*
+    * Po wykryciu połączenia, uruchamina jest funkcja run, która na postawie danych zawartych w adresie url wywołuje
+    * odpowiednią metodę w kontrolerzy wykorzystując mechanizm refleksji.
+    * pattern urla: /api/[nazwa kontrolera]/[akcja w kontrolerze]
+    * dane przesyłane są w formacie json
+    * w nagłówku requestu znajduje się token słurzący do autoryzacji urzytkonika, token generowany jest
+    * podczas procesu logowania
+    *
+    * W na początku metody w kontrolerze tworzę obiekt, któ©y będzie zawierać dane zwracane urzytkonwnikowi,
+    * potem próbuję zrzutować dane przysłąne przez urzytkoniwka w formacie json na oczekiwany objekt który ma być 
+    * reprezentacją danych wejściowych dla danej metowy.
+    * Następnie przeprowadzam autoryzację urzytkownika.
+    * jeśi operacja się powiedzie. Wykonuję dalsze akcja specyficzne dla danej metody, uzupełniając przy tym danymi objekt
+    * mający być odpowiedzią dla klienta.
+    *
+    * następnie rzutuję objekt z danymi do formatu json i zwracam go klientowi
+    *
+    * Objekty służące do dialogu user <-> serwer znajdują sę w pakiecie commonElements
+    * */
     @Override
     public void run() {
         final String pathToController = "wallet.server.controllers.";
@@ -62,10 +87,11 @@ public class JavaHTTPServer implements Runnable{
         Object outputDataObject = null;
 
         try {
+            //zczytywanie bufora wejściowego z danymi
             inputBuffer = new BufferedReader(new InputStreamReader(connect.getInputStream()));
             ServerResponse serverResponse = new ServerResponse(connect.getOutputStream());
 
-            //reading data from request headers
+            //zapisywanie nagłówków header z requestu
             BufferedReader headerBuffer = inputBuffer;
             String urlHeader = null;
             String headerLine;
@@ -79,7 +105,7 @@ public class JavaHTTPServer implements Runnable{
                 i++;
             }
 
-            //check request url validation
+            //sprawdzanie poprawności adresu url
             if(urlHeader != null && urlHeader.chars().filter(num -> num == '/').count() != 3){
                 try {
                     StringTokenizer parse = new StringTokenizer(urlHeader);
@@ -107,28 +133,30 @@ public class JavaHTTPServer implements Runnable{
                 flag = false;
             }
 
-            //handling request
+            //obsługa poprawnego zapytania
             if(flag && (requestMethod.equals("GET") || requestMethod.equals("POST"))) {
-                //reading input data
+                //wczytywanie danych zapisanych w formacie json
                 while(headerBuffer.ready()){
                     inputData.append((char) headerBuffer.read());
                 }
 
-                //execute action from controller
+                //wywołąnie akcji w kontrolerze
                 try{
                     if (!controllerList.contains(controllerName)) throw new ControllerNotExistException();
 
+                    //kontroler i akcja muszą spełniać oddpowiedni pattern nazw, po części zabezpiecza to remot code execution
                     action += "Action";
                     controllerName = controllerName.substring(0, 1).toUpperCase() + controllerName.substring(1);
                     controllerName += "Controller";
 
+                    //próba wywołania akcji w kontrolerze
                     try{
                         Class<?> controllerClass = Class.forName(pathToController + controllerName);
                         Constructor<?> controllerConstructor = controllerClass.getConstructor();
                         Object controllerObject = controllerConstructor.newInstance();
                         if (!(controllerObject instanceof Controller)) throw new ForbiddenControllerException();
 
-                        //set up request headers in controller
+                        //wysyłanie nagłówków do konrolera
                         Method setUp = controllerClass.getMethod("setHeaders", HashMap.class);
                         setUp.invoke(controllerObject, headers);
 
@@ -164,7 +192,7 @@ public class JavaHTTPServer implements Runnable{
                     flag = false;
                 }
 
-                //response output data
+                //wysyłąnie odpowiedzi serwera
                 if(flag){
                     serverResponse.setData(outputDataObject);
                     serverResponse.response();
@@ -174,7 +202,7 @@ public class JavaHTTPServer implements Runnable{
                 if(flag) serverResponse.notSupportedMethod();
             }
 
-        } catch (IOException e) { //catch server errors
+        } catch (IOException e) { //złapanie wyjątków
             e.printStackTrace();
 
         } finally {

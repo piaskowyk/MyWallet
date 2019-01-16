@@ -21,6 +21,11 @@ import wallet.commonElements.responses.*;
 
 public class ServerResponse {
 
+    /*
+    * Klasa jest odpowiedzialna za poprawne storzenie poprawnych nagłówków zgodnych z standardem HTTP, które mają zostać
+    * wysłane jako odpowiedź klientowi
+    * */
+
     private int statusCode;
     private String contentType;
     private Object data;
