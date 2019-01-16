@@ -66,7 +66,7 @@ public class JavaHTTPServer implements Runnable{
     * W na początku metody w kontrolerze tworzę obiekt, któ©y będzie zawierać dane zwracane urzytkonwnikowi,
     * potem próbuję zrzutować dane przysłąne przez urzytkoniwka w formacie json na oczekiwany objekt który ma być 
     * reprezentacją danych wejściowych dla danej metowy.
-    * Następnie przeprowadzam autoryzację urzytkownika.
+    * Następnie przeprowadzam autoryzację użytkownika.
     * jeśi operacja się powiedzie. Wykonuję dalsze akcja specyficzne dla danej metody, uzupełniając przy tym danymi objekt
     * mający być odpowiedzią dla klienta.
     *

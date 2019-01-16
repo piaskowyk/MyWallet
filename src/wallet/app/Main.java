@@ -18,7 +18,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        //autoryzuj urzytkownika
+        //autoryzuj użytkownika
         AuthorizationManager.authorize();
         //załaduj widoki
         ViewsManager.init(primaryStage, getClass());

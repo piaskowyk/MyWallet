@@ -31,7 +31,7 @@ public class WalletController extends Controller {
     }
 
     /*
-     * Dodanie płatności przez urzytkownika
+     * Dodanie płatności przez użytkownika
      * */
     public StandardResult add_paymentAction(String json){
         StandardResult result = new StandardResult();

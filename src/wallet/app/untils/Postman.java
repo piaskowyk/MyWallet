@@ -49,7 +49,7 @@ public class Postman <T>{
      * Wysyła objekt z danymi na poday adres i zwraca objekt o oczekiwanym typie
      * */
     public T send(Object message, Class type, Api request) {
-        //sprawdza czy urzytkownik jest zalogowany
+        //sprawdza czy użytkownik jest zalogowany
         if (checkAuthorization && !AuthorizationManager.isAuthorized()){
             AuthorizationManager.authorize();
 
