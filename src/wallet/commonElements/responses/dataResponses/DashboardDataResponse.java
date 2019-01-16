@@ -1,6 +1,12 @@
 package wallet.commonElements.responses.dataResponses;
 
+/*
+ * use library:
+ * javafx: https://github.com/javafxports/openjdk-jfx
+ * */
+
 import javafx.util.Pair;
+
 import wallet.commonElements.responses.BaseResponse;
 
 import java.util.ArrayList;

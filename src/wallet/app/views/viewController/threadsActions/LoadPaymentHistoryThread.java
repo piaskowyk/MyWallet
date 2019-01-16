@@ -1,5 +1,10 @@
 package wallet.app.views.viewController.threadsActions;
 
+/*
+ * use library:
+ * javafx: https://github.com/javafxports/openjdk-jfx
+ * */
+
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+
 import wallet.app.untils.Postman;
 import wallet.app.views.viewController.HistoryViewController;
 import wallet.commonElements.entity.PaymentCategory;

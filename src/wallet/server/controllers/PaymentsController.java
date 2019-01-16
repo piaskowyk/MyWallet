@@ -1,6 +1,12 @@
 package wallet.server.controllers;
 
+/*
+ * use library:
+ * gson: https://github.com/google/gson
+ * */
+
 import com.google.gson.Gson;
+
 import wallet.commonElements.entity.PaymentItem;
 import wallet.commonElements.entity.User;
 import wallet.commonElements.forms.PaymentForm;
@@ -41,39 +47,28 @@ public class PaymentsController extends Controller {
             query.append("select * from payments where user_id = ?");
 
             if(paymentsHistoryForm.getPaymentCategory() != null){
-                query.append(" and category = '");
-                query.append(paymentsHistoryForm.getPaymentCategory().getName());
-                query.append("' ");
+                query.append(" and category = '").append(paymentsHistoryForm.getPaymentCategory().getName()).append("' ");
             }
 
             if(paymentsHistoryForm.getDateStart() != null){
-                query.append(" and ");
-                query.append(" date >= ");
                 java.util.Date utilDate = paymentsHistoryForm.getDateStart();
                 java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-                query.append("'");
-                query.append(sqlDate);
-                query.append("'");
+                query.append(" and date >= '").append(sqlDate).append("'");
             }
 
             if(paymentsHistoryForm.getDateEnd() != null){
-                query.append(" and ");
-                query.append(" date <= ");
                 java.util.Date utilDate = paymentsHistoryForm.getDateEnd();
                 java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-                query.append("'");
-                query.append(sqlDate);
-                query.append("'");
+                query.append(" and date <= '").append(sqlDate).append("'");
             }
 
             operationInit = false;
             if(paymentsHistoryForm.getFilterDateSort() != null){
                 operationInit = true;
-                query.append(" order by ");
-                query.append("date ");
-                query.append(paymentsHistoryForm.getFilterDateSort().getName());
-                query.append(", id ");
-                query.append(paymentsHistoryForm.getFilterDateSort().getName());
+                query.append(" order by date ")
+                        .append(paymentsHistoryForm.getFilterDateSort().getName())
+                        .append(", id ")
+                        .append(paymentsHistoryForm.getFilterDateSort().getName());
             }
 
             if(paymentsHistoryForm.getFilterAmountSort() != null){

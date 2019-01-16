@@ -1,11 +1,17 @@
 package wallet.app.views.viewController;
 
+/*
+ * use library:
+ * javafx: https://github.com/javafxports/openjdk-jfx
+ * */
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+
 import wallet.app.untils.AuthorizationManager;
 import wallet.app.views.IViewController;
 import wallet.app.views.viewController.components.Menu;

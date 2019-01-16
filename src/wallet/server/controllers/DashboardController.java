@@ -1,5 +1,11 @@
 package wallet.server.controllers;
 
+/*
+ * use library:
+ * javafx: https://github.com/javafxports/openjdk-jfx
+ * gson: https://github.com/google/gson
+ * */
+
 import com.google.gson.Gson;
 import javafx.util.Pair;
 import wallet.commonElements.entity.User;
@@ -105,10 +111,11 @@ public class DashboardController extends Controller {
     }
 
     private float getIncomingInTimePeriod(DashboardForm dashboardForm) throws SQLException {
+        ResultSet dbResult;
         ArrayList<Object> arguments = new ArrayList<>();
         arguments.add(user.getId());
-        ResultSet dbResult;
         float incomingSum = 0;
+
         String query = "select sum(amount) incomingSum\n" +
                 "from payments\n" +
                 "where user_id = ?\n" +

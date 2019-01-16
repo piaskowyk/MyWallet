@@ -1,5 +1,10 @@
 package wallet.app.views.viewController;
 
+/*
+ * use library:
+ * javafx: https://github.com/javafxports/openjdk-jfx
+ * */
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -1,5 +1,12 @@
 package wallet.app.untils;
 
+/*
+ * use library:
+ * javafx: https://github.com/javafxports/openjdk-jfx
+ * gson: https://github.com/google/gson
+ * apache: https://mvnrepository.com/artifact/org.apache.httpcomponents
+ * */
+
 import com.google.gson.Gson;
 import javafx.scene.control.Alert;
 import org.apache.http.HttpResponse;

@@ -1,5 +1,10 @@
 package wallet.app;
 
+/*
+* use library:
+* javafx: https://github.com/javafxports/openjdk-jfx
+* */
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import wallet.app.untils.AuthorizationManager;
@@ -17,7 +22,6 @@ public class Main extends Application {
         } else {
             ViewsManager.loadView(ViewsManager.Views.LOGIN);
         }
-        //TODO: wszstkie nazwy pakietów od dużej litery
     }
 
 

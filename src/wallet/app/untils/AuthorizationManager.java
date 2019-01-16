@@ -1,6 +1,12 @@
 package wallet.app.untils;
 
+/*
+ * use library:
+ * gson: https://github.com/google/gson
+ * */
+
 import com.google.gson.Gson;
+
 import wallet.app.views.ViewsManager;
 import wallet.commonElements.entity.Pass;
 import wallet.commonElements.forms.LoginForm;

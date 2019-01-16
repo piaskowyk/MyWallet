@@ -1,6 +1,12 @@
 package wallet.server.untils;
 
+/*
+ * use library:
+ * gson: https://github.com/google/gson
+ * */
+
 import com.google.gson.Gson;
+
 import wallet.server.exceptions.RequestDoubleExecutedException;
 import wallet.commonElements.responses.serverResponses.*;
 

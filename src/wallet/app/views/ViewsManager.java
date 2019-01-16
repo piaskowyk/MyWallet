@@ -1,5 +1,10 @@
 package wallet.app.views;
 
+/*
+ * use library:
+ * javafx: https://github.com/javafxports/openjdk-jfx
+ * */
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -19,8 +24,8 @@ public class ViewsManager {
 
     private ViewsManager(){}
 
-    public static void init(Stage primaryStage, Class mainClass){
-        _primaryStage = primaryStage;
+    public static void init(Stage mainPrimaryStage, Class mainClass){
+        _primaryStage = mainPrimaryStage;
         _mainClass = mainClass;
 
         registerAllViews();

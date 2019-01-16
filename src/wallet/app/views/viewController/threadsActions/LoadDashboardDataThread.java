@@ -1,10 +1,16 @@
 package wallet.app.views.viewController.threadsActions;
 
+/*
+ * use library:
+ * javafx: https://github.com/javafxports/openjdk-jfx
+ * */
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.*;
 import javafx.scene.control.Tooltip;
 import javafx.util.Pair;
+
 import wallet.app.untils.Postman;
 import wallet.app.views.viewController.DashboardViewController;
 import wallet.commonElements.forms.DashboardForm;
