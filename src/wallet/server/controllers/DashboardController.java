@@ -421,7 +421,7 @@ public class DashboardController extends Controller {
         calendar.setTime(startMonth);
         for(int i = 1; i <= lastDay; i++){
             if(accountStateInThisMonth.containsKey(calendar.getTime())){
-                lastState = lastMonthAccountState + accountStateInThisMonth.get(calendar.getTime());
+                lastState += accountStateInThisMonth.get(calendar.getTime());
             }
 
             result.add(new Pair<>(calendar.getTime(), lastState));
@@ -473,8 +473,6 @@ public class DashboardController extends Controller {
 
             if(accountStateInTimePeriod.containsKey(calendar.getTime())){
                 lastState += accountStateInTimePeriod.get(calendar.getTime());
-                System.out.println(accountStateInTimePeriod.get(calendar.getTime()));
-                System.out.println(lastState);
             }
 
             result.add(new Pair<>(calendar.getTime(), lastState));

@@ -116,8 +116,8 @@ public class ServerResponse {
         dataMaker.println("server: piaskowyk");
         dataMaker.println("Date: " + new Date());
 
-        //polish characters have 2 position per char
-        Pattern pattern = Pattern.compile("[ęóąśłżźćńĘÓĄŚŁŻŹĆŃ]");
+        //niestandardowe znaki ASCI potrzebują dwa razy więcej zmiejsca na znak
+        Pattern pattern = Pattern.compile("[^\\x20-\\x7E]");
         Matcher matcher = pattern.matcher(json);
         int count = 0;
         while (matcher.find()) count++;
