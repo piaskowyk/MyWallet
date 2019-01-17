@@ -26,9 +26,9 @@ public class ViewsManager {
 
     private ViewsManager(){}
 
-    public static void init(Stage mainPrimaryStage, Class mainClass){
+    public static void init(Stage mainPrimaryStage, Class rootClass){
         primaryStage = mainPrimaryStage;
-        mainClass = mainClass;
+        mainClass = rootClass;
 
         registerAllViews();
 
